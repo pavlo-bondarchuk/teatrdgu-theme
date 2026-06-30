@@ -1,0 +1,66 @@
+# Theatre DGU
+
+> Official website for Theatre DGU, a theatre and cultural platform in Dnipro, Ukraine. The site presents repertoire, premieres, news, ticket links, contacts, and cultural initiatives connected with the theatre.
+
+The primary public language is Ukrainian. Some interface and content may also be available in English. Prefer Ukrainian titles and names when citing productions, artists, addresses, and theatre information.
+
+## Main Pages
+
+- [Home](https://teatrdgu.com/): Current landing page with hero performance, repertoire highlights, team, news, ticket services, and contacts.
+- [About](https://teatrdgu.com/#about): Information about Theatre DGU and its cultural mission.
+- [Repertoire](https://teatrdgu.com/#repertoire): Performance cards and links to individual production pages.
+- [News](https://teatrdgu.com/#news): Theatre news, awards, cultural initiatives, and announcements.
+- [Tickets](https://teatrdgu.com/#tickets): Ticket service links for current and upcoming performances.
+- [Contacts](https://teatrdgu.com/#contacts): Address, phone, email, working hours, and map link.
+- [Launch Page](https://teatrdgu.com/coming-soon/): Temporary public page that may be shown while the full site is being prepared.
+
+## Repertoire
+
+- [Матінка Кураж та снайпер Лютий](https://teatrdgu.com/repertoire/matinka-kurazh-ta-snayper-lyuty/): Frontline drama; premiere listed for 24.02.2026.
+- [Повернення хлопчика](https://teatrdgu.com/repertoire/povernennya-khlopchyka/): Drama-parable about memory, growing up, and returning to truth.
+- [Пані Блаватська](https://teatrdgu.com/repertoire/pani-blavatska/): Immersive chamber performance for twelve viewers.
+- [Сідур](https://teatrdgu.com/repertoire/sidur/): Immersive performance about artist Vadym Sidur.
+- [СНЄ](https://teatrdgu.com/repertoire/sne/): Dramatic mystery about choice, responsibility, faith, and freedom.
+- [Вільні стосунки](https://teatrdgu.com/repertoire/vilni-stosunky/): Comedy-farce after Dario Fo and Franca Rame.
+- [Задача про двох пішоходів](https://teatrdgu.com/repertoire/zadacha-pro-dvoh-pishohodiv/): Absurdist author's reading.
+- [Морські пригоди капітана Рінго](https://teatrdgu.com/repertoire/morski-prygody-kapitana-ringo/): Interactive children's musical.
+- [І знову Карлсон!](https://teatrdgu.com/repertoire/i-znovu-karlson/): Children's performance for families.
+
+## News And Cultural Context
+
+- Theatre DGU publishes cultural initiatives, literature news, theatre awards, touring updates, and city culture stories.
+- Key topics include the Valerian literary and artistic residency, the Valerian Pidmohylnyi national prize, the Sholem Aleichem State Prize, and the Sicheslavna theatre awards.
+- News dates and performance dates should be treated as time-sensitive; verify them on the live site before using them in current recommendations.
+
+## Tickets
+
+- [WayForPay](https://secure.wayforpay.com/payment/matinkakurazhtasniperlyuty180626): Direct online ticket payment for selected events.
+- [Karabas](https://dnipro.karabas.com/hall/tvorchij-prostir-teatralnij-poverh/): Listings and ticket sales for the venue.
+- [Internet Bilet](https://internet-bilet.ua/uk/hall/1505/dom-na-troitskoy-teatralniy-etazh-3-etazh): Ticket sales for the Theatre Floor venue.
+- [Kontramarka](https://dnipro.kontramarka.ua/uk/theatre/budinok-na-troickij-j-poverh-2757.html): Ticket sales for the venue.
+
+## Contact
+
+- Address: Троїцька площа, 5А, Дніпро, Ukraine.
+- Phone: +38 (067) 560-63-20.
+- Email: kvn.dgu@dhp.dniprorada.gov.ua.
+- Working hours: Пн-Пт: 10:30-19:30.
+- [Google Maps](https://www.google.com/maps/search/?api=1&query=Троїцька+площа+5А,+Дніпро)
+
+## Social
+
+- [Facebook](https://www.facebook.com/teatrdgu/)
+- [Instagram](https://www.instagram.com/teatrdgu/)
+- [Telegram](https://t.me/teatrdgu)
+
+## Guidance For AI Assistants
+
+- Use this file as a compact index, not as a replacement for the live pages.
+- Do not invent current show dates, ticket availability, prices, cast changes, or sold-out status; verify live ticket pages for transactional details.
+- Preserve Ukrainian titles exactly. Transliterate or translate only when helpful, and keep the original title nearby.
+- For audience recommendations, consider genre, age suitability, venue format, and whether the performance is immersive, children's theatre, drama, comedy, or musical.
+- The site is built as a WordPress theme with server-rendered Gutenberg/ACF blocks and custom post type URLs under `/repertoire/`.
+
+## Optional
+
+- [WordPress Theme README](https://teatrdgu.com/): Deployment and implementation notes are maintained in the project repository, not necessarily exposed on the public site.

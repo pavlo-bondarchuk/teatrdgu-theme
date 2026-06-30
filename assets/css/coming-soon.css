@@ -1,0 +1,53 @@
+:root{
+  color-scheme:light;
+  --cs-cream:#faf7f2;
+  --cs-charcoal:#1e1914;
+  --cs-graphite:#342d26;
+  --cs-sand:#cfa16b;
+  --cs-beige:#dac9b2;
+}
+*,
+*::before,
+*::after{box-sizing:border-box}
+html,body{min-width:320px;min-height:100%;margin:0}
+body{font-family:Inter,Arial,sans-serif;color:var(--cs-charcoal);background:var(--cs-cream)}
+.coming-soon{position:relative;display:flex;align-items:center;min-height:100vh;min-height:100svh;padding:40px 80px;overflow:hidden;background:var(--cs-cream) var(--coming-soon-poster) center/cover no-repeat}
+.coming-soon__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;pointer-events:none;opacity:0;transition:opacity .7s ease}
+.coming-soon__video--ready{opacity:1}
+.coming-soon__overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(250,247,242,.98) 0%,rgba(250,247,242,.9) 35%,rgba(250,247,242,.22) 67%,rgba(30,25,20,.04) 100%);pointer-events:none}
+.coming-soon__container{position:relative;z-index:1;width:100%;max-width:1240px;margin:0 auto}
+.coming-soon__content{width:min(760px,100%)}
+.coming-soon__logo-wrap{margin-bottom:clamp(48px,6vh,64px)}
+.coming-soon__logo{display:block;width:clamp(190px,18vw,250px);height:auto}
+.coming-soon__eyebrow{margin:0 0 20px;color:var(--cs-sand);font-size:14px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.coming-soon__title{margin:0 0 28px;font-family:Georgia,"Times New Roman",serif;font-weight:400;line-height:1.03;letter-spacing:-.025em}
+.coming-soon__title-line{display:block;white-space:nowrap}
+.coming-soon__title-line--primary{font-size:clamp(1.35rem,5.3vw,5.1rem)}
+.coming-soon__title-line--secondary{margin-top:4px;font-size:clamp(1.2rem,4.7vw,4.35rem)}
+.coming-soon__description{max-width:680px;margin:0 0 32px;color:var(--cs-graphite);font-size:clamp(15px,1.25vw,18px);line-height:1.65}
+.coming-soon__actions{display:flex;gap:16px;margin-bottom:36px}
+.coming-soon__button{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:14px 32px;color:var(--cs-charcoal);font-size:13px;font-weight:600;letter-spacing:.08em;text-decoration:none;text-transform:uppercase;transition:opacity .18s ease,transform .18s ease}
+.coming-soon__button:hover{opacity:.86;transform:translateY(-1px)}
+.coming-soon__button:focus-visible{outline:2px solid var(--cs-charcoal);outline-offset:3px}
+.coming-soon__button--mail{color:var(--cs-cream);background:var(--cs-charcoal)}
+.coming-soon__button--facebook{background:var(--cs-beige)}
+.coming-soon__button-icon{width:18px;height:18px;margin-right:12px;flex:0 0 auto}
+.coming-soon__location{margin:0;color:var(--cs-graphite);font-size:14px}
+@media (max-width:767px){
+  .coming-soon{align-items:flex-end;padding:32px 24px;background-position:64% center}
+  .coming-soon__video{object-position:64% center}
+  .coming-soon__overlay{background:linear-gradient(180deg,rgba(250,247,242,.16) 0%,rgba(250,247,242,.74) 35%,rgba(250,247,242,.98) 67%,rgba(250,247,242,1) 100%)}
+  .coming-soon__logo-wrap{margin-bottom:30px}
+  .coming-soon__eyebrow{margin-bottom:14px;font-size:11px}
+  .coming-soon__title{margin-bottom:20px}
+  .coming-soon__title-line--primary{font-size:clamp(1.35rem,6.2vw,2rem)}
+  .coming-soon__title-line--secondary{font-size:clamp(1.18rem,5.55vw,1.8rem)}
+  .coming-soon__description{margin-bottom:24px;font-size:14px;line-height:1.55}
+  .coming-soon__actions{flex-direction:column;gap:12px;margin-bottom:24px}
+  .coming-soon__button{width:100%;min-height:52px}
+}
+@media (prefers-reduced-motion:reduce){
+  .coming-soon__video{display:none}
+  .coming-soon__button{transition:none}
+}
+

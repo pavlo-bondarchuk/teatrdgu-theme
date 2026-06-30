@@ -1,0 +1,79 @@
+{
+    "key": "group_dgut_team_member_fields",
+    "title": "Team member details",
+    "fields": [
+        {
+            "key": "field_dgut_team_member_role",
+            "label": "Role",
+            "name": "dgut_team_member_role",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_dgut_team_member_image_focus",
+            "label": "Image focus",
+            "name": "dgut_team_member_image_focus",
+            "type": "text",
+            "instructions": "CSS object-position value, for example: center top, 50% 30%.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "center top",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_dgut_team_member_external_url",
+            "label": "External URL",
+            "name": "dgut_team_member_external_url",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "team_member"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1782843000
+}

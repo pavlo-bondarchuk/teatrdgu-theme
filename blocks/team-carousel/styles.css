@@ -1,0 +1,11 @@
+.dgut-team__top{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:30px}
+.dgut-team__track{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 60px)/4);gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.dgut-team__track::-webkit-scrollbar{display:none}
+.dgut-team-card{scroll-snap-align:start}
+.dgut-team-card__image{aspect-ratio:4/5}
+.dgut-team-card__body{padding:18px}
+.dgut-team-card h3{margin:0 0 8px;font-family:var(--dgut-display);font-weight:400;text-transform:uppercase;font-size:1.35rem;line-height:1.05}
+.dgut-team-card p{margin:0;color:var(--dgut-taupe);font-size:13px}
+@media (max-width:920px){.dgut-team__track{grid-auto-columns:calc((100% - 20px)/2)}}
+@media (max-width:560px){.dgut-team__top{display:grid}.dgut-team__track{grid-auto-columns:100%}}
+

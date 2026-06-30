@@ -1,0 +1,66 @@
+{
+    "key": "group_dgut_tickets",
+    "title": "DGU Ticket Services",
+    "fields": [
+        {
+            "key": "field_dgut_tickets_show_block",
+            "label": "Show block",
+            "name": "show_block",
+            "type": "true_false",
+            "ui": 1,
+            "default_value": 1
+        },
+        {
+            "key": "field_dgut_tickets_eyebrow",
+            "label": "Eyebrow",
+            "name": "eyebrow",
+            "type": "text",
+            "default_value": "Онлайн-сервіси"
+        },
+        {
+            "key": "field_dgut_tickets_title",
+            "label": "Title",
+            "name": "title",
+            "type": "text",
+            "default_value": "Оберіть сервіс для квитків"
+        },
+        {
+            "key": "field_dgut_tickets_title_tag",
+            "label": "Title tag",
+            "name": "title_tag",
+            "type": "select",
+            "choices": {
+                "h1": "h1",
+                "h2": "h2",
+                "h3": "h3",
+                "p": "p",
+                "span": "span",
+                "div": "div"
+            },
+            "default_value": "h2",
+            "return_format": "value",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "dgut/tickets"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1782792000
+}

@@ -1,0 +1,76 @@
+{
+    "key": "group_dgut_news_grid",
+    "title": "DGU News Grid",
+    "fields": [
+        {
+            "key": "field_dgut_news_show_block",
+            "label": "Show block",
+            "name": "show_block",
+            "type": "true_false",
+            "ui": 1,
+            "default_value": 1
+        },
+        {
+            "key": "field_dgut_news_eyebrow",
+            "label": "Eyebrow",
+            "name": "eyebrow",
+            "type": "text",
+            "default_value": "Новини"
+        },
+        {
+            "key": "field_dgut_news_title",
+            "label": "Title",
+            "name": "title",
+            "type": "text",
+            "default_value": "Культурна платформа"
+        },
+        {
+            "key": "field_dgut_news_title_tag",
+            "label": "Title tag",
+            "name": "title_tag",
+            "type": "select",
+            "choices": {
+                "h1": "h1",
+                "h2": "h2",
+                "h3": "h3",
+                "p": "p",
+                "span": "span",
+                "div": "div"
+            },
+            "default_value": "h2",
+            "return_format": "value",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0
+        },
+        {
+            "key": "field_dgut_news_posts_to_show",
+            "label": "Posts to show",
+            "name": "posts_to_show",
+            "type": "number",
+            "default_value": 4,
+            "min": 1,
+            "max": 12,
+            "step": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "dgut/news-grid"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1782792000
+}

@@ -1,0 +1,14 @@
+{
+  "apiVersion": 2,
+  "name": "dgut/repertoire-grid",
+  "title": "DGU Repertoire Grid",
+  "category": "widgets",
+  "icon": "tickets-alt",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "template.php"
+  },
+  "supports": { "align": ["wide", "full"], "html": false },
+  "style": "file:./styles.css",
+  "script": "file:./scripts.js"
+}

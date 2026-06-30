@@ -1,0 +1,26 @@
+{
+    "key": "ui_options_page_6a4394652a885",
+    "title": "Site Settings",
+    "active": true,
+    "menu_order": 0,
+    "page_title": "Site Settings",
+    "menu_slug": "site-settings",
+    "parent_slug": "none",
+    "advanced_configuration": 1,
+    "icon_url": "",
+    "menu_title": "",
+    "position": -100,
+    "redirect": 0,
+    "description": "",
+    "menu_icon": {
+        "type": "dashicons",
+        "value": "dashicons-admin-generic"
+    },
+    "update_button": "Оновити",
+    "updated_message": "Опції оновлено",
+    "capability": "edit_posts",
+    "data_storage": "options",
+    "post_id": "",
+    "autoload": 0,
+    "modified": 1782813826
+}
