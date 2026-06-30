@@ -37,14 +37,55 @@
     const next = carousel.querySelector('[data-carousel-next]');
     if (!track || !prev || !next) return;
 
-    const step = () => {
-      if (carousel.dataset.carouselStep === 'page') {
-        return track.clientWidth;
+    const items = Array.from(track.children);
+    if (!items.length) return;
+
+    let currentPage = 0;
+
+    const perView = () => {
+      const mobile = Number(carousel.dataset.carouselMobile || 1);
+      const tablet = Number(carousel.dataset.carouselTablet || mobile);
+      const desktop = Number(carousel.dataset.carouselDesktop || tablet);
+
+      if (window.innerWidth < 640) {
+        return mobile;
       }
 
-      return track.querySelector(':scope > *')?.getBoundingClientRect().width || track.clientWidth;
+      if (window.innerWidth < 1024) {
+        return tablet;
+      }
+
+      return desktop;
     };
-    prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
-    next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
+
+    const render = () => {
+      const count = perView();
+      const pageCount = Math.max(1, Math.ceil(items.length / count));
+      currentPage = Math.min(currentPage, pageCount - 1);
+      track.style.setProperty('--dgut-carousel-cols', String(count));
+
+      items.forEach((item, index) => {
+        const isVisible = index >= currentPage * count && index < (currentPage + 1) * count;
+        item.hidden = !isVisible;
+      });
+
+      const controls = prev.closest('.slider-controls');
+      if (controls) {
+        controls.hidden = pageCount < 2;
+      }
+    };
+
+    prev.addEventListener('click', () => {
+      const pageCount = Math.max(1, Math.ceil(items.length / perView()));
+      currentPage = (currentPage - 1 + pageCount) % pageCount;
+      render();
+    });
+    next.addEventListener('click', () => {
+      const pageCount = Math.max(1, Math.ceil(items.length / perView()));
+      currentPage = (currentPage + 1) % pageCount;
+      render();
+    });
+    window.addEventListener('resize', render);
+    render();
   });
 })();

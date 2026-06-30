@@ -140,7 +140,7 @@ foreach ($team_posts as $team_post) {
     <?php endif; ?>
 
     <?php if (dgut_front_bool('home_repertoire_show', true) && !empty($performances)) : ?>
-        <section id="repertoire" class="section dgut-repertoire" data-carousel data-carousel-step="page">
+        <section id="repertoire" class="section dgut-repertoire" data-carousel data-carousel-desktop="3" data-carousel-tablet="2" data-carousel-mobile="1">
             <div class="container">
                 <div class="dgut-section-head">
                     <h2 class="section-title"><?php echo esc_html(dgut_front_field('home_repertoire_title', __('Репертуар', 'dgutheater'))); ?></h2>
@@ -179,7 +179,7 @@ foreach ($team_posts as $team_post) {
     <?php endif; ?>
 
     <?php if (dgut_front_bool('home_news_show', true) && !empty($news_items)) : ?>
-        <section id="news" class="section dgut-news" data-carousel data-carousel-step="page">
+        <section id="news" class="section dgut-news" data-carousel data-carousel-desktop="4" data-carousel-tablet="2" data-carousel-mobile="1">
             <div class="container">
                 <div class="dgut-section-head">
                     <h2 class="section-title"><?php echo esc_html(dgut_front_field('home_news_title', __('Новини | Культурна платформа', 'dgutheater'))); ?></h2>
@@ -269,7 +269,7 @@ foreach ($team_posts as $team_post) {
     <?php endif; ?>
 
     <?php if (dgut_front_bool('home_team_show', true) && !empty($team)) : ?>
-        <section class="section dgut-team" data-carousel>
+        <section class="section dgut-team" data-carousel data-carousel-desktop="4" data-carousel-tablet="2" data-carousel-mobile="1">
             <div class="container">
                 <div class="dgut-team__top">
                     <div>
