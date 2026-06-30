@@ -87,11 +87,10 @@ $about_stats = [
     ],
 ];
 $about_stats = array_values(array_filter($about_stats, fn (array $stat): bool => $stat['value'] !== '' || $stat['label'] !== ''));
-$about_images = array_values(array_filter([
-    dgut_front_image(dgut_front_field('home_about_image_1')),
-    dgut_front_image(dgut_front_field('home_about_image_2')),
-    dgut_front_image(dgut_front_field('home_about_image_3')),
-]));
+$about_images = array_values(array_filter(array_map(
+    fn (mixed $image): string => dgut_front_image($image),
+    (array) dgut_front_field('home_about_images', [])
+)));
 $has_about = $about_eyebrow !== '' || $about_title !== '' || $about_text_1 !== '' || $about_text_2 !== '' || !empty($about_stats) || !empty($about_images);
 
 $team_posts = dgut_front_posts('team_member', max(1, (int) dgut_front_field('home_team_count', 14)));
