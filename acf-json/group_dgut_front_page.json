@@ -1,310 +1,555 @@
 {
     "key": "group_dgut_front_page",
-    "title": "DGU Front Page",
+    "title": "Front Page Fields",
     "fields": [
         {
             "key": "field_dgut_home_tab_hero",
             "label": "Hero",
             "name": "",
+            "aria-label": "",
             "type": "tab",
-            "placement": "top"
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_dgut_home_hero_show",
             "label": "Show hero",
             "name": "home_hero_show",
+            "aria-label": "",
             "type": "true_false",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "ui": 1,
-            "default_value": 1
+            "default_value": 1,
+            "message": "",
+            "ui_on_text": "",
+            "ui_off_text": ""
         },
         {
             "key": "field_dgut_home_hero_count",
             "label": "Hero slides count",
             "name": "home_hero_count",
+            "aria-label": "",
             "type": "number",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "default_value": 3,
             "min": 1,
             "max": 12,
-            "step": 1
+            "step": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_dgut_home_tab_repertoire",
             "label": "Repertoire",
             "name": "",
+            "aria-label": "",
             "type": "tab",
-            "placement": "top"
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_dgut_home_repertoire_show",
             "label": "Show repertoire",
             "name": "home_repertoire_show",
+            "aria-label": "",
             "type": "true_false",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "ui": 1,
-            "default_value": 1
+            "default_value": 1,
+            "message": "",
+            "ui_on_text": "",
+            "ui_off_text": ""
         },
         {
             "key": "field_dgut_home_repertoire_title",
             "label": "Repertoire title",
             "name": "home_repertoire_title",
+            "aria-label": "",
             "type": "text",
-            "default_value": "Репертуар"
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Репертуар",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_dgut_home_tab_news",
             "label": "News",
             "name": "",
+            "aria-label": "",
             "type": "tab",
-            "placement": "top"
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_dgut_home_news_show",
             "label": "Show news",
             "name": "home_news_show",
+            "aria-label": "",
             "type": "true_false",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "ui": 1,
-            "default_value": 1
+            "default_value": 1,
+            "message": "",
+            "ui_on_text": "",
+            "ui_off_text": ""
         },
         {
             "key": "field_dgut_home_news_title",
             "label": "News title",
             "name": "home_news_title",
+            "aria-label": "",
             "type": "text",
-            "default_value": "Новини | Культурна платформа"
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Новини | Культурна платформа",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_dgut_home_news_count",
             "label": "News count",
             "name": "home_news_count",
+            "aria-label": "",
             "type": "number",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "default_value": 4,
             "min": 1,
             "max": 12,
-            "step": 1
+            "step": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_dgut_home_tab_about",
             "label": "About",
             "name": "",
+            "aria-label": "",
             "type": "tab",
-            "placement": "top"
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_dgut_home_about_show",
             "label": "Show about",
             "name": "home_about_show",
+            "aria-label": "",
             "type": "true_false",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "ui": 1,
-            "default_value": 1
+            "default_value": 1,
+            "message": "",
+            "ui_on_text": "",
+            "ui_off_text": ""
         },
         {
             "key": "field_dgut_home_about_eyebrow",
             "label": "About eyebrow",
             "name": "home_about_eyebrow",
+            "aria-label": "",
             "type": "text",
-            "default_value": "Про театр"
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Про театр",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_dgut_home_about_title",
             "label": "About title",
             "name": "home_about_title",
+            "aria-label": "",
             "type": "text",
-            "default_value": ""
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_dgut_home_about_text_1",
             "label": "About text 1",
             "name": "home_about_text_1",
+            "aria-label": "",
             "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "rows": 3,
             "new_lines": "",
-            "default_value": ""
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": ""
         },
         {
             "key": "field_dgut_home_about_text_2",
             "label": "About text 2",
             "name": "home_about_text_2",
+            "aria-label": "",
             "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "rows": 3,
             "new_lines": "",
-            "default_value": ""
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": ""
         },
         {
             "key": "field_dgut_home_about_stat_1_value",
             "label": "Stat 1 value",
             "name": "home_about_stat_1_value",
+            "aria-label": "",
             "type": "text",
-            "wrapper": {"width": "33"}
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_dgut_home_about_stat_1_label",
             "label": "Stat 1 label",
             "name": "home_about_stat_1_label",
+            "aria-label": "",
             "type": "text",
-            "wrapper": {"width": "67"}
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "67",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_dgut_home_about_stat_2_value",
             "label": "Stat 2 value",
             "name": "home_about_stat_2_value",
+            "aria-label": "",
             "type": "text",
-            "wrapper": {"width": "33"}
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_dgut_home_about_stat_2_label",
             "label": "Stat 2 label",
             "name": "home_about_stat_2_label",
+            "aria-label": "",
             "type": "text",
-            "wrapper": {"width": "67"}
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "67",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_dgut_home_about_stat_3_value",
             "label": "Stat 3 value",
             "name": "home_about_stat_3_value",
+            "aria-label": "",
             "type": "text",
-            "wrapper": {"width": "33"}
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_dgut_home_about_stat_3_label",
             "label": "Stat 3 label",
             "name": "home_about_stat_3_label",
+            "aria-label": "",
             "type": "text",
-            "wrapper": {"width": "67"}
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "67",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_dgut_home_about_image_1",
             "label": "About image wide",
             "name": "home_about_image_1",
+            "aria-label": "",
             "type": "image",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
             "return_format": "array",
             "preview_size": "medium",
             "library": "all",
-            "wrapper": {"width": "33"}
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
         },
         {
             "key": "field_dgut_home_about_image_2",
             "label": "About image 2",
             "name": "home_about_image_2",
+            "aria-label": "",
             "type": "image",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
             "return_format": "array",
             "preview_size": "medium",
             "library": "all",
-            "wrapper": {"width": "33"}
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
         },
         {
             "key": "field_dgut_home_about_image_3",
             "label": "About image 3",
             "name": "home_about_image_3",
+            "aria-label": "",
             "type": "image",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
             "return_format": "array",
             "preview_size": "medium",
             "library": "all",
-            "wrapper": {"width": "33"}
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
         },
         {
             "key": "field_dgut_home_tab_team",
             "label": "Team",
             "name": "",
+            "aria-label": "",
             "type": "tab",
-            "placement": "top"
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_dgut_home_team_show",
             "label": "Show team",
             "name": "home_team_show",
+            "aria-label": "",
             "type": "true_false",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "ui": 1,
-            "default_value": 1
-        },
-        {
-            "key": "field_dgut_home_team_eyebrow",
-            "label": "Team eyebrow",
-            "name": "home_team_eyebrow",
-            "type": "text",
-            "default_value": "Команда"
-        },
-        {
-            "key": "field_dgut_home_team_title",
-            "label": "Team title",
-            "name": "home_team_title",
-            "type": "text",
-            "default_value": "Люди театру"
-        },
-        {
-            "key": "field_dgut_home_team_count",
-            "label": "Team count",
-            "name": "home_team_count",
-            "type": "number",
-            "default_value": 14,
-            "min": 1,
-            "max": 30,
-            "step": 1
-        },
-        {
-            "key": "field_dgut_home_tab_tickets",
-            "label": "Tickets",
-            "name": "",
-            "type": "tab",
-            "placement": "top"
-        },
-        {
-            "key": "field_dgut_home_tickets_show",
-            "label": "Show tickets",
-            "name": "home_tickets_show",
-            "type": "true_false",
-            "ui": 1,
-            "default_value": 1
-        },
-        {
-            "key": "field_dgut_home_tickets_eyebrow",
-            "label": "Tickets eyebrow",
-            "name": "home_tickets_eyebrow",
-            "type": "text",
-            "default_value": "Онлайн-сервіси"
-        },
-        {
-            "key": "field_dgut_home_tickets_title",
-            "label": "Tickets title",
-            "name": "home_tickets_title",
-            "type": "text",
-            "default_value": "Оберіть сервіс для квитків"
-        },
-        {
-            "key": "field_dgut_home_tickets_description",
-            "label": "Tickets description",
-            "name": "home_tickets_description",
-            "type": "textarea",
-            "rows": 2,
-            "new_lines": "",
-            "default_value": "Продаж і повернення квитків відбуваються на стороні обраного офіційного сервісу."
-        },
-        {
-            "key": "field_dgut_home_tab_contact",
-            "label": "Contact",
-            "name": "",
-            "type": "tab",
-            "placement": "top"
-        },
-        {
-            "key": "field_dgut_home_contact_show",
-            "label": "Show contact",
-            "name": "home_contact_show",
-            "type": "true_false",
-            "ui": 1,
-            "default_value": 1
-        },
-        {
-            "key": "field_dgut_home_contact_eyebrow",
-            "label": "Contact eyebrow",
-            "name": "home_contact_eyebrow",
-            "type": "text",
-            "default_value": "Контакти"
-        },
-        {
-            "key": "field_dgut_home_contact_title",
-            "label": "Contact title",
-            "name": "home_contact_title",
-            "type": "text",
-            "default_value": "Театр ДГУ"
+            "default_value": 1,
+            "message": "",
+            "ui_on_text": "",
+            "ui_off_text": ""
         }
     ],
     "location": [
@@ -325,5 +570,8 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1782840000
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1782852369
 }
