@@ -6,8 +6,43 @@ $date = function_exists('get_field') ? (string) get_field('dgut_performance_date
 $duration = function_exists('get_field') ? (string) get_field('dgut_performance_duration') : '';
 $ticket_url = function_exists('get_field') ? (string) get_field('dgut_performance_ticket_url') : '';
 $video_url = function_exists('get_field') ? (string) get_field('dgut_performance_video_url') : '';
-$gallery_raw = function_exists('get_field') ? (string) get_field('dgut_performance_gallery') : '';
-$gallery = array_filter(array_map('trim', preg_split('/\R+/', $gallery_raw) ?: []));
+$gallery_raw = function_exists('get_field') ? get_field('dgut_performance_gallery_images') : [];
+$gallery = [];
+
+if (is_array($gallery_raw)) {
+    foreach ($gallery_raw as $image) {
+        if (is_array($image)) {
+            $image_id = (int) ($image['ID'] ?? $image['id'] ?? 0);
+            $image_url = (string) ($image['url'] ?? '');
+
+            if ($image_id || $image_url !== '') {
+                $gallery[] = [
+                    'id' => $image_id,
+                    'url' => $image_url,
+                    'alt' => (string) ($image['alt'] ?? get_the_title()),
+                ];
+            }
+            continue;
+        }
+
+        if (is_numeric($image)) {
+            $gallery[] = [
+                'id' => (int) $image,
+                'url' => '',
+                'alt' => get_the_title(),
+            ];
+            continue;
+        }
+
+        if (is_string($image) && trim($image) !== '') {
+            $gallery[] = [
+                'id' => 0,
+                'url' => trim($image),
+                'alt' => get_the_title(),
+            ];
+        }
+    }
+}
 $terms = wp_get_post_terms(get_the_ID(), 'performance_genre', ['fields' => 'names']);
 ?>
 <main id="primary" class="site-main dgut-event">
@@ -74,13 +109,13 @@ $terms = wp_get_post_terms(get_the_ID(), 'performance_genre', ['fields' => 'name
                     </div>
                 </div>
                 <div class="dgut-event-gallery__track" data-carousel-track>
-                    <?php foreach ($gallery as $image_ref) : ?>
+                    <?php foreach ($gallery as $image) : ?>
                         <div class="media-frame dgut-event-gallery__item">
                             <?php
-                            if (is_numeric($image_ref)) {
-                                echo wp_get_attachment_image((int) $image_ref, 'dgut-wide', false, ['loading' => 'lazy']);
+                            if (!empty($image['id'])) {
+                                echo wp_get_attachment_image((int) $image['id'], 'dgut-wide', false, ['loading' => 'lazy']);
                             } else {
-                                echo dgut_img(esc_url($image_ref), get_the_title());
+                                echo dgut_img(esc_url($image['url']), $image['alt']);
                             }
                             ?>
                         </div>
