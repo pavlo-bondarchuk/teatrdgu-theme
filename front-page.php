@@ -63,7 +63,7 @@ foreach ($news_posts as $news_post) {
         'category' => get_the_category($news_post->ID)[0]->name ?? '',
         'date' => get_the_date('d.m.Y', $news_post),
         'excerpt' => get_the_excerpt($news_post),
-        'image' => get_the_post_thumbnail_url($news_post, 'dgut-wide') ?: '',
+        'image' => get_the_post_thumbnail_url($news_post, 'dgut-news-card') ?: '',
         'url' => get_permalink($news_post),
     ];
 }
@@ -105,8 +105,9 @@ foreach ($team_posts as $team_post) {
             <div class="dgut-hero__slides">
                 <?php foreach ($hero_slides as $index => $slide) : ?>
                     <article class="dgut-hero__slide<?php echo $index === 0 ? ' is-active' : ''; ?>" data-hero-slide>
-                        <?php if (!empty($slide['image'])) : ?>
-                            <?php echo dgut_img($slide['image'], $slide['title'], 'dgut-hero__image', [
+                        <?php $hero_image = $slide['hero_image'] ?? ($slide['image'] ?? ''); ?>
+                        <?php if ($hero_image !== '') : ?>
+                            <?php echo dgut_img($hero_image, $slide['title'], 'dgut-hero__image', [
                                 'loading' => $index === 0 ? 'eager' : 'lazy',
                                 'fetchpriority' => $index === 0 ? 'high' : 'auto',
                                 'style' => 'object-position:' . ($slide['focus'] ?? 'center center'),

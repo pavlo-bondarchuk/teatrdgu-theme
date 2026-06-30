@@ -127,7 +127,8 @@ function dgut_get_performance_card_data(WP_Post|int $post): array
         'date' => function_exists('get_field') ? (string) get_field('dgut_performance_date', $post_id) : '',
         'duration' => function_exists('get_field') ? (string) get_field('dgut_performance_duration', $post_id) : '',
         'excerpt' => $excerpt,
-        'image' => get_the_post_thumbnail_url($post, 'hero-slider') ?: '',
+        'image' => get_the_post_thumbnail_url($post, 'dgut-performance-card') ?: '',
+        'hero_image' => get_the_post_thumbnail_url($post, 'dgut-hero-slide') ?: '',
         'permalink' => get_permalink($post),
         'focus' => function_exists('get_field') ? ((string) get_field('dgut_performance_image_focus', $post_id) ?: 'center top') : 'center top',
     ];
