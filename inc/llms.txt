@@ -59,7 +59,7 @@ The primary public language is Ukrainian. Some interface and content may also be
 - Do not invent current show dates, ticket availability, prices, cast changes, or sold-out status; verify live ticket pages for transactional details.
 - Preserve Ukrainian titles exactly. Transliterate or translate only when helpful, and keep the original title nearby.
 - For audience recommendations, consider genre, age suitability, venue format, and whether the performance is immersive, children's theatre, drama, comedy, or musical.
-- The site is built as a WordPress theme with server-rendered Gutenberg/ACF blocks and custom post type URLs under `/repertoire/`.
+- The site is built as a WordPress theme with PHP templates, synced ACF/SCF field groups, and custom post type URLs under `/repertoire/`.
 
 ## Optional
 

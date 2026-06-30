@@ -15,5 +15,8 @@
 .dgut-event-gallery__track::-webkit-scrollbar{display:none}
 .dgut-event-gallery__item{aspect-ratio:4/3;scroll-snap-align:start}
 .dgut-event-gallery__item img{width:100%;height:100%;object-fit:cover}
+.dgut-tickets{background:var(--dgut-charcoal);color:var(--dgut-cream)}
+.dgut-tickets .eyebrow{color:var(--dgut-sand)}
+.dgut-tickets__intro{max-width:720px;margin-bottom:28px}
+.dgut-tickets__intro p:last-child{color:var(--dgut-stone)}
 @media (max-width:860px){.dgut-event-hero__grid{grid-template-columns:1fr}.dgut-event-gallery__track{grid-auto-columns:100%}.dgut-event-meta{grid-template-columns:1fr}}
-

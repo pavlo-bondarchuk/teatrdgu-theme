@@ -90,7 +90,21 @@ $terms = wp_get_post_terms(get_the_ID(), 'performance_genre', ['fields' => 'name
         </section>
     <?php endif; ?>
 
-    <?php echo do_blocks('<!-- wp:dgut/tickets /-->'); ?>
+    <?php if ($ticket_url) : ?>
+        <section id="tickets" class="section dgut-tickets">
+            <div class="container">
+                <div class="dgut-tickets__intro">
+                    <p class="eyebrow"><?php esc_html_e('Квитки', 'dgutheater'); ?></p>
+                    <h2 class="section-title"><?php esc_html_e('Купити квиток', 'dgutheater'); ?></h2>
+                    <p><?php esc_html_e('Продаж і повернення квитків відбуваються на стороні офіційного сервісу.', 'dgutheater'); ?></p>
+                </div>
+                <a class="btn" href="<?php echo esc_url($ticket_url); ?>" target="_blank" rel="noopener noreferrer">
+                    <?php esc_html_e('Перейти до квитків', 'dgutheater'); ?>
+                    <span aria-hidden="true">↗</span>
+                </a>
+            </div>
+        </section>
+    <?php endif; ?>
 </main>
 <?php
 get_footer();

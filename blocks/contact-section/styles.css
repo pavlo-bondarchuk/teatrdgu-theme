@@ -1,7 +1,0 @@
-.dgut-contact__grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:center}
-.dgut-contact__content{display:grid;gap:18px}
-.dgut-contact__details{display:grid;gap:8px;color:var(--dgut-taupe)}
-.dgut-contact__details p{margin:0}
-.dgut-contact__map{aspect-ratio:16/11;border:1px solid var(--dgut-stone)}
-@media (max-width:860px){.dgut-contact__grid{grid-template-columns:1fr}}
-

@@ -106,14 +106,6 @@ function dgut_get_image_from_field(mixed $field, string $fallback = ''): string
     return $fallback;
 }
 
-function dgut_block_heading_tag(mixed $tag, string $default = 'h2'): string
-{
-    $allowed = ['h1', 'h2', 'h3', 'p', 'span', 'div'];
-    $tag = is_string($tag) ? strtolower($tag) : $default;
-
-    return in_array($tag, $allowed, true) ? $tag : $default;
-}
-
 function dgut_get_performance_card_data(WP_Post|int $post): array
 {
     $post = get_post($post);
