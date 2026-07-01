@@ -423,8 +423,11 @@ a:focus-visible {
   height: 13px
 }
 
-.site-footer__hours p {
+.site-footer__hours p:not(:last-child) {
   margin: 0;
+}
+
+.site-footer__hours {
   font: 400 13px/1.35 var(--dgut-body);
   color: var(--dgut-taupe)
 }

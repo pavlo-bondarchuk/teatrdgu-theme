@@ -120,13 +120,18 @@ $breadcrumbs = dgut_yoast_breadcrumbs();
                         <h2 class="section-title dgut-event-section-title"><?php esc_html_e('Акторський склад', 'dgutheater'); ?></h2>
                         <div class="dgut-event-people__list">
                             <?php foreach ($cast as $person) : ?>
-                                <div class="dgut-event-person">
-                                    <?php if ($person['role'] !== '') : ?>
-                                        <span><?php echo esc_html($person['role']); ?></span>
-                                    <?php endif; ?>
-                                    <?php if ($person['name'] !== '') : ?>
-                                        <strong><?php echo esc_html($person['name']); ?></strong>
-                                    <?php endif; ?>
+                                <div class="dgut-event-person ">
+                                    <div class="dgut-event-person__icon">
+                                        <?php echo dgut_ui_icon('user'); ?>
+                                    </div>
+                                    <div class="dgut-event-person__column">
+                                        <?php if ($person['role'] !== '') : ?>
+                                            <span><?php echo esc_html($person['role']); ?></span>
+                                        <?php endif; ?>
+                                        <?php if ($person['name'] !== '') : ?>
+                                            <strong><?php echo esc_html($person['name']); ?></strong>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
                             <?php endforeach; ?>
                         </div>

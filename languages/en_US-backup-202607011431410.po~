@@ -1,0 +1,282 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Teatr DGU Theme\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-01 14:23+0000\n"
+"PO-Revision-Date: 2026-07-01 14:27+0000\n"
+"Last-Translator: \n"
+"Language-Team: English (United States)\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.5; wp-7.0; php-8.2.29\n"
+"X-Domain: dgutheater"
+
+#: inc/post-types.php:34
+msgid "Add team member"
+msgstr ""
+
+#: index.php:16
+msgid "Content is being prepared"
+msgstr ""
+
+#. Name of the template
+#: template-coming-soon.php:2
+msgid "Development placeholder"
+msgstr ""
+
+#: inc/post-types.php:35
+msgid "Edit team member"
+msgstr ""
+
+#: footer.php:24
+msgid "Footer navigation"
+msgstr ""
+
+#: header.php:57
+msgid "Header tools"
+msgstr ""
+
+#: template-parts/front-page/hero.php:33
+msgid "Hero slides"
+msgstr ""
+
+#. URI of the theme
+msgid "https://teatrdgu.local/"
+msgstr ""
+
+#: header.php:69
+msgid "Language switcher"
+msgstr ""
+
+#: header.php:41
+msgid "Menu"
+msgstr ""
+
+#. Description of the theme
+msgid ""
+"Optimized WordPress theme for Theatre DGU, ported from the static prototype."
+msgstr ""
+
+#: inc/post-types.php:10
+msgid "Performance"
+msgstr ""
+
+#: inc/post-types.php:23
+msgid "Performance genre"
+msgstr ""
+
+#: inc/post-types.php:22
+msgid "Performance genres"
+msgstr ""
+
+#: inc/post-types.php:9
+msgid "Performances"
+msgstr ""
+
+#: inc/setup.php:19
+msgid "Primary menu"
+msgstr ""
+
+#: header.php:44
+msgid "Primary navigation"
+msgstr ""
+
+#: header.php:14
+msgid "Skip to content"
+msgstr ""
+
+#: header.php:58 footer.php:8
+msgid "Social links"
+msgstr ""
+
+#: inc/post-types.php:32
+msgid "Team"
+msgstr ""
+
+#: inc/post-types.php:33
+msgid "Team member"
+msgstr ""
+
+#. Name of the theme
+msgid "Teatr DGU Theme"
+msgstr ""
+
+#. Author of the theme
+msgid "Theatre DGU"
+msgstr ""
+
+#: single-performance.php:120
+msgid "Акторський склад"
+msgstr ""
+
+#: template-parts/front-page/repertoire.php:26
+msgid "Весь репертуар"
+msgstr ""
+
+#: single-performance.php:252
+msgid "Готові побачити виставу?"
+msgstr "Ready to see the show?"
+
+#: footer.php:50
+msgid "Графік роботи"
+msgstr ""
+
+#: single-performance.php:59
+msgid "Дата"
+msgstr "Date"
+
+#: template-parts/front-page/hero.php:28
+#: template-parts/front-page/repertoire.php:50
+msgid "Детальніше"
+msgstr ""
+
+#: footer.php:7
+msgid "Дніпро Гордість України - культурний бренд міста"
+msgstr ""
+
+#: single-performance.php:142
+msgid "За лаштунками"
+msgstr "Backstage"
+
+#: single-performance.php:250
+msgid "Закрити"
+msgstr ""
+
+#: single-performance.php:251
+msgid "Квитки"
+msgstr "Tickets"
+
+#: footer.php:33
+msgid "Контакти"
+msgstr ""
+
+#: template-coming-soon.php:39
+msgid "Культурна платформа"
+msgstr ""
+
+#: single-performance.php:87 inc/helpers.php:246
+msgid "Купити квиток"
+msgstr "Buy a ticket"
+
+#: template-coming-soon.php:49 inc/maintenance.php:73
+msgid ""
+"Ми працюємо над новим сайтом сучасної культурної платформи — простором для "
+"театру, діалогу та натхнення. Скоро тут з’являться репертуар, події та "
+"новини."
+msgstr ""
+
+#: single-performance.php:119
+msgid "На сцені"
+msgstr "On stage"
+
+#: footer.php:19
+msgid "Навігація"
+msgstr ""
+
+#: template-coming-soon.php:56
+msgid "Написати нам"
+msgstr ""
+
+#: template-parts/front-page/team.php:14
+msgid "Наступна група команди"
+msgstr ""
+
+#: template-parts/front-page/news.php:26
+msgid "Наступна група новин"
+msgstr ""
+
+#: template-parts/front-page/repertoire.php:31
+msgid "Наступна група репертуару"
+msgstr ""
+
+#: template-parts/front-page/hero.php:42
+msgid "Наступний слайд"
+msgstr ""
+
+#: single-performance.php:176
+msgid "Наступні фото"
+msgstr ""
+
+#: template-parts/front-page/news.php:17
+msgid "Новини | Культурна платформа"
+msgstr ""
+
+#: template-coming-soon.php:41
+msgid "Офіційний сайт Театру ДГУ"
+msgstr ""
+
+#: template-coming-soon.php:11
+msgid "Офіційний сайт Театру ДГУ незабаром відкриється"
+msgstr ""
+
+#: single-performance.php:255
+msgid "Перейти до квитків"
+msgstr "Go to tickets"
+
+#: template-parts/front-page/team.php:13
+msgid "Попередня група команди"
+msgstr ""
+
+#: template-parts/front-page/news.php:25
+msgid "Попередня група новин"
+msgstr ""
+
+#: template-parts/front-page/repertoire.php:30
+msgid "Попередня група репертуару"
+msgstr ""
+
+#: single-performance.php:175
+msgid "Попередні фото"
+msgstr ""
+
+#: template-parts/front-page/hero.php:34
+msgid "Попередній слайд"
+msgstr ""
+
+#: single-performance.php:143
+msgid "Постановча команда"
+msgstr ""
+
+#: template-parts/front-page/about.php:55
+msgid "Про театр"
+msgstr ""
+
+#: inc/maintenance.php:71
+msgid "Сайт незабаром відкриється"
+msgstr ""
+
+#: single-performance.php:74
+msgid "Тривалість"
+msgstr "Duration"
+
+#: template-parts/front-page/news.php:21
+msgid "Усі новини"
+msgstr ""
+
+#: footer.php:55
+msgid "Усі права захищені."
+msgstr ""
+
+#: inc/helpers.php:126
+msgid "Хлібні крихти"
+msgstr ""
+
+#: template-parts/front-page/news.php:47
+msgid "Читати"
+msgstr ""
+
+#: single-performance.php:249
+msgid "Швидкий перехід до квитків"
+msgstr ""
+
+#: template-coming-soon.php:63
+msgid "м. Дніпро"
+msgstr ""
+
+#: template-coming-soon.php:42
+msgid "незабаром відкриється"
+msgstr ""
