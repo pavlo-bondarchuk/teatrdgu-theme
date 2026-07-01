@@ -90,6 +90,7 @@ function dgut_ui_icon(string $name): string
         'chevron-right' => '<svg ' . $attrs . '><path d="m9 18 6-6-6-6"/></svg>',
         'external-link' => '<svg ' . $attrs . '><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>',
         'user' => '<svg  ' . $attrs . '><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg>',
+        'sparkles' => '<svg ' . $attrs . '><path d="m12 3-1.9 5.8L4 11l6.1 2.2L12 19l1.9-5.8L20 11l-6.1-2.2Z"/><path d="M5 3v4"/><path d="M3 5h4"/><path d="M19 17v4"/><path d="M17 19h4"/></svg>',
     ];
 
     return $icons[$name] ?? '';
@@ -148,6 +149,119 @@ function dgut_front_page_url(string $slug, string $fallback): string
 {
     $page = get_page_by_path($slug);
     return $page ? get_permalink($page) : home_url($fallback);
+}
+
+function dgut_page_fields(): array
+{
+    $fields = function_exists('get_fields') ? get_fields() : [];
+    return is_array($fields) ? $fields : [];
+}
+
+function dgut_about_defaults(): array
+{
+    return [
+        'about_hero_eyebrow' => __('Про театр', 'dgutheater'),
+        'about_hero_title' => 'Театр «ДГУ»',
+        'about_hero_subtitle' => __('Український театр і культурна платформа Дніпра', 'dgutheater'),
+        'about_hero_tagline' => 'ДНІПРО_ГОРДІСТЬ_УКРАЇНИ',
+        'about_history_cards' => [
+            [
+                'text' => 'Наша історія почалася наприкінці 1980-х років із творчої спільноти, сформованої навколо команди «КВН» Дніпропетровського державного університету. У 1994 році з\'явився Театр «КВН ДГУ», який поєднав авторську драматургію, інтелектуальний гумор, експеримент та живий діалог із глядачем.',
+            ],
+            [
+                'text' => 'У 2023 році театр здійснив «деКВНізацію» - ми відмовилися від абревіатури «КВН» у назві як від радянського рудименту. Це стало не розривом із власним минулим, а переосмисленням нашої ідентичності в сучасній Україні.',
+            ],
+            [
+                'text' => 'Сьогодні Театр «ДГУ» працює на перетині різних жанрів і театральних практик. Герої вистав приходять з біблійних часів, минулого століття чи сьогоднішніх новин, але всі ці історії так чи інакше ведуть до Дніпра.',
+            ],
+            [
+                'text' => 'Театр «ДГУ» - вже більше, ніж сцена. Це культурний бренд Дніпра, що поєднує традицію, сучасне мистецтво та проактивну творчу спільноту.',
+            ],
+        ],
+        'about_work_show' => true,
+        'about_work_eyebrow' => __('Що ми робимо', 'dgutheater'),
+        'about_work_title' => __('Театр, проєкти та місто', 'dgutheater'),
+        'about_work_cards' => [
+            [
+                'icon' => 'ticket',
+                'title' => 'Створюємо вистави',
+                'text' => 'Працюємо з авторською драматургією, сучасними темами та різними театральними формами.',
+            ],
+            [
+                'icon' => 'sparkles',
+                'title' => 'Реалізуємо культурні проєкти',
+                'text' => 'Поєднуємо театр, сучасне мистецтво, документальні та просвітницькі ініціативи.',
+            ],
+            [
+                'icon' => 'map-pin',
+                'title' => 'Популяризуємо Дніпро',
+                'text' => 'Розповідаємо про місто через його постаті, пам\'ять, культуру та живу спільноту.',
+            ],
+        ],
+        'about_initiatives_show' => true,
+        'about_initiatives_eyebrow' => __('Серед наших ініціатив', 'dgutheater'),
+        'about_initiatives_title' => __('Культурна робота поза сценою', 'dgutheater'),
+        'about_initiatives' => [
+            [
+                'text' => 'Літературна премія імені Валер\'яна Підмогильного',
+            ],
+            [
+                'text' => 'Дніпровська літературна резиденція Українського ПЕН',
+            ],
+            [
+                'text' => 'Документальні та просвітницькі проєкти про місто',
+            ],
+        ],
+    ];
+}
+
+function dgut_about_field(array $fields, string $key, mixed $default = ''): mixed
+{
+    return array_key_exists($key, $fields) ? $fields[$key] : $default;
+}
+
+function dgut_about_bool(array $fields, string $key, bool $default = true): bool
+{
+    $value = dgut_about_field($fields, $key, $default);
+    if ($value === null || $value === '') {
+        return false;
+    }
+
+    return (bool) $value;
+}
+
+function dgut_about_rows(array $fields, string $key, array $default = []): array
+{
+    $rows = dgut_about_field($fields, $key, $default);
+    if (!is_array($rows)) {
+        return [];
+    }
+
+    $clean_rows = [];
+    foreach ($rows as $row) {
+        if (!is_array($row)) {
+            continue;
+        }
+
+        $clean_row = array_map(static fn(mixed $value): mixed => is_string($value) ? trim($value) : $value, $row);
+        $has_content = false;
+        foreach ($clean_row as $value) {
+            if (is_array($value)) {
+                $has_content = !empty(array_filter($value));
+            } elseif ($value !== '' && $value !== null && $value !== false) {
+                $has_content = true;
+            }
+            if ($has_content) {
+                break;
+            }
+        }
+
+        if ($has_content) {
+            $clean_rows[] = $clean_row;
+        }
+    }
+
+    return $clean_rows;
 }
 
 function dgut_yoast_breadcrumbs(string $class = 'dgut-breadcrumbs'): string

@@ -1,0 +1,197 @@
+{
+    "key": "group_dgut_about_page",
+    "title": "Сторінка Про нас",
+    "fields": [
+        {
+            "key": "field_dgut_about_tab_hero",
+            "label": "Hero",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_dgut_about_hero_eyebrow",
+            "label": "Надзаголовок",
+            "name": "about_hero_eyebrow",
+            "type": "text",
+            "default_value": "Про театр"
+        },
+        {
+            "key": "field_dgut_about_hero_title",
+            "label": "Заголовок",
+            "name": "about_hero_title",
+            "type": "text",
+            "default_value": "Театр «ДГУ»"
+        },
+        {
+            "key": "field_dgut_about_hero_subtitle",
+            "label": "Підзаголовок",
+            "name": "about_hero_subtitle",
+            "type": "text",
+            "default_value": "Український театр і культурна платформа Дніпра"
+        },
+        {
+            "key": "field_dgut_about_hero_tagline",
+            "label": "Слоган",
+            "name": "about_hero_tagline",
+            "type": "text",
+            "default_value": "ДНІПРО_ГОРДІСТЬ_УКРАЇНИ"
+        },
+        {
+            "key": "field_dgut_about_history_cards",
+            "label": "Картки історії",
+            "name": "about_history_cards",
+            "type": "repeater",
+            "layout": "block",
+            "button_label": "Додати картку",
+            "sub_fields": [
+                {
+                    "key": "field_dgut_about_history_card_text",
+                    "label": "Текст",
+                    "name": "text",
+                    "type": "textarea",
+                    "rows": 4,
+                    "new_lines": "",
+                    "parent_repeater": "field_dgut_about_history_cards"
+                }
+            ]
+        },
+        {
+            "key": "field_dgut_about_tab_work",
+            "label": "Що ми робимо",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_dgut_about_work_show",
+            "label": "Показати блок",
+            "name": "about_work_show",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1
+        },
+        {
+            "key": "field_dgut_about_work_eyebrow",
+            "label": "Надзаголовок",
+            "name": "about_work_eyebrow",
+            "type": "text",
+            "default_value": "Що ми робимо"
+        },
+        {
+            "key": "field_dgut_about_work_title",
+            "label": "Заголовок",
+            "name": "about_work_title",
+            "type": "text",
+            "default_value": "Театр, проєкти та місто"
+        },
+        {
+            "key": "field_dgut_about_work_cards",
+            "label": "Картки напрямів",
+            "name": "about_work_cards",
+            "type": "repeater",
+            "layout": "block",
+            "button_label": "Додати напрям",
+            "sub_fields": [
+                {
+                    "key": "field_dgut_about_work_card_icon",
+                    "label": "Іконка",
+                    "name": "icon",
+                    "type": "select",
+                    "choices": {
+                        "ticket": "Квиток",
+                        "sparkles": "Іскри",
+                        "map-pin": "Мапа",
+                        "users": "Люди"
+                    },
+                    "default_value": "ticket",
+                    "return_format": "value",
+                    "parent_repeater": "field_dgut_about_work_cards"
+                },
+                {
+                    "key": "field_dgut_about_work_card_title",
+                    "label": "Заголовок",
+                    "name": "title",
+                    "type": "text",
+                    "parent_repeater": "field_dgut_about_work_cards"
+                },
+                {
+                    "key": "field_dgut_about_work_card_text",
+                    "label": "Текст",
+                    "name": "text",
+                    "type": "textarea",
+                    "rows": 3,
+                    "new_lines": "",
+                    "parent_repeater": "field_dgut_about_work_cards"
+                }
+            ]
+        },
+        {
+            "key": "field_dgut_about_tab_initiatives",
+            "label": "Ініціативи",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_dgut_about_initiatives_show",
+            "label": "Показати блок",
+            "name": "about_initiatives_show",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1
+        },
+        {
+            "key": "field_dgut_about_initiatives_eyebrow",
+            "label": "Надзаголовок",
+            "name": "about_initiatives_eyebrow",
+            "type": "text",
+            "default_value": "Серед наших ініціатив"
+        },
+        {
+            "key": "field_dgut_about_initiatives_title",
+            "label": "Заголовок",
+            "name": "about_initiatives_title",
+            "type": "text",
+            "default_value": "Культурна робота поза сценою"
+        },
+        {
+            "key": "field_dgut_about_initiatives",
+            "label": "Список ініціатив",
+            "name": "about_initiatives",
+            "type": "repeater",
+            "layout": "block",
+            "button_label": "Додати ініціативу",
+            "sub_fields": [
+                {
+                    "key": "field_dgut_about_initiative_text",
+                    "label": "Текст",
+                    "name": "text",
+                    "type": "text",
+                    "parent_repeater": "field_dgut_about_initiatives"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "template-about.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "the_content"
+    ],
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1782915000
+}

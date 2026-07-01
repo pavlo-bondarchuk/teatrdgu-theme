@@ -1,0 +1,298 @@
+.dgut-about-page {
+    background: var(--dgut-ivory);
+    overflow-x: hidden;
+}
+
+.dgut-about-page .container,
+.dgut-about-page article,
+.dgut-about-page p,
+.dgut-about-page h1,
+.dgut-about-page h2,
+.dgut-about-page h3 {
+    min-width: 0;
+}
+
+.dgut-about-breadcrumbs-wrap {
+    width: min(100%, 1240px);
+    margin-inline: auto;
+    padding: 40px 40px 0;
+}
+
+.dgut-about-breadcrumbs,
+.dgut-about-breadcrumbs #breadcrumbs {
+    font: 500 12px/20px var(--dgut-body);
+    color: var(--dgut-taupe);
+}
+
+.dgut-about-breadcrumbs a {
+    color: var(--dgut-taupe);
+}
+
+.dgut-about-breadcrumbs a:hover {
+    color: var(--dgut-charcoal);
+}
+
+.dgut-about-breadcrumbs .breadcrumb_last {
+    color: var(--dgut-charcoal);
+}
+
+.dgut-about-breadcrumbs>span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+.dgut-about-hero {
+    padding-block: 40px 96px;
+}
+
+.dgut-about-hero__grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 56px;
+    align-items: start;
+}
+
+.dgut-about-hero__intro {
+    grid-column: span 5;
+}
+
+.dgut-about-hero__eyebrow {
+    margin: 0 0 20px;
+}
+
+.dgut-about-hero__title {
+    margin: 0 0 16px;
+    font-size: clamp(2.5rem, 5vw, 4.6rem);
+    line-height: .96;
+    overflow-wrap: anywhere;
+}
+
+.dgut-about-hero__subtitle {
+    max-width: 36rem;
+    margin: 0 0 24px;
+    font-family: var(--dgut-display);
+    font-size: clamp(1.125rem, 2vw, 1.25rem);
+    font-weight: 300;
+    line-height: 1.22;
+    color: var(--dgut-graphite);
+    overflow-wrap: anywhere;
+}
+
+.dgut-about-hero__tagline {
+    max-width: 36rem;
+    margin: 0;
+    font-family: var(--dgut-display);
+    font-size: clamp(1.0625rem, 1.9vw, 1.1875rem);
+    font-weight: 300;
+    line-height: 1.25;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--dgut-sand);
+}
+
+.dgut-about-history {
+    grid-column: span 7;
+    display: grid;
+    gap: 20px;
+}
+
+.dgut-about-history__card {
+    border: 1px solid var(--dgut-stone);
+    background: var(--dgut-ivory);
+    padding: 24px;
+}
+
+.dgut-about-history__card.is-cream {
+    background: var(--dgut-cream);
+}
+
+.dgut-about-history__card p {
+    margin: 0;
+    color: var(--dgut-graphite);
+    font-size: 16px;
+    line-height: 2;
+}
+
+.dgut-about-work {
+    padding-block: 96px;
+    background: var(--dgut-cream);
+}
+
+.dgut-about-section-head {
+    max-width: 48rem;
+    margin-bottom: 56px;
+}
+
+.dgut-about-section-head .eyebrow,
+.dgut-about-initiatives__intro .eyebrow {
+    margin: 0 0 16px;
+}
+
+.dgut-about-section-head .section-title,
+.dgut-about-initiatives__intro .section-title {
+    max-width: 48rem;
+    font-size: clamp(1.9rem, 3.5vw, 3rem);
+    overflow-wrap: anywhere;
+}
+
+.dgut-about-work__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.dgut-about-work-card {
+    height: 100%;
+    border: 1px solid var(--dgut-stone);
+    background: var(--dgut-ivory);
+    padding: 32px;
+}
+
+.dgut-about-work-card__icon {
+    display: inline-flex;
+    margin-bottom: 28px;
+    color: var(--dgut-sand);
+}
+
+.dgut-about-work-card__icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.dgut-about-work-card h3 {
+    margin: 0 0 12px;
+    font-family: var(--dgut-display);
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.16;
+    text-transform: uppercase;
+    color: var(--dgut-charcoal);
+}
+
+.dgut-about-work-card p {
+    margin: 0;
+    color: var(--dgut-taupe);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.dgut-about-initiatives {
+    padding-block: 96px;
+}
+
+.dgut-about-initiatives__grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 56px;
+    align-items: start;
+}
+
+.dgut-about-initiatives__intro {
+    grid-column: span 4;
+}
+
+.dgut-about-initiatives__list {
+    grid-column: span 8;
+    display: grid;
+    gap: 16px;
+}
+
+.dgut-about-initiative {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 24px;
+    border: 1px solid var(--dgut-stone);
+    background: var(--dgut-cream);
+    padding: 24px;
+}
+
+.dgut-about-initiative span {
+    color: var(--dgut-sand);
+    font: 700 12px/1.4 var(--dgut-body);
+    letter-spacing: .16em;
+}
+
+.dgut-about-initiative p {
+    margin: 0;
+    font-family: var(--dgut-display);
+    font-size: clamp(1rem, 1.8vw, 1.125rem);
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--dgut-graphite);
+}
+
+@media (max-width: 900px) {
+    .dgut-about-breadcrumbs-wrap {
+        padding-inline: 24px;
+    }
+
+    .dgut-about-hero {
+        padding-block: 32px 64px;
+    }
+
+    .dgut-about-hero__grid,
+    .dgut-about-initiatives__grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .dgut-about-hero__intro,
+    .dgut-about-history,
+    .dgut-about-initiatives__intro,
+    .dgut-about-initiatives__list {
+        grid-column: auto;
+    }
+
+    .dgut-about-work {
+        padding-block: 64px;
+    }
+
+    .dgut-about-work__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dgut-about-initiatives {
+        padding-block: 64px;
+    }
+}
+
+@media (max-width: 640px) {
+    .dgut-about-breadcrumbs-wrap {
+        padding: 32px 20px 0;
+    }
+
+    .dgut-about-hero__title {
+        font-size: clamp(2rem, 10vw, 2.55rem);
+    }
+
+    .dgut-about-hero__subtitle {
+        font-size: 17px;
+    }
+
+    .dgut-about-section-head .section-title,
+    .dgut-about-initiatives__intro .section-title {
+        font-size: clamp(1.75rem, 8.8vw, 2.2rem);
+    }
+
+    .dgut-about-history {
+        gap: 16px;
+    }
+
+    .dgut-about-history__card,
+    .dgut-about-work-card,
+    .dgut-about-initiative {
+        padding: 20px;
+    }
+
+    .dgut-about-history__card p {
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+    .dgut-about-initiative {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+}
