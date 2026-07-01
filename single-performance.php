@@ -207,14 +207,14 @@ $video_embed = dgut_performance_video_embed($video_url);
                 <?php if ($date !== '' || $duration !== '') : ?>
                     <div class="dgut-event-meta">
                         <?php if ($date !== '') : ?>
-                            <div>
+                            <div class="dgut-event-meta__item">
                                 <span class="dgut-event-meta__icon"><?php echo dgut_ui_icon('calendar'); ?></span>
                                 <span><?php esc_html_e('Дата', 'dgutheater'); ?></span>
                                 <strong><?php echo esc_html($date); ?></strong>
                             </div>
                         <?php endif; ?>
                         <?php if ($duration !== '') : ?>
-                            <div>
+                            <div class="dgut-event-meta__item">
                                 <span class="dgut-event-meta__icon"><?php echo dgut_ui_icon('clock'); ?></span>
                                 <span><?php esc_html_e('Тривалість', 'dgutheater'); ?></span>
                                 <strong><?php echo esc_html($duration); ?></strong>
@@ -384,6 +384,37 @@ $video_embed = dgut_performance_video_embed($video_url);
                 </div>
             </div>
         </section>
+    <?php endif; ?>
+
+    <?php if ($hero_ticket_target !== '') : ?>
+        <aside class="dgut-event-floating-ticket" data-floating-ticket aria-label="<?php esc_attr_e('Швидкий перехід до квитків', 'dgutheater'); ?>">
+            <button class="dgut-event-floating-ticket__close" type="button" data-floating-ticket-close aria-label="<?php esc_attr_e('Закрити', 'dgutheater'); ?>">×</button>
+            <p class="eyebrow dgut-event-floating-ticket__eyebrow"><?php esc_html_e('Квитки', 'dgutheater'); ?></p>
+            <p class="dgut-event-floating-ticket__title"><?php esc_html_e('Готові побачити виставу?', 'dgutheater'); ?></p>
+            <?php if (!empty($services)) : ?>
+                <button class="btn dgut-event-floating-ticket__button" type="button" data-scroll-target="#tickets">
+                    <?php echo dgut_ui_icon('ticket'); ?>
+                    <?php esc_html_e('Перейти до квитків', 'dgutheater'); ?>
+                    <?php echo dgut_ui_icon('chevron-right'); ?>
+                </button>
+            <?php else : ?>
+                <a class="btn dgut-event-floating-ticket__button" href="<?php echo esc_url($hero_ticket_target); ?>" target="_blank" rel="noopener noreferrer">
+                    <?php echo dgut_ui_icon('ticket'); ?>
+                    <?php esc_html_e('Перейти до квитків', 'dgutheater'); ?>
+                    <?php echo dgut_ui_icon('chevron-right'); ?>
+                </a>
+            <?php endif; ?>
+        </aside>
+        <script>
+            (() => {
+                const floatingTicket = document.querySelector('[data-floating-ticket]');
+                const closeButton = document.querySelector('[data-floating-ticket-close]');
+
+                closeButton?.addEventListener('click', () => {
+                    floatingTicket?.setAttribute('hidden', '');
+                });
+            })();
+        </script>
     <?php endif; ?>
 </main>
 <?php
