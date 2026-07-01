@@ -260,10 +260,30 @@ $breadcrumbs = dgut_yoast_breadcrumbs();
             (() => {
                 const floatingTicket = document.querySelector('[data-floating-ticket]');
                 const closeButton = document.querySelector('[data-floating-ticket-close]');
+                const ticketSection = document.querySelector('#tickets');
+                let isDismissed = false;
 
                 closeButton?.addEventListener('click', () => {
+                    isDismissed = true;
                     floatingTicket?.setAttribute('hidden', '');
                 });
+
+                if (!floatingTicket || !ticketSection || !('IntersectionObserver' in window)) {
+                    return;
+                }
+
+                const ticketObserver = new IntersectionObserver((entries) => {
+                    const isTicketsVisible = entries.some((entry) => entry.isIntersecting);
+
+                    if (isDismissed || isTicketsVisible) {
+                        floatingTicket.setAttribute('hidden', '');
+                        return;
+                    }
+
+                    floatingTicket.removeAttribute('hidden');
+                });
+
+                ticketObserver.observe(ticketSection);
             })();
         </script>
     <?php endif; ?>
