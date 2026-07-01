@@ -25,6 +25,14 @@
     color: var(--dgut-charcoal);
 }
 
+.dgut-breadcrumb-separator {
+    width: 12px;
+    height: 12px;
+    margin-inline: 8px;
+    color: var(--dgut-stone);
+    vertical-align: -2px;
+}
+
 .dgut-event-hero {
     padding-block: 32px 64px;
 }

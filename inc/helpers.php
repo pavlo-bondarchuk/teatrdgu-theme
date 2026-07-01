@@ -115,11 +115,41 @@ function dgut_yoast_breadcrumbs(string $class = 'dgut-breadcrumbs'): string
         return '';
     }
 
-    return (string) yoast_breadcrumb(
+    $use_icon_separator = dgut_yoast_breadcrumb_separator_is_empty();
+    $separator_filter = static fn(): string => dgut_breadcrumb_separator_icon();
+    if ($use_icon_separator) {
+        add_filter('wpseo_breadcrumb_separator', $separator_filter);
+    }
+
+    $breadcrumbs = (string) yoast_breadcrumb(
         '<nav class="' . esc_attr($class) . '" aria-label="' . esc_attr__('Хлібні крихти', 'dgutheater') . '">',
         '</nav>',
         false
     );
+
+    if ($use_icon_separator) {
+        remove_filter('wpseo_breadcrumb_separator', $separator_filter);
+    }
+
+    return $breadcrumbs;
+}
+
+function dgut_yoast_breadcrumb_separator_is_empty(): bool
+{
+    $yoast_titles = get_option('wpseo_titles', []);
+    if (!is_array($yoast_titles) || !array_key_exists('breadcrumbs-sep', $yoast_titles)) {
+        return false;
+    }
+
+    $separator = html_entity_decode(wp_strip_all_tags((string) $yoast_titles['breadcrumbs-sep']), ENT_QUOTES | ENT_HTML5, get_bloginfo('charset') ?: 'UTF-8');
+    $separator = preg_replace('/\x{00A0}/u', ' ', $separator) ?? $separator;
+
+    return trim($separator) === '';
+}
+
+function dgut_breadcrumb_separator_icon(): string
+{
+    return '<svg class="dgut-breadcrumb-separator" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>';
 }
 
 function dgut_performance_field(string $key, mixed $default = ''): mixed
