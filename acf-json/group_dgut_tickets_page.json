@@ -6,96 +6,222 @@
             "key": "field_dgut_tickets_tab_content",
             "label": "Контент",
             "name": "",
+            "aria-label": "",
             "type": "tab",
-            "placement": "top"
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_dgut_tickets_title",
             "label": "Заголовок",
             "name": "tickets_title",
+            "aria-label": "",
             "type": "text",
             "instructions": "Основний заголовок сторінки квитків.",
-            "default_value": "Купити квиток"
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Купити квиток",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_dgut_tickets_intro",
             "label": "Вступний текст",
             "name": "tickets_intro",
+            "aria-label": "",
             "type": "textarea",
             "instructions": "Коротке пояснення перед картками квиткових сервісів.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "rows": 3,
             "new_lines": "",
-            "default_value": "Квитки продаються через офіційні онлайн-сервіси. Оберіть зручний сервіс та придбайте квиток онлайн."
+            "default_value": "Квитки продаються через офіційні онлайн-сервіси. Оберіть зручний сервіс та придбайте квиток онлайн.",
+            "maxlength": "",
+            "placeholder": ""
         },
         {
             "key": "field_dgut_tickets_phone_text",
             "label": "Текст телефону",
             "name": "tickets_phone_text",
+            "aria-label": "",
             "type": "text",
             "instructions": "Текст рядка з телефоном. Можна залишити порожнім, щоб приховати.",
-            "default_value": "Або телефонуйте: +380974136285 (з 10 до 18)."
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Або телефонуйте: +380974136285 (з 10 до 18).",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_dgut_tickets_phone_url",
             "label": "Посилання телефону",
             "name": "tickets_phone_url",
-            "type": "url",
+            "aria-label": "",
+            "type": "text",
             "instructions": "Наприклад: tel:+380974136285. Якщо порожньо, текст телефону буде без посилання.",
-            "default_value": "tel:+380974136285"
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_dgut_tickets_tab_services",
             "label": "Сервіси",
             "name": "",
+            "aria-label": "",
             "type": "tab",
-            "placement": "top"
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_dgut_tickets_services",
             "label": "Квиткові сервіси",
             "name": "tickets_services",
+            "aria-label": "",
             "type": "repeater",
             "instructions": "Картки сервісів продажу квитків. Якщо список порожній, шаблон покаже дефолтні сервіси з теми.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "layout": "block",
             "min": 0,
             "max": 0,
             "button_label": "Додати сервіс",
+            "rows_per_page": 20,
+            "collapsed": "",
             "sub_fields": [
                 {
                     "key": "field_dgut_tickets_service_logo",
                     "label": "Логотип",
                     "name": "logo",
+                    "aria-label": "",
                     "type": "image",
                     "instructions": "Логотип сервісу для картки.",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
                     "return_format": "array",
                     "preview_size": "medium",
                     "library": "all",
-                    "parent_repeater": "field_dgut_tickets_services"
+                    "parent_repeater": "field_dgut_tickets_services",
+                    "min_width": 0,
+                    "min_height": 0,
+                    "min_size": 0,
+                    "max_width": 0,
+                    "max_height": 0,
+                    "max_size": 0,
+                    "mime_types": ""
                 },
                 {
                     "key": "field_dgut_tickets_service_title",
                     "label": "Назва",
                     "name": "title",
+                    "aria-label": "",
                     "type": "text",
                     "instructions": "Назва сервісу, наприклад WayForPay або Karabas.",
-                    "parent_repeater": "field_dgut_tickets_services"
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "parent_repeater": "field_dgut_tickets_services",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
                 },
                 {
                     "key": "field_dgut_tickets_service_description",
                     "label": "Опис",
                     "name": "description",
+                    "aria-label": "",
                     "type": "textarea",
                     "instructions": "Короткий опис під назвою сервісу.",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
                     "rows": 3,
                     "new_lines": "",
-                    "parent_repeater": "field_dgut_tickets_services"
+                    "parent_repeater": "field_dgut_tickets_services",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": ""
                 },
                 {
                     "key": "field_dgut_tickets_service_link",
                     "label": "Посилання",
                     "name": "link",
+                    "aria-label": "",
                     "type": "link",
                     "instructions": "URL сервісу та текст кнопки, наприклад “Перейти”.",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
                     "return_format": "array",
                     "parent_repeater": "field_dgut_tickets_services"
                 }
@@ -105,15 +231,34 @@
             "key": "field_dgut_tickets_tab_footer",
             "label": "Нижня кнопка",
             "name": "",
+            "aria-label": "",
             "type": "tab",
-            "placement": "top"
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_dgut_tickets_repertoire_link",
             "label": "Кнопка репертуару",
             "name": "tickets_repertoire_link",
+            "aria-label": "",
             "type": "link",
             "instructions": "Нижня кнопка після списку сервісів. Якщо поле порожнє, шаблон веде на сторінку репертуару.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "return_format": "array"
         }
     ],
@@ -131,9 +276,14 @@
     "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
-    "hide_on_screen": "",
+    "hide_on_screen": [
+        "the_content"
+    ],
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1782939600
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1782940663
 }
