@@ -52,7 +52,9 @@ $about_images = array_values(array_filter(array_map(
 )));
 $has_about = $about_eyebrow !== '' || $about_title !== '' || $about_text_1 !== '' || $about_text_2 !== '' || !empty($about_stats) || !empty($about_images);
 
-$team_posts = dgut_front_posts('team_member', max(1, (int) dgut_front_field($fields, 'home_team_count', 14)));
+$team_posts = dgut_front_posts('team_member', max(1, (int) dgut_front_field($fields, 'home_team_count', 14)), [
+    'lang' => '',
+]);
 $team = [];
 foreach ($team_posts as $team_post) {
     $team[] = dgut_get_team_member_card_data($team_post);

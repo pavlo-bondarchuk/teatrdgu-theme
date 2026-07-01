@@ -133,15 +133,15 @@ function dgut_front_image(mixed $field, string $fallback = ''): string
     return dgut_get_image_from_field($field, $fallback);
 }
 
-function dgut_front_posts(string $post_type, int $limit): array
+function dgut_front_posts(string $post_type, int $limit, array $args = []): array
 {
-    return get_posts([
+    return get_posts(array_merge([
         'post_type' => $post_type,
         'posts_per_page' => $limit,
         'post_status' => 'publish',
         'orderby' => 'menu_order date',
         'order' => 'ASC',
-    ]);
+    ], $args));
 }
 
 function dgut_front_page_url(string $slug, string $fallback): string
