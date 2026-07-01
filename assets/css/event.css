@@ -2,6 +2,29 @@
     background: var(--dgut-ivory);
 }
 
+.dgut-event-breadcrumbs {
+    padding-top: 40px;
+    padding-inline: 24px;
+}
+
+.dgut-breadcrumbs,
+.dgut-breadcrumbs #breadcrumbs {
+    font: 600 14px/1.45 var(--dgut-body);
+    color: var(--dgut-taupe);
+}
+
+.dgut-breadcrumbs a {
+    color: var(--dgut-taupe);
+}
+
+.dgut-breadcrumbs a:hover {
+    color: var(--dgut-charcoal);
+}
+
+.dgut-breadcrumbs .breadcrumb_last {
+    color: var(--dgut-charcoal);
+}
+
 .dgut-event-hero {
     padding-block: 32px 64px;
 }
@@ -381,6 +404,11 @@
     }
 
     .dgut-event-hero .container {
+        padding-inline: 40px;
+    }
+
+    .dgut-event-breadcrumbs {
+        padding-top: 56px;
         padding-inline: 40px;
     }
 

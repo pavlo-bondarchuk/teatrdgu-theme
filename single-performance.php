@@ -2,170 +2,6 @@
 get_header();
 the_post();
 
-function dgut_performance_field(string $key, mixed $default = ''): mixed
-{
-    if (!function_exists('get_field')) {
-        return $default;
-    }
-
-    $value = get_field($key);
-    return $value !== null && $value !== false && $value !== '' ? $value : $default;
-}
-
-function dgut_performance_text_field(string $key, string $default = ''): string
-{
-    $value = dgut_performance_field($key, $default);
-    return is_string($value) ? trim($value) : $default;
-}
-
-function dgut_performance_people(string $key): array
-{
-    $rows = dgut_performance_field($key, []);
-    if (!is_array($rows)) {
-        return [];
-    }
-
-    $people = [];
-    foreach ($rows as $row) {
-        if (!is_array($row)) {
-            continue;
-        }
-
-        $role = trim((string) ($row['role'] ?? ''));
-        $name = trim((string) ($row['name'] ?? ''));
-
-        if ($role === '' && $name === '') {
-            continue;
-        }
-
-        $people[] = [
-            'role' => $role,
-            'name' => $name,
-        ];
-    }
-
-    return $people;
-}
-
-function dgut_performance_services(): array
-{
-    $rows = dgut_performance_field('dgut_performance_ticket_services', []);
-    if (!is_array($rows)) {
-        return [];
-    }
-
-    $services = [];
-    foreach ($rows as $row) {
-        if (!is_array($row)) {
-            continue;
-        }
-
-        $url = trim((string) ($row['url'] ?? ''));
-        if ($url === '') {
-            continue;
-        }
-
-        $name = trim((string) ($row['name'] ?? ''));
-        $description = trim((string) ($row['description'] ?? ''));
-        $icon = dgut_get_image_from_field($row['icon'] ?? '');
-
-        if ($name === '' && $description === '' && $icon === '') {
-            continue;
-        }
-
-        $services[] = [
-            'name' => $name,
-            'url' => $url,
-            'icon' => $icon,
-            'description' => $description,
-        ];
-    }
-
-    return $services;
-}
-
-function dgut_performance_gallery(): array
-{
-    $gallery_raw = dgut_performance_field('dgut_performance_gallery_images', []);
-    $gallery = [];
-
-    if (!is_array($gallery_raw)) {
-        return $gallery;
-    }
-
-    foreach ($gallery_raw as $image) {
-        if (is_array($image)) {
-            $image_id = (int) ($image['ID'] ?? $image['id'] ?? 0);
-            $image_url = (string) ($image['url'] ?? '');
-
-            if ($image_id || $image_url !== '') {
-                $gallery[] = [
-                    'id' => $image_id,
-                    'url' => $image_url,
-                    'alt' => (string) ($image['alt'] ?? get_the_title()),
-                ];
-            }
-            continue;
-        }
-
-        if (is_numeric($image)) {
-            $gallery[] = [
-                'id' => (int) $image,
-                'url' => '',
-                'alt' => get_the_title(),
-            ];
-            continue;
-        }
-
-        if (is_string($image) && trim($image) !== '') {
-            $gallery[] = [
-                'id' => 0,
-                'url' => trim($image),
-                'alt' => get_the_title(),
-            ];
-        }
-    }
-
-    return $gallery;
-}
-
-function dgut_performance_video_embed(string $video_url): string
-{
-    if ($video_url === '') {
-        return '';
-    }
-
-    if (str_contains($video_url, '<iframe')) {
-        return wp_kses($video_url, [
-            'iframe' => [
-                'src' => true,
-                'title' => true,
-                'width' => true,
-                'height' => true,
-                'loading' => true,
-                'allow' => true,
-                'allowfullscreen' => true,
-                'frameborder' => true,
-            ],
-        ]);
-    }
-
-    if (str_ends_with(strtolower(parse_url($video_url, PHP_URL_PATH) ?: ''), '.mp4')) {
-        return sprintf('<video controls preload="metadata"><source src="%s" type="video/mp4"></video>', esc_url($video_url));
-    }
-
-    $embed = wp_oembed_get($video_url);
-    if ($embed) {
-        return $embed;
-    }
-
-    return sprintf(
-        '<iframe src="%s" title="%s" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>',
-        esc_url($video_url),
-        esc_attr(get_the_title())
-    );
-}
-
 $date = dgut_performance_text_field('dgut_performance_date');
 $duration = dgut_performance_text_field('dgut_performance_duration');
 $ticket_url = dgut_performance_text_field('dgut_performance_ticket_url');
@@ -184,20 +20,19 @@ $gallery = dgut_performance_gallery();
 $cast = dgut_performance_people('dgut_performance_cast');
 $backstage = dgut_performance_people('dgut_performance_backstage');
 $services = dgut_performance_services();
-$ticket_services = $services;
-if (empty($ticket_services) && $ticket_url !== '') {
-    $ticket_services[] = [
-        'name' => __('Купити квиток', 'dgutheater'),
-        'url' => $ticket_url,
-        'icon' => '',
-        'description' => '',
-    ];
-}
+$ticket_services = dgut_performance_ticket_services($services, $ticket_url);
 $terms = wp_get_post_terms(get_the_ID(), 'performance_genre', ['fields' => 'names']);
 $has_ticket_links = !empty($ticket_services);
 $video_embed = dgut_performance_video_embed($video_url);
+$breadcrumbs = dgut_yoast_breadcrumbs();
 ?>
 <main id="primary" class="site-main dgut-event">
+    <?php if ($breadcrumbs !== '') : ?>
+        <div class="container dgut-event-breadcrumbs">
+            <?php echo $breadcrumbs; ?>
+        </div>
+    <?php endif; ?>
+
     <section class="section dgut-event-hero">
         <div class="container dgut-event-hero__grid">
             <?php if (has_post_thumbnail()) : ?>
