@@ -184,8 +184,17 @@ $gallery = dgut_performance_gallery();
 $cast = dgut_performance_people('dgut_performance_cast');
 $backstage = dgut_performance_people('dgut_performance_backstage');
 $services = dgut_performance_services();
+$ticket_services = $services;
+if (empty($ticket_services) && $ticket_url !== '') {
+    $ticket_services[] = [
+        'name' => __('Купити квиток', 'dgutheater'),
+        'url' => $ticket_url,
+        'icon' => '',
+        'description' => '',
+    ];
+}
 $terms = wp_get_post_terms(get_the_ID(), 'performance_genre', ['fields' => 'names']);
-$hero_ticket_target = !empty($services) ? '#tickets' : $ticket_url;
+$has_ticket_links = !empty($ticket_services);
 $video_embed = dgut_performance_video_embed($video_url);
 ?>
 <main id="primary" class="site-main dgut-event">
@@ -222,18 +231,11 @@ $video_embed = dgut_performance_video_embed($video_url);
                         <?php endif; ?>
                     </div>
                 <?php endif; ?>
-                <?php if ($hero_ticket_target !== '') : ?>
-                    <?php if (!empty($services)) : ?>
-                        <button class="btn dgut-event-hero__button" type="button" data-scroll-target="#tickets">
-                            <?php echo dgut_ui_icon('ticket'); ?>
-                            <?php esc_html_e('Купити квиток', 'dgutheater'); ?>
-                        </button>
-                    <?php else : ?>
-                        <a class="btn dgut-event-hero__button" href="<?php echo esc_url($hero_ticket_target); ?>" target="_blank" rel="noopener noreferrer">
-                            <?php echo dgut_ui_icon('ticket'); ?>
-                            <?php esc_html_e('Купити квиток', 'dgutheater'); ?>
-                        </a>
-                    <?php endif; ?>
+                <?php if ($has_ticket_links) : ?>
+                    <a class="btn dgut-event-hero__button" href="#tickets">
+                        <?php echo dgut_ui_icon('ticket'); ?>
+                        <?php esc_html_e('Купити квиток', 'dgutheater'); ?>
+                    </a>
                 <?php endif; ?>
             </div>
         </div>
@@ -352,7 +354,7 @@ $video_embed = dgut_performance_video_embed($video_url);
         </section>
     <?php endif; ?>
 
-    <?php if (!empty($services)) : ?>
+    <?php if ($has_ticket_links) : ?>
         <section id="tickets" class="section dgut-ticket-services">
             <div class="container">
                 <div class="dgut-ticket-services__intro">
@@ -367,7 +369,7 @@ $video_embed = dgut_performance_video_embed($video_url);
                     <?php endif; ?>
                 </div>
                 <div class="dgut-ticket-services__grid">
-                    <?php foreach ($services as $service) : ?>
+                    <?php foreach ($ticket_services as $service) : ?>
                         <a class="dgut-ticket-service-card" href="<?php echo esc_url($service['url']); ?>" target="_blank" rel="noopener noreferrer">
                             <?php if ($service['icon'] !== '') : ?>
                                 <img src="<?php echo esc_url($service['icon']); ?>" alt="<?php echo esc_attr($service['name']); ?>">
@@ -386,24 +388,16 @@ $video_embed = dgut_performance_video_embed($video_url);
         </section>
     <?php endif; ?>
 
-    <?php if ($hero_ticket_target !== '') : ?>
+    <?php if ($has_ticket_links) : ?>
         <aside class="dgut-event-floating-ticket" data-floating-ticket aria-label="<?php esc_attr_e('Швидкий перехід до квитків', 'dgutheater'); ?>">
             <button class="dgut-event-floating-ticket__close" type="button" data-floating-ticket-close aria-label="<?php esc_attr_e('Закрити', 'dgutheater'); ?>">×</button>
             <p class="eyebrow dgut-event-floating-ticket__eyebrow"><?php esc_html_e('Квитки', 'dgutheater'); ?></p>
             <p class="dgut-event-floating-ticket__title"><?php esc_html_e('Готові побачити виставу?', 'dgutheater'); ?></p>
-            <?php if (!empty($services)) : ?>
-                <button class="btn dgut-event-floating-ticket__button" type="button" data-scroll-target="#tickets">
-                    <?php echo dgut_ui_icon('ticket'); ?>
-                    <?php esc_html_e('Перейти до квитків', 'dgutheater'); ?>
-                    <?php echo dgut_ui_icon('chevron-right'); ?>
-                </button>
-            <?php else : ?>
-                <a class="btn dgut-event-floating-ticket__button" href="<?php echo esc_url($hero_ticket_target); ?>" target="_blank" rel="noopener noreferrer">
-                    <?php echo dgut_ui_icon('ticket'); ?>
-                    <?php esc_html_e('Перейти до квитків', 'dgutheater'); ?>
-                    <?php echo dgut_ui_icon('chevron-right'); ?>
-                </a>
-            <?php endif; ?>
+            <a class="btn dgut-event-floating-ticket__button" href="#tickets">
+                <?php echo dgut_ui_icon('ticket'); ?>
+                <?php esc_html_e('Перейти до квитків', 'dgutheater'); ?>
+                <?php echo dgut_ui_icon('chevron-right'); ?>
+            </a>
         </aside>
         <script>
             (() => {
