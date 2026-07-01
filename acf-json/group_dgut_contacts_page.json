@@ -155,7 +155,9 @@
                     "ui": 0,
                     "ajax": 0,
                     "placeholder": "",
-                    "parent_repeater": "field_dgut_contacts_items"
+                    "parent_repeater": "field_dgut_contacts_items",
+                    "create_options": 0,
+                    "save_options": 0
                 },
                 {
                     "key": "field_dgut_contacts_item_label",
@@ -319,12 +321,14 @@
     "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
-    "hide_on_screen": "",
+    "hide_on_screen": [
+        "the_content"
+    ],
     "active": true,
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1783017600
+    "modified": 1782941200
 }
