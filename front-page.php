@@ -6,46 +6,6 @@ if (!is_array($fields)) {
     $fields = [];
 }
 
-function dgut_front_field(array $fields, string $key, mixed $default = ''): mixed
-{
-    if (array_key_exists($key, $fields) && $fields[$key] !== null && $fields[$key] !== '') {
-        return $fields[$key];
-    }
-
-    return $default;
-}
-
-function dgut_front_bool(array $fields, string $key, bool $default = true): bool
-{
-    if (array_key_exists($key, $fields) && $fields[$key] !== null && $fields[$key] !== '') {
-        return (bool) $fields[$key];
-    }
-
-    return $default;
-}
-
-function dgut_front_image(mixed $field, string $fallback = ''): string
-{
-    return dgut_get_image_from_field($field, $fallback);
-}
-
-function dgut_front_posts(string $post_type, int $limit): array
-{
-    return get_posts([
-        'post_type' => $post_type,
-        'posts_per_page' => $limit,
-        'post_status' => 'publish',
-        'orderby' => 'menu_order date',
-        'order' => 'ASC',
-    ]);
-}
-
-function dgut_front_page_url(string $slug, string $fallback): string
-{
-    $page = get_page_by_path($slug);
-    return $page ? get_permalink($page) : home_url($fallback);
-}
-
 $performance_posts = dgut_front_posts('performance', -1);
 $performances = [];
 foreach ($performance_posts as $performance_post) {
