@@ -44,7 +44,7 @@
 .dgut-event-hero__title {
     margin: 0;
     font-weight: 300;
-    font-size: clamp(3.5rem, 7vw, 6.8rem);
+    font-size: clamp(2.35rem, 5vw, 4.5rem);
     line-height: .95;
     color: var(--dgut-charcoal);
 }
