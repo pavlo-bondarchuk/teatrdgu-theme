@@ -1,5 +1,6 @@
 (() => {
   const root = document.querySelector("[data-repertoire]");
+
   if (!root) {
     return;
   }
@@ -9,19 +10,26 @@
   const empty = root.querySelector("[data-repertoire-empty]");
 
   const setActiveFilter = (key) => {
-    const normalizedKey = key.toLowerCase();
+    const normalizedKey = String(key || "all");
     let visibleCount = 0;
 
     buttons.forEach((button) => {
-      const isActive = button.dataset.repertoireFilter === key;
+      const isActive = button.dataset.repertoireFilter === normalizedKey;
+
       button.classList.toggle("is-active", isActive);
       button.setAttribute("aria-pressed", isActive ? "true" : "false");
     });
 
     cards.forEach((card) => {
-      const text = (card.dataset.filterText || "").toLowerCase();
-      const isVisible = normalizedKey === "all" || text.includes(normalizedKey);
+      const genres = (card.dataset.repertoireGenres || "")
+        .split(" ")
+        .filter(Boolean);
+
+      const isVisible =
+        normalizedKey === "all" || genres.includes(normalizedKey);
+
       card.hidden = !isVisible;
+
       if (isVisible) {
         visibleCount += 1;
       }

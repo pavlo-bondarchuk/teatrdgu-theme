@@ -1,0 +1,202 @@
+.dgut-tickets-page {
+  background: var(--dgut-ivory);
+  color: var(--dgut-charcoal);
+}
+
+.dgut-tickets-page__section {
+  padding-block: 86px 92px;
+}
+
+.dgut-tickets-page__container {
+  width: min(100%, 808px);
+}
+
+.dgut-tickets-page__title {
+  margin: 0 0 28px;
+  font-family: var(--dgut-display);
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--dgut-graphite);
+}
+
+.dgut-tickets-page__intro {
+  max-width: 650px;
+  margin-bottom: 42px;
+  color: var(--dgut-taupe);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.65;
+}
+
+.dgut-tickets-page__intro p {
+  margin: 0;
+}
+
+.dgut-tickets-page__intro p + p {
+  margin-top: 14px;
+}
+
+.dgut-tickets-page__phone {
+  margin: 0 0 34px;
+  color: var(--dgut-taupe);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.dgut-tickets-page__phone a {
+  transition: color .18s ease;
+}
+
+.dgut-tickets-page__phone a:hover {
+  color: var(--dgut-sand);
+}
+
+.dgut-tickets-page__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.dgut-tickets-card {
+  min-height: 258px;
+  padding: 34px 34px 30px;
+  border: 1px solid var(--dgut-stone);
+  background: rgba(250, 247, 242, .34);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: border-color .18s ease, transform .18s ease, background .18s ease;
+}
+
+.dgut-tickets-card:hover {
+  border-color: var(--dgut-dust);
+  background: rgba(250, 247, 242, .56);
+  transform: translateY(-2px);
+}
+
+.dgut-tickets-card__logo {
+  width: auto;
+  max-width: 238px;
+  max-height: 58px;
+  margin-bottom: 26px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.dgut-tickets-card h2 {
+  margin: 0 0 14px;
+  font-family: var(--dgut-display);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0;
+  color: var(--dgut-charcoal);
+}
+
+.dgut-tickets-card p {
+  margin: 0 0 24px;
+  color: var(--dgut-taupe);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.dgut-tickets-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  color: var(--dgut-sand);
+  font-size: 14px;
+  font-weight: 700;
+  transition: color .18s ease;
+}
+
+.dgut-tickets-card__link svg {
+  width: 14px;
+  height: 14px;
+}
+
+.dgut-tickets-card__link:hover {
+  color: var(--dgut-sepia);
+}
+
+.dgut-tickets-page__footer {
+  margin-top: 60px;
+  padding-top: 42px;
+  border-top: 1px solid var(--dgut-stone);
+}
+
+.dgut-tickets-page__repertoire {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-height: 48px;
+  padding: 13px 25px;
+  border: 1px solid var(--dgut-stone);
+  color: var(--dgut-charcoal);
+  font-size: 14px;
+  font-weight: 700;
+  transition: border-color .18s ease, color .18s ease, background .18s ease;
+}
+
+.dgut-tickets-page__repertoire svg {
+  width: 18px;
+  height: 18px;
+}
+
+.dgut-tickets-page__repertoire:hover {
+  border-color: var(--dgut-sand);
+  background: rgba(250, 247, 242, .5);
+  color: var(--dgut-sepia);
+}
+
+@media (max-width: 760px) {
+  .dgut-tickets-page__section {
+    padding-block: 58px 68px;
+  }
+
+  .dgut-tickets-page__container {
+    padding-inline: 24px;
+  }
+
+  .dgut-tickets-page__title {
+    font-size: 29px;
+  }
+
+  .dgut-tickets-page__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dgut-tickets-card {
+    min-height: 0;
+    padding: 28px 26px 26px;
+  }
+
+  .dgut-tickets-card__logo {
+    max-width: 220px;
+  }
+
+  .dgut-tickets-page__footer {
+    margin-top: 44px;
+    padding-top: 34px;
+  }
+}
+
+@media (max-width: 420px) {
+  .dgut-tickets-page__container {
+    padding-inline: 18px;
+  }
+
+  .dgut-tickets-card {
+    padding-inline: 22px;
+  }
+
+  .dgut-tickets-page__repertoire {
+    width: 100%;
+  }
+}

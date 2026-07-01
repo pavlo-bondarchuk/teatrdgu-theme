@@ -5,28 +5,39 @@ $filters = isset($args['filters']) && is_array($args['filters']) ? $args['filter
 if (empty($performances)) {
     return;
 }
+$title = isset($args['title']) && $args['title'] !== ''
+    ? (string) $args['title']
+    : __('Репертуар', 'dgutheater');
 ?>
 <section class="dgut-repertoire-archive" data-repertoire>
     <div class="container">
         <div class="dgut-repertoire-archive__head">
-            <h1 class="section-title dgut-repertoire-archive__title"><?php echo esc_html(dgut_repertoire_label('title')); ?></h1>
+            <h1 class="section-title dgut-repertoire-archive__title">
+                <?php echo esc_html($title); ?>
+            </h1>
 
             <?php if (!empty($filters)) : ?>
                 <div class="dgut-repertoire-filters" role="list" aria-label="<?php echo esc_attr(dgut_repertoire_label('filter_aria')); ?>">
-                    <?php foreach ($filters as $index => $filter) : ?>
-                        <?php
-                        $key = (string) ($filter['key'] ?? '');
-                        $label = (string) ($filter['label'] ?? '');
+                    <button
+                        class="dgut-repertoire-filter is-active"
+                        type="button"
+                        data-repertoire-filter="all"
+                        aria-pressed="true">
+                        <?php echo __('Усі вистави', 'dgutheater'); ?>
+                    </button>
+                    <?php
+                    foreach ($filters as $index => $filter) :
+                        $key = (string) ($filter['id'] ?? '');
+                        $label = (string) ($filter['name'] ?? '');
                         if ($key === '' || $label === '') {
                             continue;
                         }
-                        ?>
+                    ?>
                         <button
-                            class="dgut-repertoire-filter<?php echo $index === 0 ? ' is-active' : ''; ?>"
+                            class="dgut-repertoire-filter"
                             type="button"
                             data-repertoire-filter="<?php echo esc_attr($key); ?>"
-                            aria-pressed="<?php echo $index === 0 ? 'true' : 'false'; ?>"
-                        >
+                            aria-pressed="<?php echo $index === 0 ? 'true' : 'false'; ?>">
                             <?php echo esc_html($label); ?>
                         </button>
                     <?php endforeach; ?>
@@ -39,6 +50,7 @@ if (empty($performances)) {
                 <?php
                 $title = (string) ($performance['title'] ?? '');
                 $permalink = (string) ($performance['permalink'] ?? '');
+
                 if ($title === '' || $permalink === '') {
                     continue;
                 }
@@ -49,8 +61,15 @@ if (empty($performances)) {
                 $image = (string) ($performance['image'] ?? '');
                 $focus = (string) ($performance['focus'] ?? 'center top');
                 $filter_text = (string) ($performance['filter_text'] ?? '');
+                $genre_ids = isset($performance['genre_ids']) && is_array($performance['genre_ids'])
+                    ? array_filter(array_map('strval', $performance['genre_ids']))
+                    : [];
                 ?>
-                <article class="dgut-repertoire-card" data-repertoire-card data-filter-text="<?php echo esc_attr($filter_text); ?>">
+                <article
+                    class="dgut-repertoire-card"
+                    data-repertoire-card
+                    data-repertoire-genres="<?php echo esc_attr(implode(' ', $genre_ids)); ?>"
+                    data-filter-text="<?php echo esc_attr($filter_text); ?>">
                     <a class="dgut-repertoire-card__media" href="<?php echo esc_url($permalink); ?>" aria-label="<?php echo esc_attr($title); ?>">
                         <?php if ($image !== '') : ?>
                             <img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($title); ?>" loading="lazy" decoding="async" style="object-position: <?php echo esc_attr($focus); ?>;">
@@ -60,7 +79,7 @@ if (empty($performances)) {
                             <span class="dgut-repertoire-card__badge"><?php echo esc_html($genre); ?></span>
                         <?php endif; ?>
 
-                        <span class="dgut-repertoire-card__overlay" aria-hidden="true"><?php echo esc_html(dgut_repertoire_label('details')); ?></span>
+
                     </a>
 
                     <div class="dgut-repertoire-card__body">

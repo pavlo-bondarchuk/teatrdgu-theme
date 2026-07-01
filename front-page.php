@@ -22,7 +22,7 @@ foreach ($news_posts as $news_post) {
         'category' => get_the_category($news_post->ID)[0]->name ?? '',
         'date' => get_the_date('d.m.Y', $news_post),
         'excerpt' => get_the_excerpt($news_post),
-        'image' => get_the_post_thumbnail_url($news_post, 'dgut-news-card') ?: '',
+        'image' => get_the_post_thumbnail_url($news_post, 'dgut-news-grid-card') ?: '',
         'url' => get_permalink($news_post),
     ];
 }

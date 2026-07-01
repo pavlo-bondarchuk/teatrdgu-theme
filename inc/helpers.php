@@ -508,7 +508,7 @@ function dgut_get_performance_card_data(WP_Post|int $post): array
         'date' => function_exists('get_field') ? (string) get_field('dgut_performance_date', $post_id) : '',
         'duration' => function_exists('get_field') ? (string) get_field('dgut_performance_duration', $post_id) : '',
         'excerpt' => $excerpt,
-        'image' => get_the_post_thumbnail_url($post, 'dgut-performance-card') ?: '',
+        'image' => get_the_post_thumbnail_url($post, 'dgut-event-grid-card') ?: '',
         'hero_image' => get_the_post_thumbnail_url($post, 'dgut-hero-slide') ?: '',
         'permalink' => get_permalink($post),
         'focus' => function_exists('get_field') ? ((string) get_field('dgut_performance_image_focus', $post_id) ?: 'center top') : 'center top',
@@ -554,36 +554,32 @@ function dgut_repertoire_posts(): array
     return get_posts($args);
 }
 
-function dgut_repertoire_filters(): array
-{
-    $is_english = dgut_repertoire_is_english();
+if (!function_exists('dgut_repertoire_filters')) {
+    function dgut_repertoire_filters(): array
+    {
+        $is_english = function_exists('dgut_repertoire_is_english') && dgut_repertoire_is_english();
 
-    return [
-        [
-            'key' => 'all',
-            'label' => $is_english ? 'All' : 'Усі вистави',
-        ],
-        [
-            'key' => 'драма',
-            'label' => $is_english ? 'Drama' : 'Драма',
-        ],
-        [
-            'key' => 'комедія',
-            'label' => $is_english ? 'Comedy' : 'Комедія',
-        ],
-        [
-            'key' => 'абсурд',
-            'label' => $is_english ? 'Absurd' : 'Абсурд',
-        ],
-        [
-            'key' => 'імерсивна',
-            'label' => $is_english ? 'Immersive' : 'Імерсивні',
-        ],
-        [
-            'key' => 'дитяч',
-            'label' => $is_english ? 'For children' : 'Для дітей',
-        ],
-    ];
+        $genres = get_terms([
+            'taxonomy' => 'performance_genre',
+            'hide_empty' => true,
+            'orderby' => 'name',
+            'order' => 'ASC',
+        ]);
+
+        if (is_wp_error($genres) || empty($genres)) {
+            return [];
+        }
+
+        return array_map(static function ($genre) use ($is_english) {
+            $name_ua = get_term_meta($genre->term_id, 'dgut_performance_genre_ua', true);
+
+            return [
+                'id' => (int) $genre->term_id,
+                'slug' => $genre->slug,
+                'name' => $is_english ? $genre->name : ($name_ua ?: $genre->name),
+            ];
+        }, $genres);
+    }
 }
 
 function dgut_repertoire_is_english(): bool
@@ -617,44 +613,98 @@ function dgut_repertoire_label(string $key): string
     return $labels[$key][$language] ?? '';
 }
 
-function dgut_repertoire_card_data(WP_Post|int $post): array
+function dgut_repertoire_card_data($post): array
 {
-    $post = get_post($post);
+    $post_id = is_object($post) ? (int) $post->ID : (int) $post;
 
-    if (!$post) {
-        return [];
+    $terms = wp_get_post_terms($post_id, 'performance_genre');
+
+    $genre_ids = [];
+    $genre_names = [];
+
+    if (!is_wp_error($terms) && !empty($terms)) {
+        foreach ($terms as $term) {
+            $genre_ids[] = (string) $term->term_id;
+            $genre_names[] = $term->name;
+        }
     }
 
-    $post_id = $post->ID;
-    $title = trim((string) get_the_title($post));
-    $excerpt = trim((string) get_the_excerpt($post));
-    if ($excerpt === '') {
-        $excerpt = wp_trim_words(wp_strip_all_tags((string) get_post_field('post_content', $post_id)), 18);
-    }
-
-    $genres = wp_get_post_terms($post_id, 'performance_genre', ['fields' => 'names']);
-    $genre = is_array($genres) && !empty($genres) ? (string) $genres[0] : '';
-    $image = get_the_post_thumbnail_url($post, 'dgut-event-grid-card')
-        ?: get_the_post_thumbnail_url($post, 'dgut-performance-card')
-        ?: get_the_post_thumbnail_url($post, 'dgut-card')
-        ?: get_the_post_thumbnail_url($post, 'large')
-        ?: '';
-
-    $filter_text = trim($genre . ' ' . $title . ' ' . $excerpt);
-    if (function_exists('mb_strtolower')) {
-        $filter_text = mb_strtolower($filter_text);
-    } else {
-        $filter_text = strtolower($filter_text);
-    }
+    $fields = function_exists('get_fields') ? get_fields($post_id) : [];
 
     return [
-        'title' => $title,
-        'genre' => $genre,
-        'date' => function_exists('get_field') ? trim((string) get_field('dgut_performance_date', $post_id)) : '',
-        'excerpt' => $excerpt,
-        'image' => $image,
-        'permalink' => get_permalink($post),
-        'focus' => function_exists('get_field') ? (trim((string) get_field('dgut_performance_image_focus', $post_id)) ?: 'center top') : 'center top',
-        'filter_text' => $filter_text,
+        'title' => get_the_title($post_id),
+        'permalink' => get_permalink($post_id),
+        'genre' => $genre_names ? $genre_names[0] : '',
+        'genre_ids' => $genre_ids,
+        'date' => isset($fields['dgut_performance_date']) ? (string) $fields['dgut_performance_date'] : '',
+        'excerpt' => get_the_excerpt($post_id),
+        'image' => get_the_post_thumbnail_url($post_id, 'dgut-card') ?: '',
+        'focus' => isset($fields['dgut_performance_image_focus']) ? (string) $fields['dgut_performance_image_focus'] : 'center top',
+        'filter_text' => mb_strtolower(get_the_title($post_id) . ' ' . get_the_excerpt($post_id) . ' ' . implode(' ', $genre_names)),
     ];
 }
+
+add_filter('nav_menu_css_class', function ($classes, $item) {
+    $item_url = isset($item->url) ? untrailingslashit($item->url) : '';
+
+    $active_urls = [];
+
+    if (is_singular('performance')) {
+        $active_urls[] = untrailingslashit(home_url('/repertuar/'));
+        $archive_url = get_post_type_archive_link('performance');
+
+        if ($archive_url) {
+            $active_urls[] = untrailingslashit($archive_url);
+        }
+    }
+
+    if (is_singular('post')) {
+        $active_urls[] = untrailingslashit(home_url('/novyny/'));
+
+        $posts_page_id = (int) get_option('page_for_posts');
+
+        if ($posts_page_id) {
+            $active_urls[] = untrailingslashit(get_permalink($posts_page_id));
+        }
+    }
+
+    if (empty($active_urls) || !in_array($item_url, array_unique($active_urls), true)) {
+        return $classes;
+    }
+
+    $classes[] = 'current-menu-item';
+    $classes[] = 'current_page_item';
+    $classes[] = 'current-menu-ancestor';
+
+    return array_unique($classes);
+}, 10, 2);
+add_filter('nav_menu_link_attributes', function ($atts, $item) {
+    $item_url = isset($item->url) ? untrailingslashit($item->url) : '';
+
+    $active_urls = [];
+
+    if (is_singular('performance')) {
+        $active_urls[] = untrailingslashit(home_url('/repertuar/'));
+        $archive_url = get_post_type_archive_link('performance');
+
+        if ($archive_url) {
+            $active_urls[] = untrailingslashit($archive_url);
+        }
+    }
+
+    if (is_singular('post')) {
+        $active_urls[] = untrailingslashit(home_url('/novyny/'));
+
+        $posts_page_id = (int) get_option('page_for_posts');
+
+        if ($posts_page_id) {
+            $active_urls[] = untrailingslashit(get_permalink($posts_page_id));
+        }
+    }
+
+    if (!empty($active_urls) && in_array($item_url, array_unique($active_urls), true)) {
+        $atts['aria-current'] = 'page';
+    }
+
+    return $atts;
+}, 10, 2);

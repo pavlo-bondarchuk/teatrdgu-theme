@@ -25,16 +25,30 @@ add_action('wp_enqueue_scripts', function (): void {
         wp_enqueue_script('dgut-front-page', DGUTHEME_URI . '/assets/js/front-page.js', ['dgut-common'], DGUTHEME_VERSION, true);
         wp_script_add_data('dgut-front-page', 'defer', true);
     }
+    if (is_home()) {
+        wp_enqueue_style('dgut-news-page', DGUTHEME_URI . '/assets/css/news.css', ['dgut-common'], DGUTHEME_VERSION);
+    }
     if (is_page_template('template-about.php')) {
         wp_enqueue_style('dgut-about-page', DGUTHEME_URI . '/assets/css/about.css', ['dgut-common'], DGUTHEME_VERSION);
     }
-    if (is_page_template('template-repertoire.php')) {
+    if (is_page_template('template-repertoire.php') || is_post_type_archive('performance')) {
         wp_enqueue_style('dgut-repertoire-page', DGUTHEME_URI . '/assets/css/repertoire.css', ['dgut-common'], DGUTHEME_VERSION);
         wp_enqueue_script('dgut-repertoire-page', DGUTHEME_URI . '/assets/js/repertoire.js', ['dgut-common'], DGUTHEME_VERSION, true);
         wp_script_add_data('dgut-repertoire-page', 'defer', true);
     }
+    if (is_page_template('template-tickets.php')) {
+        wp_enqueue_style('dgut-tickets-page', DGUTHEME_URI . '/assets/css/tickets.css', ['dgut-common'], DGUTHEME_VERSION);
+    }
     if (is_singular('performance')) {
         wp_enqueue_style('dgut-event', DGUTHEME_URI . '/assets/css/event.css', ['dgut-common'], DGUTHEME_VERSION);
+    }
+    if (is_singular('post')) {
+        wp_enqueue_style(
+            'dgut-single-news',
+            DGUTHEME_URI . '/assets/css/single-news.css',
+            ['dgut-common'],
+            DGUTHEME_VERSION
+        );
     }
 }, 20);
 

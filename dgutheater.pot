@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Teatr DGU Theme\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-01 14:23+0000\n"
+"POT-Creation-Date: 2026-07-01 18:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -78,7 +78,7 @@ msgstr ""
 msgid "Performances"
 msgstr ""
 
-#: inc/setup.php:19
+#: inc/setup.php:20
 msgid "Primary menu"
 msgstr ""
 
@@ -159,7 +159,11 @@ msgstr ""
 msgid "Культурна платформа"
 msgstr ""
 
-#: single-performance.php:87 inc/helpers.php:246
+#: inc/helpers.php:203
+msgid "Культурна робота поза сценою"
+msgstr ""
+
+#: single-performance.php:87 inc/helpers.php:400
 msgid "Купити квиток"
 msgstr ""
 
@@ -182,7 +186,7 @@ msgstr ""
 msgid "Написати нам"
 msgstr ""
 
-#: template-parts/front-page/team.php:14
+#: template-parts/front-page/team.php:26
 msgid "Наступна група команди"
 msgstr ""
 
@@ -218,7 +222,7 @@ msgstr ""
 msgid "Перейти до квитків"
 msgstr ""
 
-#: template-parts/front-page/team.php:13
+#: template-parts/front-page/team.php:25
 msgid "Попередня група команди"
 msgstr ""
 
@@ -242,16 +246,43 @@ msgstr ""
 msgid "Постановча команда"
 msgstr ""
 
-#: template-parts/front-page/about.php:55
+#. Name of the template
+#: template-about.php:2
+msgid "Про нас"
+msgstr ""
+
+#: inc/helpers.php:163 template-parts/front-page/about.php:55
 msgid "Про театр"
+msgstr ""
+
+#. Name of the template
+#: archive-performance.php:18 template-repertoire.php:3
+#: template-parts/repertoire/grid.php:10
+msgid "Репертуар"
 msgstr ""
 
 #: inc/maintenance.php:71
 msgid "Сайт незабаром відкриється"
 msgstr ""
 
+#: inc/helpers.php:202
+msgid "Серед наших ініціатив"
+msgstr ""
+
+#: inc/helpers.php:183
+msgid "Театр, проєкти та місто"
+msgstr ""
+
 #: single-performance.php:74
 msgid "Тривалість"
+msgstr ""
+
+#: inc/helpers.php:165
+msgid "Український театр і культурна платформа Дніпра"
+msgstr ""
+
+#: template-parts/repertoire/grid.php:26
+msgid "Усі вистави"
 msgstr ""
 
 #: template-parts/front-page/news.php:21
@@ -262,7 +293,7 @@ msgstr ""
 msgid "Усі права захищені."
 msgstr ""
 
-#: inc/helpers.php:126
+#: inc/helpers.php:280
 msgid "Хлібні крихти"
 msgstr ""
 
@@ -272,6 +303,10 @@ msgstr ""
 
 #: single-performance.php:249
 msgid "Швидкий перехід до квитків"
+msgstr ""
+
+#: inc/helpers.php:182
+msgid "Що ми робимо"
 msgstr ""
 
 #: template-coming-soon.php:63

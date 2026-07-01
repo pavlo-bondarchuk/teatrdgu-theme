@@ -1,0 +1,127 @@
+{
+    "key": "group_dgut_tickets_page",
+    "title": "Сторінка Квитки",
+    "fields": [
+        {
+            "key": "field_dgut_tickets_tab_content",
+            "label": "Контент",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_dgut_tickets_title",
+            "label": "Заголовок",
+            "name": "tickets_title",
+            "type": "text",
+            "default_value": "Купити квиток"
+        },
+        {
+            "key": "field_dgut_tickets_intro",
+            "label": "Вступний текст",
+            "name": "tickets_intro",
+            "type": "textarea",
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "Квитки продаються через офіційні онлайн-сервіси. Оберіть зручний сервіс та придбайте квиток онлайн."
+        },
+        {
+            "key": "field_dgut_tickets_phone_text",
+            "label": "Текст телефону",
+            "name": "tickets_phone_text",
+            "type": "text",
+            "default_value": "Або телефонуйте: +380974136285 (з 10 до 18)."
+        },
+        {
+            "key": "field_dgut_tickets_phone_url",
+            "label": "Посилання телефону",
+            "name": "tickets_phone_url",
+            "type": "url",
+            "default_value": "tel:+380974136285"
+        },
+        {
+            "key": "field_dgut_tickets_tab_services",
+            "label": "Сервіси",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_dgut_tickets_services",
+            "label": "Квиткові сервіси",
+            "name": "tickets_services",
+            "type": "repeater",
+            "layout": "block",
+            "button_label": "Додати сервіс",
+            "sub_fields": [
+                {
+                    "key": "field_dgut_tickets_service_logo",
+                    "label": "Логотип",
+                    "name": "logo",
+                    "type": "image",
+                    "return_format": "array",
+                    "preview_size": "medium",
+                    "library": "all",
+                    "parent_repeater": "field_dgut_tickets_services"
+                },
+                {
+                    "key": "field_dgut_tickets_service_title",
+                    "label": "Назва",
+                    "name": "title",
+                    "type": "text",
+                    "parent_repeater": "field_dgut_tickets_services"
+                },
+                {
+                    "key": "field_dgut_tickets_service_description",
+                    "label": "Опис",
+                    "name": "description",
+                    "type": "textarea",
+                    "rows": 3,
+                    "new_lines": "",
+                    "parent_repeater": "field_dgut_tickets_services"
+                },
+                {
+                    "key": "field_dgut_tickets_service_link",
+                    "label": "Посилання",
+                    "name": "link",
+                    "type": "link",
+                    "return_format": "array",
+                    "parent_repeater": "field_dgut_tickets_services"
+                }
+            ]
+        },
+        {
+            "key": "field_dgut_tickets_tab_footer",
+            "label": "Нижня кнопка",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_dgut_tickets_repertoire_link",
+            "label": "Кнопка репертуару",
+            "name": "tickets_repertoire_link",
+            "type": "link",
+            "return_format": "array"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "template-tickets.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1782939600
+}
