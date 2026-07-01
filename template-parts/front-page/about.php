@@ -11,6 +11,11 @@ $has_about = !empty($args['has_about']);
 if (!dgut_front_bool($fields, 'home_about_show', true) || !$has_about) {
     return;
 }
+
+$archive_link = dgut_front_field($fields, 'home_about_archive_link', []);
+$archive_link_url = is_array($archive_link) ? (string) ($archive_link['url'] ?? '') : '';
+$archive_link_title = is_array($archive_link) ? (string) ($archive_link['title'] ?? '') : '';
+$archive_link_target = is_array($archive_link) ? (string) ($archive_link['target'] ?? '') : '';
 ?>
 <section id="about" class="section dgut-about">
     <div class="container dgut-about__grid">
@@ -45,7 +50,11 @@ if (!dgut_front_bool($fields, 'home_about_show', true) || !$has_about) {
                     <?php endforeach; ?>
                 </div>
             <?php endif; ?>
-            <a class="btn dgut-about__button" href="<?php echo esc_url(dgut_front_page_url('about', '/about/')); ?>"><?php esc_html_e('Про театр', 'dgutheater'); ?> <span aria-hidden="true">→</span></a>
+            <?php if ($archive_link_url !== '') : ?>
+                <a class="btn dgut-about__button" href="<?php echo esc_url($archive_link_url); ?>"<?php echo $archive_link_target !== '' ? ' target="' . esc_attr($archive_link_target) . '"' : ''; ?><?php echo $archive_link_target === '_blank' ? ' rel="noopener noreferrer"' : ''; ?>>
+                    <?php echo esc_html($archive_link_title ?: __('Про театр', 'dgutheater')); ?> <span aria-hidden="true">→</span>
+                </a>
+            <?php endif; ?>
         </div>
         <?php if (!empty($about_images)) : ?>
             <div class="dgut-about__media">

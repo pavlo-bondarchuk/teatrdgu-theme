@@ -183,6 +183,23 @@
             "append": ""
         },
         {
+            "key": "field_dgut_home_news_archive_link",
+            "label": "Посилання на сторінку новин",
+            "name": "home_news_archive_link",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 0
+        },
+        {
             "key": "field_dgut_home_tab_about",
             "label": "Про театр",
             "name": "",
@@ -262,6 +279,23 @@
             "placeholder": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_dgut_home_about_archive_link",
+            "label": "Посилання на сторінку про театр",
+            "name": "home_about_archive_link",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 0
         },
         {
             "key": "field_dgut_home_about_text_1",
