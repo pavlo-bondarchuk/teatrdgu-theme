@@ -533,3 +533,128 @@ function dgut_get_team_member_card_data(WP_Post|int $post): array
         'url' => get_permalink($post),
     ];
 }
+
+function dgut_repertoire_posts(): array
+{
+    $args = [
+        'post_type' => 'performance',
+        'posts_per_page' => -1,
+        'post_status' => 'publish',
+        'orderby' => 'menu_order date',
+        'order' => 'ASC',
+    ];
+
+    if (function_exists('pll_current_language')) {
+        $language = pll_current_language('slug');
+        if (is_string($language) && $language !== '') {
+            $args['lang'] = $language;
+        }
+    }
+
+    return get_posts($args);
+}
+
+function dgut_repertoire_filters(): array
+{
+    $is_english = dgut_repertoire_is_english();
+
+    return [
+        [
+            'key' => 'all',
+            'label' => $is_english ? 'All' : 'Усі вистави',
+        ],
+        [
+            'key' => 'драма',
+            'label' => $is_english ? 'Drama' : 'Драма',
+        ],
+        [
+            'key' => 'комедія',
+            'label' => $is_english ? 'Comedy' : 'Комедія',
+        ],
+        [
+            'key' => 'абсурд',
+            'label' => $is_english ? 'Absurd' : 'Абсурд',
+        ],
+        [
+            'key' => 'імерсивна',
+            'label' => $is_english ? 'Immersive' : 'Імерсивні',
+        ],
+        [
+            'key' => 'дитяч',
+            'label' => $is_english ? 'For children' : 'Для дітей',
+        ],
+    ];
+}
+
+function dgut_repertoire_is_english(): bool
+{
+    return function_exists('pll_current_language') && pll_current_language('slug') === 'en';
+}
+
+function dgut_repertoire_label(string $key): string
+{
+    $labels = [
+        'title' => [
+            'ua' => 'Репертуар',
+            'en' => 'Repertoire',
+        ],
+        'filter_aria' => [
+            'ua' => 'Фільтр репертуару',
+            'en' => 'Repertoire filter',
+        ],
+        'details' => [
+            'ua' => 'Детальніше',
+            'en' => 'Details',
+        ],
+        'empty' => [
+            'ua' => 'За цим фільтром вистав поки немає.',
+            'en' => 'There are no performances for this filter yet.',
+        ],
+    ];
+
+    $language = dgut_repertoire_is_english() ? 'en' : 'ua';
+
+    return $labels[$key][$language] ?? '';
+}
+
+function dgut_repertoire_card_data(WP_Post|int $post): array
+{
+    $post = get_post($post);
+
+    if (!$post) {
+        return [];
+    }
+
+    $post_id = $post->ID;
+    $title = trim((string) get_the_title($post));
+    $excerpt = trim((string) get_the_excerpt($post));
+    if ($excerpt === '') {
+        $excerpt = wp_trim_words(wp_strip_all_tags((string) get_post_field('post_content', $post_id)), 18);
+    }
+
+    $genres = wp_get_post_terms($post_id, 'performance_genre', ['fields' => 'names']);
+    $genre = is_array($genres) && !empty($genres) ? (string) $genres[0] : '';
+    $image = get_the_post_thumbnail_url($post, 'dgut-event-grid-card')
+        ?: get_the_post_thumbnail_url($post, 'dgut-performance-card')
+        ?: get_the_post_thumbnail_url($post, 'dgut-card')
+        ?: get_the_post_thumbnail_url($post, 'large')
+        ?: '';
+
+    $filter_text = trim($genre . ' ' . $title . ' ' . $excerpt);
+    if (function_exists('mb_strtolower')) {
+        $filter_text = mb_strtolower($filter_text);
+    } else {
+        $filter_text = strtolower($filter_text);
+    }
+
+    return [
+        'title' => $title,
+        'genre' => $genre,
+        'date' => function_exists('get_field') ? trim((string) get_field('dgut_performance_date', $post_id)) : '',
+        'excerpt' => $excerpt,
+        'image' => $image,
+        'permalink' => get_permalink($post),
+        'focus' => function_exists('get_field') ? (trim((string) get_field('dgut_performance_image_focus', $post_id)) ?: 'center top') : 'center top',
+        'filter_text' => $filter_text,
+    ];
+}

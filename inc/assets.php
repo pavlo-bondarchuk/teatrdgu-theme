@@ -28,6 +28,11 @@ add_action('wp_enqueue_scripts', function (): void {
     if (is_page_template('template-about.php')) {
         wp_enqueue_style('dgut-about-page', DGUTHEME_URI . '/assets/css/about.css', ['dgut-common'], DGUTHEME_VERSION);
     }
+    if (is_page_template('template-repertoire.php')) {
+        wp_enqueue_style('dgut-repertoire-page', DGUTHEME_URI . '/assets/css/repertoire.css', ['dgut-common'], DGUTHEME_VERSION);
+        wp_enqueue_script('dgut-repertoire-page', DGUTHEME_URI . '/assets/js/repertoire.js', ['dgut-common'], DGUTHEME_VERSION, true);
+        wp_script_add_data('dgut-repertoire-page', 'defer', true);
+    }
     if (is_singular('performance')) {
         wp_enqueue_style('dgut-event', DGUTHEME_URI . '/assets/css/event.css', ['dgut-common'], DGUTHEME_VERSION);
     }
