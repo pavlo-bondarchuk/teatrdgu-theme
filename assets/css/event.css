@@ -9,7 +9,7 @@
 
 .dgut-breadcrumbs,
 .dgut-breadcrumbs #breadcrumbs {
-    font: 600 14px/1.45 var(--dgut-body);
+    font: 500 12px/1.45 var(--dgut-body);
     color: var(--dgut-taupe);
 }
 
@@ -100,29 +100,27 @@
 }
 
 .dgut-event-meta__item {
+    display: flex;
+    gap: 12px;
     position: relative;
-    min-height: 92px;
     border: 1px solid var(--dgut-stone);
     background: rgba(250, 247, 242, .64);
     padding: 16px;
 }
 
 .dgut-event-meta__icon {
-    position: absolute;
-    top: 21px;
-    left: 22px;
     color: var(--dgut-sand);
 }
 
 .dgut-event-meta__icon svg {
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
 }
 
 .dgut-event-meta span:not(.dgut-event-meta__icon) {
     display: block;
-    margin-bottom: 7px;
-    font: 700 11px/1 var(--dgut-body);
+    margin-bottom: 4px;
+    font: 700 10px/15px var(--dgut-body);
     letter-spacing: .18em;
     text-transform: uppercase;
     color: var(--dgut-taupe);
@@ -130,7 +128,7 @@
 
 .dgut-event-meta strong {
     display: block;
-    font-size: 17px;
+    font-size: 13px;
     line-height: 1.35;
     color: var(--dgut-charcoal);
 }
@@ -377,22 +375,23 @@
 }
 
 .dgut-event-floating-ticket__eyebrow {
-    margin: 0 0 16px;
+    margin: 0 0 8px;
     color: var(--dgut-sand);
+    font: 400 10px/1 var(--dgut-body);
 }
 
 .dgut-event-floating-ticket__title {
-    margin: 0 0 24px;
-    font: 300 28px/31px var(--dgut-display);
+    margin: 0 0 16px;
+    font: 300 17px/26px var(--dgut-display);
     color: var(--dgut-cream);
 }
 
 .dgut-event-floating-ticket__button {
-    min-height: 60px;
-    padding-inline: 28px;
+    min-height: fit-content;
+    padding-inline: 20px;
     background: var(--dgut-cream);
     color: var(--dgut-charcoal);
-    font: 700 17px/26px var(--dgut-body);
+    font: 700 12px/18px var(--dgut-body);
     letter-spacing: .02em;
 }
 

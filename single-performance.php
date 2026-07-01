@@ -52,16 +52,32 @@ $breadcrumbs = dgut_yoast_breadcrumbs();
                     <div class="dgut-event-meta">
                         <?php if ($date !== '') : ?>
                             <div class="dgut-event-meta__item">
-                                <span class="dgut-event-meta__icon"><?php echo dgut_ui_icon('calendar'); ?></span>
-                                <span><?php esc_html_e('Дата', 'dgutheater'); ?></span>
-                                <strong><?php echo esc_html($date); ?></strong>
+                                <div class="dgut-event-meta__icon">
+                                    <?php echo dgut_ui_icon('calendar'); ?>
+                                </div>
+                                <div class="dgut-event-meta__text">
+                                    <span>
+                                        <?php esc_html_e('Дата', 'dgutheater'); ?>
+                                    </span>
+                                    <strong>
+                                        <?php echo esc_html($date); ?>
+                                    </strong>
+                                </div>
                             </div>
                         <?php endif; ?>
                         <?php if ($duration !== '') : ?>
                             <div class="dgut-event-meta__item">
-                                <span class="dgut-event-meta__icon"><?php echo dgut_ui_icon('clock'); ?></span>
-                                <span><?php esc_html_e('Тривалість', 'dgutheater'); ?></span>
-                                <strong><?php echo esc_html($duration); ?></strong>
+                                <div class="dgut-event-meta__icon">
+                                    <?php echo dgut_ui_icon('clock'); ?>
+                                </div>
+                                <div class="dgut-event-meta__text">
+                                    <span>
+                                        <?php esc_html_e('Тривалість', 'dgutheater'); ?>
+                                    </span>
+                                    <strong>
+                                        <?php echo esc_html($duration); ?>
+                                    </strong>
+                                </div>
                             </div>
                         <?php endif; ?>
                     </div>
