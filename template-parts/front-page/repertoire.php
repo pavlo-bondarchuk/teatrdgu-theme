@@ -7,6 +7,10 @@ if (!dgut_front_bool($fields, 'home_repertoire_show', true) || empty($performanc
 }
 
 $repertoire_title = (string) dgut_front_field($fields, 'home_repertoire_title');
+$archive_link = dgut_front_field($fields, 'home_repertoire_archive_link', []);
+$archive_link_url = is_array($archive_link) ? (string) ($archive_link['url'] ?? '') : '';
+$archive_link_title = is_array($archive_link) ? (string) ($archive_link['title'] ?? '') : '';
+$archive_link_target = is_array($archive_link) ? (string) ($archive_link['target'] ?? '') : '';
 ?>
 <section id="repertoire" class="section dgut-repertoire" data-carousel data-carousel-desktop="3" data-carousel-tablet="2" data-carousel-mobile="1">
     <div class="container">
@@ -17,7 +21,11 @@ $repertoire_title = (string) dgut_front_field($fields, 'home_repertoire_title');
                 </h2>
             <?php endif; ?>
             <div class="dgut-section-actions">
-                <a class="dgut-section-link" href="<?php echo esc_url(dgut_front_page_url('repertoire', '/repertoire/')); ?>"><?php esc_html_e('Весь репертуар', 'dgutheater'); ?> <span aria-hidden="true">→</span></a>
+                <?php if ($archive_link_url !== '') : ?>
+                    <a class="dgut-section-link" href="<?php echo esc_url($archive_link_url); ?>"<?php echo $archive_link_target !== '' ? ' target="' . esc_attr($archive_link_target) . '"' : ''; ?><?php echo $archive_link_target === '_blank' ? ' rel="noopener noreferrer"' : ''; ?>>
+                        <?php echo esc_html($archive_link_title ?: __('Весь репертуар', 'dgutheater')); ?> <span aria-hidden="true">→</span>
+                    </a>
+                <?php endif; ?>
                 <div class="slider-controls">
                     <button class="slider-arrow" type="button" data-carousel-prev aria-label="<?php esc_attr_e('Попередня група репертуару', 'dgutheater'); ?>"><?php echo dgut_ui_icon('chevron-left'); ?></button>
                     <button class="slider-arrow" type="button" data-carousel-next aria-label="<?php esc_attr_e('Наступна група репертуару', 'dgutheater'); ?>"><?php echo dgut_ui_icon('chevron-right'); ?></button>
