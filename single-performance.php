@@ -4,7 +4,6 @@ the_post();
 
 $date = dgut_performance_text_field('dgut_performance_date');
 $duration = dgut_performance_text_field('dgut_performance_duration');
-$ticket_url = dgut_performance_text_field('dgut_performance_ticket_url');
 $video_url = dgut_performance_text_field('dgut_performance_video_url');
 $about_eyebrow = dgut_performance_text_field('dgut_performance_about_eyebrow');
 $about_title = dgut_performance_text_field('dgut_performance_about_title');
@@ -20,7 +19,7 @@ $gallery = dgut_performance_gallery();
 $cast = dgut_performance_people('dgut_performance_cast');
 $backstage = dgut_performance_people('dgut_performance_backstage');
 $services = dgut_performance_services();
-$ticket_services = dgut_performance_ticket_services($services, $ticket_url);
+$ticket_services = dgut_performance_ticket_services($services, '');
 $terms = wp_get_post_terms(get_the_ID(), 'performance_genre', ['fields' => 'names']);
 $has_ticket_links = !empty($ticket_services);
 $video_embed = dgut_performance_video_embed($video_url);
@@ -231,7 +230,9 @@ $breadcrumbs = dgut_yoast_breadcrumbs();
                             <?php if ($service['description'] !== '') : ?>
                                 <p><?php echo esc_html($service['description']); ?></p>
                             <?php endif; ?>
-                            <span><?php esc_html_e('Перейти до квитків', 'dgutheater'); ?> <?php echo dgut_ui_icon('external-link'); ?></span>
+                            <span class="dgut-ticket-service-card__link">
+                                <?php echo dgut_ui_icon('external-link'); ?>
+                            </span>
                         </a>
                     <?php endforeach; ?>
                 </div>

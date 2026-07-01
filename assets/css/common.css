@@ -57,6 +57,10 @@ a:focus-visible {
   outline-offset: 3px
 }
 
+.no-scroll {
+  overflow: hidden
+}
+
 .screen-reader-text,
 .skip-link {
   position: absolute;
@@ -196,6 +200,10 @@ a:focus-visible {
   letter-spacing: .12em;
   text-transform: uppercase;
   color: var(--dgut-taupe)
+}
+
+.primary-nav__list li:last-child a {
+  border-bottom: 0
 }
 
 .primary-nav a:hover,

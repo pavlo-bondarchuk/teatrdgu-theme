@@ -61,23 +61,6 @@
             "append": ""
         },
         {
-            "key": "field_dgut_performance_ticket_url",
-            "label": "Основне посилання на квитки",
-            "name": "dgut_performance_ticket_url",
-            "aria-label": "",
-            "type": "url",
-            "instructions": "Використовується для кнопки у першому екрані, якщо блок онлайн-сервісів не заповнений.",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "https:\/\/"
-        },
-        {
             "key": "field_dgut_performance_tab_about",
             "label": "Про виставу",
             "name": "",
@@ -661,5 +644,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1782910000
+    "modified": 1782912688
 }
