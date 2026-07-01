@@ -1,14 +1,32 @@
 {
     "key": "group_dgut_performance_fields",
-    "title": "Performance details",
+    "title": "Деталі вистави",
     "fields": [
         {
+            "key": "field_dgut_performance_tab_main",
+            "label": "Основне",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
             "key": "field_dgut_performance_date",
-            "label": "Date label",
+            "label": "Дата показу",
             "name": "dgut_performance_date",
             "aria-label": "",
             "type": "text",
-            "instructions": "",
+            "instructions": "Наприклад: Прем'єра 24.02.2026",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -18,17 +36,17 @@
             },
             "default_value": "",
             "maxlength": "",
-            "placeholder": "",
+            "placeholder": "Прем'єра 24.02.2026",
             "prepend": "",
             "append": ""
         },
         {
             "key": "field_dgut_performance_duration",
-            "label": "Duration",
+            "label": "Тривалість",
             "name": "dgut_performance_duration",
             "aria-label": "",
             "type": "text",
-            "instructions": "",
+            "instructions": "Наприклад: 1 год 35 хв",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -38,17 +56,17 @@
             },
             "default_value": "",
             "maxlength": "",
-            "placeholder": "",
+            "placeholder": "1 год 35 хв",
             "prepend": "",
             "append": ""
         },
         {
             "key": "field_dgut_performance_ticket_url",
-            "label": "Ticket URL",
+            "label": "Основне посилання на квитки",
             "name": "dgut_performance_ticket_url",
             "aria-label": "",
             "type": "url",
-            "instructions": "",
+            "instructions": "Використовується для кнопки у першому екрані, якщо блок онлайн-сервісів не заповнений.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -57,32 +75,301 @@
                 "id": ""
             },
             "default_value": "",
-            "placeholder": ""
+            "placeholder": "https:\/\/"
         },
         {
-            "key": "field_dgut_performance_video_url",
-            "label": "Video URL or embed",
-            "name": "dgut_performance_video_url",
+            "key": "field_dgut_performance_tab_about",
+            "label": "Про виставу",
+            "name": "",
             "aria-label": "",
-            "type": "url",
+            "type": "tab",
             "instructions": "",
-            "required": false,
-            "conditional_logic": false,
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_dgut_performance_about_eyebrow",
+            "label": "Надзаголовок блока",
+            "name": "dgut_performance_about_eyebrow",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Про виставу",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_dgut_performance_about_title",
+            "label": "Заголовок блока",
+            "name": "dgut_performance_about_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
             "default_value": "",
-            "placeholder": ""
+            "maxlength": "",
+            "placeholder": "Історія, що звучить сьогодні",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_dgut_performance_about_text",
+            "label": "Текст про виставу",
+            "name": "dgut_performance_about_text",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_dgut_performance_tab_people",
+            "label": "Команда",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_dgut_performance_cast",
+            "label": "На сцені",
+            "name": "dgut_performance_cast",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Додати учасника",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_dgut_performance_cast_role",
+                    "label": "Роль",
+                    "name": "role",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_dgut_performance_cast"
+                },
+                {
+                    "key": "field_dgut_performance_cast_name",
+                    "label": "Ім'я",
+                    "name": "name",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_dgut_performance_cast"
+                }
+            ]
+        },
+        {
+            "key": "field_dgut_performance_backstage",
+            "label": "За лаштунками",
+            "name": "dgut_performance_backstage",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Додати учасника",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_dgut_performance_backstage_role",
+                    "label": "Роль у команді",
+                    "name": "role",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_dgut_performance_backstage"
+                },
+                {
+                    "key": "field_dgut_performance_backstage_name",
+                    "label": "Ім'я",
+                    "name": "name",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_dgut_performance_backstage"
+                }
+            ]
+        },
+        {
+            "key": "field_dgut_performance_tab_media",
+            "label": "Медіа",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_dgut_performance_gallery_eyebrow",
+            "label": "Надзаголовок фотогалереї",
+            "name": "dgut_performance_gallery_eyebrow",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Фотогалерея",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_dgut_performance_gallery_title",
+            "label": "Заголовок фотогалереї",
+            "name": "dgut_performance_gallery_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Вистава у кадрі",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_dgut_performance_gallery",
-            "label": "Gallery images",
+            "label": "Зображення фотогалереї",
             "name": "dgut_performance_gallery_images",
             "aria-label": "",
             "type": "gallery",
-            "instructions": "One attachment ID or image URL per line. This keeps the theme compatible with the free Secure Custom Fields install.",
+            "instructions": "Додайте фото з медіатеки. Поле повертає масив зображень.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -103,6 +390,254 @@
             "mime_types": "",
             "insert": "append",
             "preview_size": "medium"
+        },
+        {
+            "key": "field_dgut_performance_video_eyebrow",
+            "label": "Надзаголовок відео",
+            "name": "dgut_performance_video_eyebrow",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Відео",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_dgut_performance_video_title",
+            "label": "Заголовок відео",
+            "name": "dgut_performance_video_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "Прем'єра вистави - сюжет ДніпроTV",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_dgut_performance_video_url",
+            "label": "Посилання на відео або код вставки",
+            "name": "dgut_performance_video_url",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Підтримуються mp4-файли з сайту, YouTube, Vimeo, інші oEmbed-посилання або iframe-код.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 2,
+            "placeholder": "https:\/\/",
+            "new_lines": ""
+        },
+        {
+            "key": "field_dgut_performance_tab_services",
+            "label": "Онлайн-сервіси",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_dgut_performance_services_eyebrow",
+            "label": "Надзаголовок блока сервісів",
+            "name": "dgut_performance_services_eyebrow",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Онлайн-сервіси",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_dgut_performance_services_title",
+            "label": "Заголовок блока сервісів",
+            "name": "dgut_performance_services_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Оберіть сервіс для квитків",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_dgut_performance_services_text",
+            "label": "Опис блока сервісів",
+            "name": "dgut_performance_services_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Продаж і повернення квитків відбуваються на стороні обраного офіційного сервісу.",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_dgut_performance_ticket_services",
+            "label": "Сервіси продажу квитків",
+            "name": "dgut_performance_ticket_services",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Для кожної вистави можна додати індивідуальний набір сервісів.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_dgut_performance_ticket_service_name",
+            "button_label": "Додати сервіс",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_dgut_performance_ticket_service_name",
+                    "label": "Назва сервісу",
+                    "name": "name",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "25",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "WayForPay",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_dgut_performance_ticket_services"
+                },
+                {
+                    "key": "field_dgut_performance_ticket_service_url",
+                    "label": "Посилання",
+                    "name": "url",
+                    "aria-label": "",
+                    "type": "url",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "25",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "https:\/\/",
+                    "parent_repeater": "field_dgut_performance_ticket_services"
+                },
+                {
+                    "key": "field_dgut_performance_ticket_service_icon",
+                    "label": "Іконка або логотип",
+                    "name": "icon",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "Можна використати наявні логотипи з assets\/media\/ticket-providers.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "25",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "jpg,jpeg,png,webp,svg",
+                    "preview_size": "medium",
+                    "parent_repeater": "field_dgut_performance_ticket_services"
+                },
+                {
+                    "key": "field_dgut_performance_ticket_service_description",
+                    "label": "Опис сервісу",
+                    "name": "description",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "25",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": 2,
+                    "placeholder": "",
+                    "new_lines": "",
+                    "parent_repeater": "field_dgut_performance_ticket_services"
+                }
+            ]
         }
     ],
     "location": [
@@ -126,5 +661,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1782851945
+    "modified": 1782910000
 }

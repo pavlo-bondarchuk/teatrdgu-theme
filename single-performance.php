@@ -2,14 +2,97 @@
 get_header();
 the_post();
 
-$date = function_exists('get_field') ? (string) get_field('dgut_performance_date') : '';
-$duration = function_exists('get_field') ? (string) get_field('dgut_performance_duration') : '';
-$ticket_url = function_exists('get_field') ? (string) get_field('dgut_performance_ticket_url') : '';
-$video_url = function_exists('get_field') ? (string) get_field('dgut_performance_video_url') : '';
-$gallery_raw = function_exists('get_field') ? get_field('dgut_performance_gallery_images') : [];
-$gallery = [];
+function dgut_performance_field(string $key, mixed $default = ''): mixed
+{
+    if (!function_exists('get_field')) {
+        return $default;
+    }
 
-if (is_array($gallery_raw)) {
+    $value = get_field($key);
+    return $value !== null && $value !== false && $value !== '' ? $value : $default;
+}
+
+function dgut_performance_text_field(string $key, string $default = ''): string
+{
+    $value = dgut_performance_field($key, $default);
+    return is_string($value) ? trim($value) : $default;
+}
+
+function dgut_performance_people(string $key): array
+{
+    $rows = dgut_performance_field($key, []);
+    if (!is_array($rows)) {
+        return [];
+    }
+
+    $people = [];
+    foreach ($rows as $row) {
+        if (!is_array($row)) {
+            continue;
+        }
+
+        $role = trim((string) ($row['role'] ?? ''));
+        $name = trim((string) ($row['name'] ?? ''));
+
+        if ($role === '' && $name === '') {
+            continue;
+        }
+
+        $people[] = [
+            'role' => $role,
+            'name' => $name,
+        ];
+    }
+
+    return $people;
+}
+
+function dgut_performance_services(): array
+{
+    $rows = dgut_performance_field('dgut_performance_ticket_services', []);
+    if (!is_array($rows)) {
+        return [];
+    }
+
+    $services = [];
+    foreach ($rows as $row) {
+        if (!is_array($row)) {
+            continue;
+        }
+
+        $url = trim((string) ($row['url'] ?? ''));
+        if ($url === '') {
+            continue;
+        }
+
+        $name = trim((string) ($row['name'] ?? ''));
+        $description = trim((string) ($row['description'] ?? ''));
+        $icon = dgut_get_image_from_field($row['icon'] ?? '');
+
+        if ($name === '' && $description === '' && $icon === '') {
+            continue;
+        }
+
+        $services[] = [
+            'name' => $name,
+            'url' => $url,
+            'icon' => $icon,
+            'description' => $description,
+        ];
+    }
+
+    return $services;
+}
+
+function dgut_performance_gallery(): array
+{
+    $gallery_raw = dgut_performance_field('dgut_performance_gallery_images', []);
+    $gallery = [];
+
+    if (!is_array($gallery_raw)) {
+        return $gallery;
+    }
+
     foreach ($gallery_raw as $image) {
         if (is_array($image)) {
             $image_id = (int) ($image['ID'] ?? $image['id'] ?? 0);
@@ -42,70 +125,198 @@ if (is_array($gallery_raw)) {
             ];
         }
     }
+
+    return $gallery;
 }
+
+function dgut_performance_video_embed(string $video_url): string
+{
+    if ($video_url === '') {
+        return '';
+    }
+
+    if (str_contains($video_url, '<iframe')) {
+        return wp_kses($video_url, [
+            'iframe' => [
+                'src' => true,
+                'title' => true,
+                'width' => true,
+                'height' => true,
+                'loading' => true,
+                'allow' => true,
+                'allowfullscreen' => true,
+                'frameborder' => true,
+            ],
+        ]);
+    }
+
+    if (str_ends_with(strtolower(parse_url($video_url, PHP_URL_PATH) ?: ''), '.mp4')) {
+        return sprintf('<video controls preload="metadata"><source src="%s" type="video/mp4"></video>', esc_url($video_url));
+    }
+
+    $embed = wp_oembed_get($video_url);
+    if ($embed) {
+        return $embed;
+    }
+
+    return sprintf(
+        '<iframe src="%s" title="%s" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>',
+        esc_url($video_url),
+        esc_attr(get_the_title())
+    );
+}
+
+$date = dgut_performance_text_field('dgut_performance_date');
+$duration = dgut_performance_text_field('dgut_performance_duration');
+$ticket_url = dgut_performance_text_field('dgut_performance_ticket_url');
+$video_url = dgut_performance_text_field('dgut_performance_video_url');
+$about_eyebrow = dgut_performance_text_field('dgut_performance_about_eyebrow');
+$about_title = dgut_performance_text_field('dgut_performance_about_title');
+$about_text = dgut_performance_text_field('dgut_performance_about_text');
+$gallery_eyebrow = dgut_performance_text_field('dgut_performance_gallery_eyebrow');
+$gallery_title = dgut_performance_text_field('dgut_performance_gallery_title');
+$video_eyebrow = dgut_performance_text_field('dgut_performance_video_eyebrow');
+$video_title = dgut_performance_text_field('dgut_performance_video_title');
+$services_eyebrow = dgut_performance_text_field('dgut_performance_services_eyebrow');
+$services_title = dgut_performance_text_field('dgut_performance_services_title');
+$services_text = dgut_performance_text_field('dgut_performance_services_text');
+$gallery = dgut_performance_gallery();
+$cast = dgut_performance_people('dgut_performance_cast');
+$backstage = dgut_performance_people('dgut_performance_backstage');
+$services = dgut_performance_services();
 $terms = wp_get_post_terms(get_the_ID(), 'performance_genre', ['fields' => 'names']);
+$hero_ticket_target = !empty($services) ? '#tickets' : $ticket_url;
+$video_embed = dgut_performance_video_embed($video_url);
 ?>
 <main id="primary" class="site-main dgut-event">
     <section class="section dgut-event-hero">
         <div class="container dgut-event-hero__grid">
-            <div class="media-frame dgut-event-hero__image">
-                <?php
-                if (has_post_thumbnail()) {
-                    the_post_thumbnail('dgut-card', ['loading' => 'eager', 'fetchpriority' => 'high']);
-                }
-                ?>
-            </div>
+            <?php if (has_post_thumbnail()) : ?>
+                <div class="media-frame dgut-event-hero__image">
+                    <?php the_post_thumbnail('dgut-card', ['loading' => 'eager', 'fetchpriority' => 'high']); ?>
+                </div>
+            <?php endif; ?>
             <div class="dgut-event-hero__content">
                 <?php if (!empty($terms)) : ?>
-                    <p class="eyebrow"><?php echo esc_html($terms[0]); ?></p>
+                    <p class="eyebrow dgut-event-eyebrow dgut-event-hero__eyebrow"><?php echo esc_html($terms[0]); ?></p>
                 <?php endif; ?>
                 <h1 class="display dgut-event-hero__title"><?php the_title(); ?></h1>
                 <?php if (has_excerpt()) : ?>
                     <p class="dgut-event-hero__excerpt"><?php echo esc_html(get_the_excerpt()); ?></p>
                 <?php endif; ?>
-                <div class="dgut-event-meta">
-                    <div><span><?php esc_html_e('Дата', 'dgutheater'); ?></span><strong><?php echo esc_html($date ?: __('Дати уточнюються', 'dgutheater')); ?></strong></div>
-                    <div><span><?php esc_html_e('Тривалість', 'dgutheater'); ?></span><strong><?php echo esc_html($duration ?: __('Уточнюється', 'dgutheater')); ?></strong></div>
-                </div>
-                <button class="btn" type="button" data-scroll-target="#tickets"><?php esc_html_e('Купити квиток', 'dgutheater'); ?></button>
+                <?php if ($date !== '' || $duration !== '') : ?>
+                    <div class="dgut-event-meta">
+                        <?php if ($date !== '') : ?>
+                            <div>
+                                <span class="dgut-event-meta__icon"><?php echo dgut_ui_icon('calendar'); ?></span>
+                                <span><?php esc_html_e('Дата', 'dgutheater'); ?></span>
+                                <strong><?php echo esc_html($date); ?></strong>
+                            </div>
+                        <?php endif; ?>
+                        <?php if ($duration !== '') : ?>
+                            <div>
+                                <span class="dgut-event-meta__icon"><?php echo dgut_ui_icon('clock'); ?></span>
+                                <span><?php esc_html_e('Тривалість', 'dgutheater'); ?></span>
+                                <strong><?php echo esc_html($duration); ?></strong>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
+                <?php if ($hero_ticket_target !== '') : ?>
+                    <?php if (!empty($services)) : ?>
+                        <button class="btn dgut-event-hero__button" type="button" data-scroll-target="#tickets">
+                            <?php echo dgut_ui_icon('ticket'); ?>
+                            <?php esc_html_e('Купити квиток', 'dgutheater'); ?>
+                        </button>
+                    <?php else : ?>
+                        <a class="btn dgut-event-hero__button" href="<?php echo esc_url($hero_ticket_target); ?>" target="_blank" rel="noopener noreferrer">
+                            <?php echo dgut_ui_icon('ticket'); ?>
+                            <?php esc_html_e('Купити квиток', 'dgutheater'); ?>
+                        </a>
+                    <?php endif; ?>
+                <?php endif; ?>
             </div>
         </div>
     </section>
 
-    <section class="section dgut-event-body">
-        <div class="container dgut-event-body__content">
-            <?php the_content(); ?>
-        </div>
-    </section>
-
-    <?php if ($video_url) : ?>
-        <section class="section dgut-event-video">
-            <div class="container">
-                <p class="eyebrow"><?php esc_html_e('Відео', 'dgutheater'); ?></p>
-                <div class="dgut-video-frame">
-                    <?php
-                    if (str_ends_with($video_url, '.mp4')) {
-                        printf('<video controls preload="metadata"><source src="%s" type="video/mp4"></video>', esc_url($video_url));
-                    } else {
-                        printf('<iframe src="%s" title="%s" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>', esc_url($video_url), esc_attr(get_the_title()));
-                    }
-                    ?>
+    <?php if ($about_title !== '' || $about_text !== '') : ?>
+        <section class="section dgut-event-about">
+            <div class="container dgut-event-about__grid">
+                <div>
+                    <?php if ($about_eyebrow !== '') : ?>
+                        <p class="eyebrow dgut-event-section-eyebrow"><?php echo esc_html($about_eyebrow); ?></p>
+                    <?php endif; ?>
+                    <?php if ($about_title !== '') : ?>
+                        <h2 class="section-title dgut-event-section-title"><?php echo esc_html($about_title); ?></h2>
+                    <?php endif; ?>
                 </div>
+                <?php if ($about_text !== '') : ?>
+                    <div class="dgut-event-about__content flow">
+                        <?php echo wp_kses_post(apply_filters('the_content', $about_text)); ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </section>
+    <?php endif; ?>
+
+    <?php if (!empty($cast) || !empty($backstage)) : ?>
+        <section class="section dgut-event-people">
+            <div class="container dgut-event-people__grid">
+                <?php if (!empty($cast)) : ?>
+                    <div class="dgut-event-people__group">
+                        <p class="eyebrow dgut-event-section-eyebrow"><?php esc_html_e('На сцені', 'dgutheater'); ?></p>
+                        <h2 class="section-title dgut-event-section-title"><?php esc_html_e('Акторський склад', 'dgutheater'); ?></h2>
+                        <div class="dgut-event-people__list">
+                            <?php foreach ($cast as $person) : ?>
+                                <div class="dgut-event-person">
+                                    <?php if ($person['role'] !== '') : ?>
+                                        <span><?php echo esc_html($person['role']); ?></span>
+                                    <?php endif; ?>
+                                    <?php if ($person['name'] !== '') : ?>
+                                        <strong><?php echo esc_html($person['name']); ?></strong>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <?php if (!empty($backstage)) : ?>
+                    <div class="dgut-event-people__group">
+                        <p class="eyebrow dgut-event-section-eyebrow"><?php esc_html_e('За лаштунками', 'dgutheater'); ?></p>
+                        <h2 class="section-title dgut-event-section-title"><?php esc_html_e('Постановча команда', 'dgutheater'); ?></h2>
+                        <div class="dgut-event-people__list">
+                            <?php foreach ($backstage as $person) : ?>
+                                <div class="dgut-event-person">
+                                    <?php if ($person['role'] !== '') : ?>
+                                        <span><?php echo esc_html($person['role']); ?></span>
+                                    <?php endif; ?>
+                                    <?php if ($person['name'] !== '') : ?>
+                                        <strong><?php echo esc_html($person['name']); ?></strong>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
             </div>
         </section>
     <?php endif; ?>
 
     <?php if ($gallery) : ?>
-        <section class="section dgut-event-gallery" data-carousel>
+        <section class="section dgut-event-gallery" data-carousel data-carousel-desktop="3" data-carousel-tablet="2" data-carousel-mobile="1">
             <div class="container">
-                <div class="dgut-team__top">
+                <div class="dgut-event-section-head">
                     <div>
-                        <p class="eyebrow"><?php esc_html_e('Фотогалерея', 'dgutheater'); ?></p>
-                        <h2 class="section-title"><?php esc_html_e('Вистава у кадрі', 'dgutheater'); ?></h2>
+                        <?php if ($gallery_eyebrow !== '') : ?>
+                            <p class="eyebrow dgut-event-section-eyebrow"><?php echo esc_html($gallery_eyebrow); ?></p>
+                        <?php endif; ?>
+                        <?php if ($gallery_title !== '') : ?>
+                            <h2 class="section-title dgut-event-section-title"><?php echo esc_html($gallery_title); ?></h2>
+                        <?php endif; ?>
                     </div>
                     <div class="slider-controls">
-                        <button class="slider-arrow" type="button" data-carousel-prev aria-label="<?php esc_attr_e('Попередні фото', 'dgutheater'); ?>">‹</button>
-                        <button class="slider-arrow" type="button" data-carousel-next aria-label="<?php esc_attr_e('Наступні фото', 'dgutheater'); ?>">›</button>
+                        <button class="slider-arrow" type="button" data-carousel-prev aria-label="<?php esc_attr_e('Попередні фото', 'dgutheater'); ?>"><?php echo dgut_ui_icon('chevron-left'); ?></button>
+                        <button class="slider-arrow" type="button" data-carousel-next aria-label="<?php esc_attr_e('Наступні фото', 'dgutheater'); ?>"><?php echo dgut_ui_icon('chevron-right'); ?></button>
                     </div>
                 </div>
                 <div class="dgut-event-gallery__track" data-carousel-track>
@@ -125,18 +336,52 @@ $terms = wp_get_post_terms(get_the_ID(), 'performance_genre', ['fields' => 'name
         </section>
     <?php endif; ?>
 
-    <?php if ($ticket_url) : ?>
-        <section id="tickets" class="section dgut-tickets">
+    <?php if ($video_embed !== '') : ?>
+        <section class="section dgut-event-video">
             <div class="container">
-                <div class="dgut-tickets__intro">
-                    <p class="eyebrow"><?php esc_html_e('Квитки', 'dgutheater'); ?></p>
-                    <h2 class="section-title"><?php esc_html_e('Купити квиток', 'dgutheater'); ?></h2>
-                    <p><?php esc_html_e('Продаж і повернення квитків відбуваються на стороні офіційного сервісу.', 'dgutheater'); ?></p>
+                <?php if ($video_eyebrow !== '') : ?>
+                    <p class="eyebrow dgut-event-section-eyebrow"><?php echo esc_html($video_eyebrow); ?></p>
+                <?php endif; ?>
+                <?php if ($video_title !== '') : ?>
+                    <h2 class="section-title dgut-event-section-title"><?php echo esc_html($video_title); ?></h2>
+                <?php endif; ?>
+                <div class="dgut-video-frame">
+                    <?php echo $video_embed; ?>
                 </div>
-                <a class="btn" href="<?php echo esc_url($ticket_url); ?>" target="_blank" rel="noopener noreferrer">
-                    <?php esc_html_e('Перейти до квитків', 'dgutheater'); ?>
-                    <span aria-hidden="true">↗</span>
-                </a>
+            </div>
+        </section>
+    <?php endif; ?>
+
+    <?php if (!empty($services)) : ?>
+        <section id="tickets" class="section dgut-ticket-services">
+            <div class="container">
+                <div class="dgut-ticket-services__intro">
+                    <?php if ($services_eyebrow !== '') : ?>
+                        <p class="eyebrow dgut-event-section-eyebrow"><?php echo esc_html($services_eyebrow); ?></p>
+                    <?php endif; ?>
+                    <?php if ($services_title !== '') : ?>
+                        <h2 class="section-title dgut-event-section-title"><?php echo esc_html($services_title); ?></h2>
+                    <?php endif; ?>
+                    <?php if ($services_text !== '') : ?>
+                        <p><?php echo esc_html($services_text); ?></p>
+                    <?php endif; ?>
+                </div>
+                <div class="dgut-ticket-services__grid">
+                    <?php foreach ($services as $service) : ?>
+                        <a class="dgut-ticket-service-card" href="<?php echo esc_url($service['url']); ?>" target="_blank" rel="noopener noreferrer">
+                            <?php if ($service['icon'] !== '') : ?>
+                                <img src="<?php echo esc_url($service['icon']); ?>" alt="<?php echo esc_attr($service['name']); ?>">
+                            <?php endif; ?>
+                            <?php if ($service['name'] !== '') : ?>
+                                <h3><?php echo esc_html($service['name']); ?></h3>
+                            <?php endif; ?>
+                            <?php if ($service['description'] !== '') : ?>
+                                <p><?php echo esc_html($service['description']); ?></p>
+                            <?php endif; ?>
+                            <span><?php esc_html_e('Перейти до квитків', 'dgutheater'); ?> <?php echo dgut_ui_icon('external-link'); ?></span>
+                        </a>
+                    <?php endforeach; ?>
+                </div>
             </div>
         </section>
     <?php endif; ?>
