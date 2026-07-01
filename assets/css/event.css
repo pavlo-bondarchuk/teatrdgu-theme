@@ -85,9 +85,8 @@
 }
 
 .dgut-event-hero__excerpt {
-    max-width: 680px;
-    margin: 26px 0 0;
-    font-size: clamp(18px, 1.5vw, 22px);
+    margin: 24px 0 0;
+    font-size: 16px;
     line-height: 1.42;
     color: var(--dgut-taupe);
 }
@@ -96,7 +95,7 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 24px;
-    margin: 34px 0 28px;
+    margin: 28px 0 32px;
 }
 
 .dgut-event-meta__item {
