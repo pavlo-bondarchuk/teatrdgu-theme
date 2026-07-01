@@ -1,0 +1,267 @@
+.dgut-contacts-page {
+  background: var(--dgut-ivory);
+  color: var(--dgut-charcoal);
+}
+
+.dgut-contacts-page__section {
+  min-height: 720px;
+  padding-block: 64px 80px;
+  background-image: linear-gradient(rgba(250, 247, 242, .16), rgba(250, 247, 242, .16)), var(--dgut-contact-bg);
+  background-position: center;
+  background-size: cover;
+}
+
+.dgut-contacts-page__container {
+  width: min(100%, 1010px);
+}
+
+.dgut-contacts-panel {
+  border: 1px solid rgba(217, 210, 200, .9);
+  background: rgba(250, 247, 242, .94);
+  box-shadow: 0 12px 34px rgba(52, 45, 38, .11);
+  backdrop-filter: blur(2px);
+  padding: 32px;
+}
+
+.dgut-contacts-panel__intro {
+  max-width: 620px;
+  margin-bottom: 30px;
+}
+
+.dgut-contacts-panel h1 {
+  margin: 0 0 16px;
+  font-family: var(--dgut-display);
+  font-size: clamp(1.9rem, 3vw, 2.5rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.dgut-contacts-panel__text {
+  color: var(--dgut-taupe);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.dgut-contacts-panel__text p {
+  margin: 0;
+}
+
+.dgut-contacts-panel__grid {
+  display: grid;
+  grid-template-columns: .86fr 1.14fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.dgut-contacts-details__list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.dgut-contact-card {
+  min-height: 88px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 20px;
+  border: 1px solid var(--dgut-stone);
+  background: rgba(250, 247, 242, .82);
+  box-shadow: 0 3px 10px rgba(52, 45, 38, .045);
+  transition: border-color .18s ease, transform .18s ease;
+}
+
+a.dgut-contact-card:hover {
+  border-color: var(--dgut-sand);
+  transform: translateY(-1px);
+}
+
+.dgut-contact-card__icon {
+  flex: 0 0 auto;
+  color: var(--dgut-sand);
+}
+
+.dgut-contact-card__icon svg {
+  width: 27px;
+  height: 27px;
+  stroke-width: 1.7;
+}
+
+.dgut-contact-card__body {
+  min-width: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.dgut-contact-card__label {
+  color: var(--dgut-graphite);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+}
+
+.dgut-contact-card__value {
+  color: var(--dgut-taupe);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.55;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.dgut-contacts-map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--dgut-taupe);
+  font-size: 13px;
+  font-weight: 600;
+  transition: color .18s ease;
+}
+
+.dgut-contacts-map-link svg {
+  width: 14px;
+  height: 14px;
+}
+
+.dgut-contacts-map-link svg:first-child {
+  color: var(--dgut-sand);
+}
+
+.dgut-contacts-map-link:hover {
+  color: var(--dgut-charcoal);
+}
+
+.dgut-contacts-form {
+  border: 1px solid var(--dgut-stone);
+  background: rgba(250, 247, 242, .9);
+  box-shadow: 0 6px 18px rgba(52, 45, 38, .08);
+  padding: 28px;
+}
+
+.dgut-contacts-form h2 {
+  margin: 0 0 24px;
+  font-family: var(--dgut-display);
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--dgut-charcoal);
+}
+
+.dgut-contacts-form__empty {
+  margin: 0;
+  color: var(--dgut-taupe);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.dgut-contacts-form .wpcf7-form {
+  display: grid;
+  gap: 18px;
+}
+
+.dgut-contacts-form .wpcf7-form p {
+  margin: 0;
+}
+
+.dgut-contacts-form label {
+  display: grid;
+  gap: 8px;
+  color: var(--dgut-taupe);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.dgut-contacts-form input:not([type="submit"]),
+.dgut-contacts-form textarea {
+  width: 100%;
+  border: 1px solid var(--dgut-stone);
+  border-radius: 0;
+  background: rgba(250, 247, 242, .75);
+  color: var(--dgut-charcoal);
+  font: 400 14px/1.4 var(--dgut-body);
+  outline: 0;
+  transition: border-color .18s ease;
+}
+
+.dgut-contacts-form input:not([type="submit"]) {
+  min-height: 48px;
+  padding: 0 16px;
+}
+
+.dgut-contacts-form textarea {
+  min-height: 120px;
+  padding: 12px 16px;
+  resize: vertical;
+}
+
+.dgut-contacts-form input:not([type="submit"]):focus,
+.dgut-contacts-form textarea:focus {
+  border-color: var(--dgut-sand);
+}
+
+.dgut-contacts-form input[type="submit"] {
+  width: 100%;
+  min-height: 52px;
+  border: 0;
+  background: var(--dgut-charcoal);
+  color: var(--dgut-cream);
+  font: 700 13px/1 var(--dgut-body);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  transition: background .18s ease;
+}
+
+.dgut-contacts-form input[type="submit"]:hover {
+  background: var(--dgut-graphite);
+}
+
+.dgut-contacts-form .wpcf7-not-valid-tip,
+.dgut-contacts-form .wpcf7-response-output {
+  color: var(--dgut-sepia);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.dgut-contacts-form .wpcf7-response-output {
+  margin: 0;
+  padding: 12px 14px;
+  border-color: var(--dgut-dust);
+}
+
+@media (max-width: 900px) {
+  .dgut-contacts-panel__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .dgut-contacts-page__section {
+    min-height: 0;
+    padding-block: 42px 58px;
+  }
+
+  .dgut-contacts-page__container {
+    padding-inline: 16px;
+  }
+
+  .dgut-contacts-panel {
+    padding: 22px;
+  }
+
+  .dgut-contacts-form {
+    padding: 22px;
+  }
+
+  .dgut-contact-card {
+    gap: 16px;
+    padding: 15px 16px;
+  }
+}

@@ -39,6 +39,9 @@ add_action('wp_enqueue_scripts', function (): void {
     if (is_page_template('template-tickets.php')) {
         wp_enqueue_style('dgut-tickets-page', DGUTHEME_URI . '/assets/css/tickets.css', ['dgut-common'], DGUTHEME_VERSION);
     }
+    if (is_page_template('template-contacts.php')) {
+        wp_enqueue_style('dgut-contacts-page', DGUTHEME_URI . '/assets/css/contacts.css', ['dgut-common'], DGUTHEME_VERSION);
+    }
     if (is_singular('performance')) {
         wp_enqueue_style('dgut-event', DGUTHEME_URI . '/assets/css/event.css', ['dgut-common'], DGUTHEME_VERSION);
     }

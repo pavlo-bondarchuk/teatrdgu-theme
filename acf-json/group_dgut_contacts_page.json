@@ -1,0 +1,330 @@
+{
+    "key": "group_dgut_contacts_page",
+    "title": "Сторінка Контакти",
+    "fields": [
+        {
+            "key": "field_dgut_contacts_tab_content",
+            "label": "Контент",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_dgut_contacts_title",
+            "label": "Заголовок",
+            "name": "contacts_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Основний заголовок сторінки контактів.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Контакти",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_dgut_contacts_intro",
+            "label": "Вступний текст",
+            "name": "contacts_intro",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Короткий текст під заголовком. Нові рядки збережуться на сторінці.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Ми завжди відкриті до спілкування.\nЗв'яжіться з нами зручним для вас способом.",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_dgut_contacts_background_image",
+            "label": "Фонова картинка",
+            "name": "contacts_background_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Зображення фону для секції контактів.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_dgut_contacts_tab_details",
+            "label": "Контактні дані",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_dgut_contacts_items",
+            "label": "Адреса, телефон, email, графік",
+            "name": "contacts_items",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Прості текстові рядки з вибором SVG-іконки.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_dgut_contacts_item_label",
+            "button_label": "Додати рядок",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_dgut_contacts_item_icon",
+                    "label": "SVG іконка",
+                    "name": "icon",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "25",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "map-pin": "Мапа",
+                        "phone": "Телефон",
+                        "mail": "Email",
+                        "clock": "Годинник",
+                        "ticket": "Квиток",
+                        "users": "Люди",
+                        "sparkles": "Іскри"
+                    },
+                    "default_value": "map-pin",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "parent_repeater": "field_dgut_contacts_items"
+                },
+                {
+                    "key": "field_dgut_contacts_item_label",
+                    "label": "Назва",
+                    "name": "label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Наприклад: Адреса, Телефон, Email, Графік роботи.",
+                    "required": 0,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "25",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_dgut_contacts_items"
+                },
+                {
+                    "key": "field_dgut_contacts_item_text",
+                    "label": "Текст",
+                    "name": "text",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Значення рядка. Можна використовувати новий рядок для адреси.",
+                    "required": 0,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": 2,
+                    "placeholder": "",
+                    "new_lines": "",
+                    "parent_repeater": "field_dgut_contacts_items"
+                },
+                {
+                    "key": "field_dgut_contacts_item_link",
+                    "label": "Посилання",
+                    "name": "link",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Необов'язково. Наприклад tel:+380675606320 або mailto:email@example.com.",
+                    "required": 0,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "20",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_dgut_contacts_items"
+                }
+            ]
+        },
+        {
+            "key": "field_dgut_contacts_map_link",
+            "label": "Посилання Google Maps",
+            "name": "contacts_map_link",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "Кнопка під контактними рядками.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_dgut_contacts_tab_form",
+            "label": "Форма",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_dgut_contacts_form_title",
+            "label": "Заголовок форми",
+            "name": "contacts_form_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Напишіть нам",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_dgut_contacts_form",
+            "label": "Contact Form 7 форма",
+            "name": "contacts_form",
+            "aria-label": "",
+            "type": "post_object",
+            "instructions": "Оберіть форму з post type Contact Form 7.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "wpcf7_contact_form"
+            ],
+            "post_status": [
+                "publish"
+            ],
+            "taxonomy": "",
+            "return_format": "object",
+            "multiple": 0,
+            "allow_null": 1,
+            "bidirectional": 0,
+            "ui": 1,
+            "bidirectional_target": []
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "template-contacts.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1783017600
+}
