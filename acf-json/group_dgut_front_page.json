@@ -1,10 +1,10 @@
 {
     "key": "group_dgut_front_page",
-    "title": "Front Page Fields",
+    "title": "Поля головної сторінки",
     "fields": [
         {
             "key": "field_dgut_home_tab_hero",
-            "label": "Hero",
+            "label": "Головний банер",
             "name": "",
             "aria-label": "",
             "type": "tab",
@@ -22,7 +22,7 @@
         },
         {
             "key": "field_dgut_home_hero_show",
-            "label": "Show hero",
+            "label": "Показати головний банер",
             "name": "home_hero_show",
             "aria-label": "",
             "type": "true_false",
@@ -42,7 +42,7 @@
         },
         {
             "key": "field_dgut_home_hero_count",
-            "label": "Hero slides count",
+            "label": "Кількість слайдів у головному банері",
             "name": "home_hero_count",
             "aria-label": "",
             "type": "number",
@@ -123,6 +123,23 @@
             "append": ""
         },
         {
+            "key": "field_6a44e977b4705",
+            "label": "Посилання на сторінку репертуарів",
+            "name": "home_repertoire_archive_link",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 0
+        },
+        {
             "key": "field_dgut_home_tab_news",
             "label": "Новини",
             "name": "",
@@ -163,7 +180,7 @@
         },
         {
             "key": "field_dgut_home_news_title",
-            "label": "News title",
+            "label": "Заголовок новин",
             "name": "home_news_title",
             "aria-label": "",
             "type": "text",
@@ -299,7 +316,7 @@
         },
         {
             "key": "field_dgut_home_about_text_1",
-            "label": "Текст1 про театр",
+            "label": "Перший текст про театр",
             "name": "home_about_text_1",
             "aria-label": "",
             "type": "textarea",
@@ -320,7 +337,7 @@
         },
         {
             "key": "field_dgut_home_about_text_2",
-            "label": "Текст2 про театр",
+            "label": "Другий текст про театр",
             "name": "home_about_text_2",
             "aria-label": "",
             "type": "textarea",
@@ -341,7 +358,7 @@
         },
         {
             "key": "field_dgut_home_about_stat_1_value",
-            "label": "Stat 1 value",
+            "label": "Значення першої статистики",
             "name": "home_about_stat_1_value",
             "aria-label": "",
             "type": "text",
@@ -361,7 +378,7 @@
         },
         {
             "key": "field_dgut_home_about_stat_1_label",
-            "label": "Stat 1 label",
+            "label": "Підпис першої статистики",
             "name": "home_about_stat_1_label",
             "aria-label": "",
             "type": "text",
@@ -381,7 +398,7 @@
         },
         {
             "key": "field_dgut_home_about_stat_2_value",
-            "label": "Stat 2 value",
+            "label": "Значення другої статистики",
             "name": "home_about_stat_2_value",
             "aria-label": "",
             "type": "text",
@@ -401,7 +418,7 @@
         },
         {
             "key": "field_dgut_home_about_stat_2_label",
-            "label": "Stat 2 label",
+            "label": "Підпис другої статистики",
             "name": "home_about_stat_2_label",
             "aria-label": "",
             "type": "text",
@@ -421,7 +438,7 @@
         },
         {
             "key": "field_dgut_home_about_stat_3_value",
-            "label": "Stat 3 value",
+            "label": "Значення третьої статистики",
             "name": "home_about_stat_3_value",
             "aria-label": "",
             "type": "text",
@@ -441,7 +458,7 @@
         },
         {
             "key": "field_dgut_home_about_stat_3_label",
-            "label": "Stat 3 label",
+            "label": "Підпис третьої статистики",
             "name": "home_about_stat_3_label",
             "aria-label": "",
             "type": "text",
@@ -541,12 +558,14 @@
     "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
-    "hide_on_screen": "",
+    "hide_on_screen": [
+        "the_content"
+    ],
     "active": true,
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1782854506
+    "modified": 1782902676
 }
