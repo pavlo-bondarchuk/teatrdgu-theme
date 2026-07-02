@@ -6,6 +6,7 @@ if (!defined('ABSPATH')) {
 add_filter('wpseo_schema_graph', function (array $graph): array {
     $organization = dgut_schema_organization();
     $organization_id = $organization['@id'];
+    $seo_context = function_exists('dgut_seo_context') ? dgut_seo_context() : [];
 
     $graph = dgut_schema_upsert_node($graph, $organization);
 
@@ -15,8 +16,24 @@ add_filter('wpseo_schema_graph', function (array $graph): array {
         }
 
         $types = (array) $piece['@type'];
+        if (($piece['inLanguage'] ?? '') === 'ua') {
+            $piece['inLanguage'] = 'uk';
+        }
+
         if (in_array('WebSite', $types, true)) {
             $piece['publisher'] = ['@id' => $organization_id];
+            if (($piece['inLanguage'] ?? '') === 'ua') {
+                $piece['inLanguage'] = 'uk';
+            }
+        }
+
+        if (in_array('WebPage', $types, true) || in_array('CollectionPage', $types, true)) {
+            if (!empty($seo_context['title'])) {
+                $piece['name'] = $seo_context['title'];
+            }
+            if (!empty($seo_context['description'])) {
+                $piece['description'] = $seo_context['description'];
+            }
         }
 
         if (in_array('WebPage', $types, true)) {

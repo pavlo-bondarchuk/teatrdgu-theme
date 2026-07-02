@@ -13,6 +13,7 @@ define('DGUTHEME_DIR', get_template_directory());
 define('DGUTHEME_URI', get_template_directory_uri());
 
 require_once DGUTHEME_DIR . '/inc/helpers.php';
+require_once DGUTHEME_DIR . '/inc/seo.php';
 require_once DGUTHEME_DIR . '/inc/schema.php';
 require_once DGUTHEME_DIR . '/inc/setup.php';
 require_once DGUTHEME_DIR . '/inc/assets.php';
