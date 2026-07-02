@@ -811,8 +811,41 @@
   .dgut-hero__controls {
     position: relative;
     bottom: auto;
-    padding-block: 0 28px;
-    background: var(--dgut-cream)
+    display: grid;
+    grid-template-columns: 44px 1fr 44px;
+    grid-template-rows: 0 auto;
+    align-items: center;
+    gap: 0 10px;
+    padding: 0 28px 28px;
+    background: var(--dgut-cream);
+    transform: translateY(-22px);
+    margin-bottom: -22px
+  }
+
+  .dgut-hero__arrow {
+    width: 44px;
+    height: 44px;
+    border-color: rgba(29, 24, 18, .18);
+    background: rgba(250, 247, 242, .92);
+    color: var(--dgut-charcoal);
+    box-shadow: 0 8px 24px rgba(29, 24, 18, .12)
+  }
+
+  .dgut-hero__arrow:first-child {
+    grid-column: 1;
+    grid-row: 1
+  }
+
+  .dgut-hero__arrow:last-child {
+    grid-column: 3;
+    grid-row: 1
+  }
+
+  .dgut-hero__dots {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: center;
+    padding-top: 42px
   }
 }
 

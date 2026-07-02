@@ -22,6 +22,44 @@
     prev?.addEventListener('click', () => show(current - 1));
     next?.addEventListener('click', () => show(current + 1));
 
+    let swipeStartX = 0;
+    let swipeStartY = 0;
+    let swiping = false;
+    let pointerId = null;
+
+    slider.addEventListener('pointerdown', (event) => {
+      if (event.button !== undefined && event.button !== 0) {
+        return;
+      }
+
+      swipeStartX = event.clientX;
+      swipeStartY = event.clientY;
+      swiping = true;
+      pointerId = event.pointerId;
+    });
+
+    slider.addEventListener('pointerup', (event) => {
+      if (!swiping || (pointerId !== null && event.pointerId !== pointerId)) {
+        return;
+      }
+
+      const deltaX = event.clientX - swipeStartX;
+      const deltaY = event.clientY - swipeStartY;
+      swiping = false;
+      pointerId = null;
+
+      if (Math.abs(deltaX) < 48 || Math.abs(deltaX) < Math.abs(deltaY) * 1.4) {
+        return;
+      }
+
+      show(deltaX > 0 ? current - 1 : current + 1);
+    });
+
+    slider.addEventListener('pointercancel', () => {
+      swiping = false;
+      pointerId = null;
+    });
+
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       window.setInterval(() => show(current + 1), 6500);
     }
