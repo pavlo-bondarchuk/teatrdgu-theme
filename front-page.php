@@ -6,6 +6,22 @@ if (!is_array($fields)) {
     $fields = [];
 }
 
+$home_h1 = '';
+$home_page = get_queried_object();
+if ($home_page instanceof WP_Post) {
+    $yoast_title = (string) get_post_meta($home_page->ID, '_yoast_wpseo_title', true);
+    if ($yoast_title !== '' && function_exists('wpseo_replace_vars')) {
+        $home_h1 = (string) wpseo_replace_vars($yoast_title, $home_page);
+    }
+}
+if ($home_h1 === '') {
+    $home_h1 = wp_get_document_title();
+}
+$home_h1 = trim(html_entity_decode(wp_strip_all_tags($home_h1), ENT_QUOTES | ENT_HTML5, get_bloginfo('charset') ?: 'UTF-8'));
+if ($home_h1 === '') {
+    $home_h1 = __('Театр ДГУ - театр і культурна платформа Дніпра', 'dgutheater');
+}
+
 $performance_posts = dgut_front_posts('performance', -1);
 $performances = [];
 foreach ($performance_posts as $performance_post) {
@@ -61,7 +77,7 @@ foreach ($team_posts as $team_post) {
 }
 ?>
 <main id="primary" class="site-main">
-    <h1 class="screen-reader-text"><?php esc_html_e('Театр ДГУ - театр і культурна платформа Дніпра', 'dgutheater'); ?></h1>
+    <h1 class="screen-reader-text"><?php echo esc_html($home_h1); ?></h1>
 
     <?php
     get_template_part('template-parts/front-page/hero', null, [
