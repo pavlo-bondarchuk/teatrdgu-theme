@@ -23,9 +23,23 @@ function dgut_maintenance_page_id(): int
     return $page instanceof WP_Post ? (int) $page->ID : 0;
 }
 
+function dgut_maintenance_bypass_requested(): bool
+{
+    if (!isset($_GET['dgut_maintenance_bypass'])) {
+        return false;
+    }
+
+    $value = sanitize_text_field(wp_unslash($_GET['dgut_maintenance_bypass']));
+    return in_array($value, ['1', 'true', 'yes'], true);
+}
+
 function dgut_is_maintenance_request_allowed(): bool
 {
     $request_path = trim((string) wp_parse_url((string) ($_SERVER['REQUEST_URI'] ?? '/'), PHP_URL_PATH), '/');
+
+    if (dgut_maintenance_bypass_requested()) {
+        return true;
+    }
 
     if ($request_path === 'llms.txt') {
         return true;
@@ -79,7 +93,7 @@ add_action('after_switch_theme', function (): void {
 });
 
 add_action('wp', function (): void {
-    if (!dgut_maintenance_enabled()) {
+    if (!dgut_maintenance_enabled() || dgut_maintenance_bypass_requested()) {
         return;
     }
 
