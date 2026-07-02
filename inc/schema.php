@@ -51,6 +51,21 @@ add_filter('wpseo_schema_graph', function (array $graph): array {
     return $graph;
 });
 
+add_filter('pll_rel_hreflang_attributes', function (array $hreflangs): array {
+    if (!isset($hreflangs['ua'])) {
+        return $hreflangs;
+    }
+
+    $hreflangs['uk'] = $hreflangs['ua'];
+    unset($hreflangs['ua']);
+
+    return $hreflangs;
+});
+
+add_filter('language_attributes', function (string $output): string {
+    return preg_replace('/\blang=(["\'])ua\1/', 'lang=$1uk$1', $output) ?? $output;
+}, 20);
+
 function dgut_schema_upsert_node(array $graph, array $node): array
 {
     if (empty($node['@id'])) {
