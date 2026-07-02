@@ -2,12 +2,14 @@
   document.querySelectorAll('[data-hero-slider]').forEach((slider) => {
     const slides = Array.from(slider.querySelectorAll('[data-hero-slide]'));
     const dots = Array.from(slider.querySelectorAll('[data-hero-dot]'));
-    const prev = slider.querySelector('[data-hero-prev]');
-    const next = slider.querySelector('[data-hero-next]');
+    const prevButtons = Array.from(slider.querySelectorAll('[data-hero-prev]'));
+    const nextButtons = Array.from(slider.querySelectorAll('[data-hero-next]'));
+    const arrowGroups = Array.from(slider.querySelectorAll('.dgut-hero__arrows'));
     const controls = slider.querySelector('.dgut-hero__controls');
 
     if (slides.length < 2) {
       controls?.setAttribute('hidden', 'hidden');
+      arrowGroups.forEach((group) => group.setAttribute('hidden', 'hidden'));
       return;
     }
 
@@ -19,8 +21,8 @@
     };
 
     dots.forEach((dot, i) => dot.addEventListener('click', () => show(i)));
-    prev?.addEventListener('click', () => show(current - 1));
-    next?.addEventListener('click', () => show(current + 1));
+    prevButtons.forEach((button) => button.addEventListener('click', () => show(current - 1)));
+    nextButtons.forEach((button) => button.addEventListener('click', () => show(current + 1)));
 
     let swipeStartX = 0;
     let swipeStartY = 0;
@@ -59,6 +61,24 @@
       swiping = false;
       pointerId = null;
     });
+
+    let lastWheelAt = 0;
+
+    slider.addEventListener('wheel', (event) => {
+      if (Math.abs(event.deltaX) < 36 || Math.abs(event.deltaX) < Math.abs(event.deltaY) * 1.25) {
+        return;
+      }
+
+      const now = window.Date.now();
+      if (now - lastWheelAt < 650) {
+        event.preventDefault();
+        return;
+      }
+
+      lastWheelAt = now;
+      event.preventDefault();
+      show(event.deltaX > 0 ? current + 1 : current - 1);
+    }, { passive: false });
 
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       window.setInterval(() => show(current + 1), 6500);

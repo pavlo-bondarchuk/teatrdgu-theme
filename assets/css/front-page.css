@@ -193,6 +193,19 @@
   display: none
 }
 
+.dgut-hero__arrows {
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  right: 0;
+  bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  pointer-events: none
+}
+
 .dgut-hero__arrow {
   display: flex;
   align-items: center;
@@ -202,6 +215,7 @@
   border: 1px solid var(--dgut-stone);
   background: rgba(250, 247, 242, .16);
   color: var(--dgut-taupe);
+  pointer-events: auto;
   transition: border-color .18s, color .18s, background .18s
 }
 
@@ -808,18 +822,14 @@
     min-height: 50px
   }
 
-  .dgut-hero__controls {
+  .dgut-hero__arrows {
     position: relative;
     bottom: auto;
-    display: grid;
-    grid-template-columns: 44px 1fr 44px;
-    grid-template-rows: 0 auto;
-    align-items: center;
-    gap: 0 10px;
-    padding: 0 28px 28px;
-    background: var(--dgut-cream);
-    transform: translateY(-22px);
-    margin-bottom: -22px
+    justify-content: space-between;
+    gap: 0;
+    padding: 0 28px;
+    margin: 0;
+    background: transparent;
   }
 
   .dgut-hero__arrow {
@@ -831,21 +841,11 @@
     box-shadow: 0 8px 24px rgba(29, 24, 18, .12)
   }
 
-  .dgut-hero__arrow:first-child {
-    grid-column: 1;
-    grid-row: 1
-  }
-
-  .dgut-hero__arrow:last-child {
-    grid-column: 3;
-    grid-row: 1
-  }
-
-  .dgut-hero__dots {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    justify-content: center;
-    padding-top: 42px
+  .dgut-hero__controls {
+    position: relative;
+    bottom: auto;
+    padding-block: 20px 28px;
+    background: var(--dgut-cream)
   }
 }
 
