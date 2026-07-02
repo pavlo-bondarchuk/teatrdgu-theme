@@ -209,13 +209,12 @@ a.dgut-contact-card:hover {
 
 .dgut-contacts-form input[type="submit"] {
   width: 100%;
-  min-height: 52px;
+  min-height: 42px;
   border: 0;
   background: var(--dgut-charcoal);
   color: var(--dgut-cream);
   font: 700 13px/1 var(--dgut-body);
   letter-spacing: .08em;
-  text-transform: uppercase;
   transition: background .18s ease;
 }
 
