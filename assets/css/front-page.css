@@ -199,7 +199,7 @@
   left: 0;
   right: 0;
   bottom: 24px;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   gap: 16px;
@@ -824,10 +824,11 @@
 
   .dgut-hero__arrows {
     position: relative;
-    bottom: auto;
+    display: flex;
+    bottom: 0;
     justify-content: space-between;
     gap: 0;
-    padding: 0 28px;
+    padding-inline: 0;
     margin: 0;
     background: transparent;
   }
@@ -846,6 +847,10 @@
     bottom: auto;
     padding-block: 20px 28px;
     background: var(--dgut-cream)
+  }
+
+  .dgut-hero__controls > .dgut-hero__arrow {
+    display: none
   }
 }
 

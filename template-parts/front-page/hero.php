@@ -41,6 +41,7 @@ if (!dgut_front_bool($fields, 'home_hero_show', true) || empty($hero_slides)) {
         <?php endforeach; ?>
     </div>
     <div class="container dgut-hero__controls" aria-label="<?php esc_attr_e('Hero slides', 'dgutheater'); ?>">
+        <button class="dgut-hero__arrow" type="button" data-hero-prev aria-label="<?php esc_attr_e('Попередній слайд', 'dgutheater'); ?>"><?php echo dgut_ui_icon('chevron-left'); ?></button>
         <div class="dgut-hero__dots">
             <?php foreach ($hero_slides as $index => $slide) : ?>
                 <button type="button" data-hero-dot="<?php echo esc_attr((string) $index); ?>" class="<?php echo $index === 0 ? 'is-active' : ''; ?>">
@@ -48,5 +49,6 @@ if (!dgut_front_bool($fields, 'home_hero_show', true) || empty($hero_slides)) {
                 </button>
             <?php endforeach; ?>
         </div>
+        <button class="dgut-hero__arrow" type="button" data-hero-next aria-label="<?php esc_attr_e('Наступний слайд', 'dgutheater'); ?>"><?php echo dgut_ui_icon('chevron-right'); ?></button>
     </div>
 </section>
