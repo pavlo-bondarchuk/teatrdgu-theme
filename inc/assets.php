@@ -11,23 +11,8 @@ add_action('wp_enqueue_scripts', function (): void {
         return;
     }
 
-    $font_source = dgut_option('dgut_font_source', 'local');
-    $common_dependencies = [];
-
-    if ($font_source === 'google') {
-        wp_enqueue_style(
-            'dgut-fonts',
-            'https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap',
-            [],
-            null
-        );
-        $common_dependencies[] = 'dgut-fonts';
-    } elseif ($font_source !== 'system') {
-        wp_enqueue_style('dgut-fonts-local', DGUTHEME_URI . '/assets/css/fonts-local.css', [], DGUTHEME_VERSION);
-        $common_dependencies[] = 'dgut-fonts-local';
-    }
-
-    wp_enqueue_style('dgut-common', DGUTHEME_URI . '/assets/css/common.css', $common_dependencies, DGUTHEME_VERSION);
+    wp_enqueue_style('dgut-fonts-local', DGUTHEME_URI . '/assets/css/fonts-local.css', [], DGUTHEME_VERSION);
+    wp_enqueue_style('dgut-common', DGUTHEME_URI . '/assets/css/common.css', ['dgut-fonts-local'], DGUTHEME_VERSION);
     wp_enqueue_script('dgut-common', DGUTHEME_URI . '/assets/js/common.js', [], DGUTHEME_VERSION, true);
     wp_script_add_data('dgut-common', 'defer', true);
     if (is_front_page()) {

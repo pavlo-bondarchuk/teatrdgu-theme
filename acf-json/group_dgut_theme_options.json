@@ -275,49 +275,6 @@
             "placeholder": ""
         },
         {
-            "key": "field_dgut_performance_tab",
-            "label": "Performance",
-            "name": "",
-            "aria-label": "",
-            "type": "tab",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "placement": "top",
-            "endpoint": 0,
-            "selected": 0
-        },
-        {
-            "key": "field_dgut_font_source",
-            "label": "Font source",
-            "name": "dgut_font_source",
-            "aria-label": "",
-            "type": "button_group",
-            "instructions": "Local removes the external Google Fonts render-blocking request. Google CDN is available as a fallback. System disables custom font loading.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "local": "Local",
-                "google": "Google CDN",
-                "system": "System"
-            },
-            "default_value": "local",
-            "return_format": "value",
-            "allow_null": 0,
-            "allow_in_bindings": 1,
-            "layout": "horizontal"
-        },
-        {
             "key": "field_6a4399756d826",
             "label": "Maintenance",
             "name": "",
