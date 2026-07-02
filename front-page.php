@@ -61,6 +61,8 @@ foreach ($team_posts as $team_post) {
 }
 ?>
 <main id="primary" class="site-main">
+    <h1 class="screen-reader-text"><?php esc_html_e('Театр ДГУ - театр і культурна платформа Дніпра', 'dgutheater'); ?></h1>
+
     <?php
     get_template_part('template-parts/front-page/hero', null, [
         'fields' => $fields,
