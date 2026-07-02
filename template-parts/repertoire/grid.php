@@ -17,7 +17,7 @@ $title = isset($args['title']) && $args['title'] !== ''
             </h1>
 
             <?php if (!empty($filters)) : ?>
-                <div class="dgut-repertoire-filters" role="list" aria-label="<?php echo esc_attr(dgut_repertoire_label('filter_aria')); ?>">
+                <div class="dgut-repertoire-filters" role="group" aria-label="<?php echo esc_attr(dgut_repertoire_label('filter_aria')); ?>">
                     <button
                         class="dgut-repertoire-filter is-active"
                         type="button"
@@ -37,7 +37,7 @@ $title = isset($args['title']) && $args['title'] !== ''
                             class="dgut-repertoire-filter"
                             type="button"
                             data-repertoire-filter="<?php echo esc_attr($key); ?>"
-                            aria-pressed="<?php echo $index === 0 ? 'true' : 'false'; ?>">
+                            aria-pressed="false">
                             <?php echo esc_html($label); ?>
                         </button>
                     <?php endforeach; ?>
