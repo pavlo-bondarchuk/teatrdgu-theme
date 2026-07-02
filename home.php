@@ -55,12 +55,20 @@ $paged = max(1, (int) get_query_var('paged'));
                 </div>
 
                 <?php
-                the_posts_pagination([
+                $pagination = paginate_links([
                     'mid_size' => 1,
                     'prev_text' => __('← Назад', 'dgutheater'),
                     'next_text' => __('Далі →', 'dgutheater'),
                 ]);
                 ?>
+
+                <?php if ($pagination) : ?>
+                    <nav class="navigation pagination" aria-label="<?php esc_attr_e('Пагінація новин', 'dgutheater'); ?>">
+                        <div class="nav-links">
+                            <?php echo wp_kses_post($pagination); ?>
+                        </div>
+                    </nav>
+                <?php endif; ?>
             <?php else : ?>
                 <p class="dgut-news-archive__empty"><?php esc_html_e('Новин поки немає.', 'dgutheater'); ?></p>
             <?php endif; ?>
