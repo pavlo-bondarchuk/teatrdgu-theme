@@ -11,7 +11,13 @@ if (!dgut_front_bool($fields, 'home_hero_show', true) || empty($hero_slides)) {
         <?php foreach ($hero_slides as $index => $slide) : ?>
             <article class="dgut-hero__slide<?php echo $index === 0 ? ' is-active' : ''; ?>" data-hero-slide>
                 <?php $hero_image = $slide['hero_image'] ?? ($slide['image'] ?? ''); ?>
-                <?php if ($hero_image !== '') : ?>
+                <?php $thumbnail_id = (int) ($slide['thumbnail_id'] ?? 0); ?>
+                <?php if ($thumbnail_id > 0) : ?>
+                    <?php echo dgut_hero_picture($thumbnail_id, (string) $slide['title'], (string) ($slide['focus'] ?? 'center center'), [
+                        'loading' => $index === 0 ? 'eager' : 'lazy',
+                        'fetchpriority' => $index === 0 ? 'high' : 'auto',
+                    ]); ?>
+                <?php elseif ($hero_image !== '') : ?>
                     <?php echo dgut_img($hero_image, $slide['title'], 'dgut-hero__image', [
                         'loading' => $index === 0 ? 'eager' : 'lazy',
                         'fetchpriority' => $index === 0 ? 'high' : 'auto',

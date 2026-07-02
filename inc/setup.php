@@ -11,6 +11,7 @@ add_action('after_setup_theme', function (): void {
     add_theme_support('responsive-embeds');
     add_theme_support('html5', ['search-form', 'comment-form', 'comment-list', 'gallery', 'caption', 'style', 'script']);
     add_image_size('dgut-hero-slide', 1920, 720, true);
+    add_image_size('dgut-hero-slide-mobile', 780, 585, true);
     add_image_size('dgut-event-grid-card', 372, 464, true);
     add_image_size('dgut-news-card', 373, 280, true);
     add_image_size('dgut-news-grid-card', 275, 206, true);

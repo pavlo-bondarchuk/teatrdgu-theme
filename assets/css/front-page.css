@@ -80,6 +80,12 @@
   pointer-events: auto
 }
 
+.dgut-hero__picture {
+  position: absolute;
+  inset: 0;
+  display: block
+}
+
 .dgut-hero__image {
   position: absolute;
   inset: 0;
@@ -753,6 +759,10 @@
     position: relative;
     aspect-ratio: 4/3;
     height: auto
+  }
+
+  .dgut-hero__picture {
+    position: relative
   }
 
   .dgut-hero__shade,

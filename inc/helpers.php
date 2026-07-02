@@ -46,6 +46,61 @@ function dgut_img(string $src, string $alt = '', string $class = '', array $attr
     return $html . '>';
 }
 
+function dgut_hero_picture(int $attachment_id, string $alt = '', string $focus = 'center center', array $attrs = []): string
+{
+    if ($attachment_id <= 0) {
+        return '';
+    }
+
+    $mobile_image = image_get_intermediate_size($attachment_id, 'dgut-hero-slide-mobile');
+    if (!$mobile_image) {
+        $mobile_image = image_get_intermediate_size($attachment_id, 'medium_large');
+    }
+    if (!$mobile_image) {
+        $mobile_image = image_get_intermediate_size($attachment_id, 'medium');
+    }
+    $desktop_image = image_get_intermediate_size($attachment_id, 'dgut-hero-slide');
+    if (!$desktop_image) {
+        $desktop_src = wp_get_attachment_image_src($attachment_id, 'full');
+        if ($desktop_src) {
+            $desktop_image = [
+                'url' => $desktop_src[0],
+                'width' => $desktop_src[1],
+            ];
+        }
+    }
+    $attrs = array_merge([
+        'class' => 'dgut-hero__image',
+        'loading' => 'lazy',
+        'decoding' => 'async',
+        'style' => 'object-position:' . $focus,
+        'sizes' => '(max-width: 780px) 100vw, 100vw',
+    ], $attrs);
+
+    $image = wp_get_attachment_image($attachment_id, 'dgut-hero-slide', false, array_merge($attrs, [
+        'alt' => $alt,
+    ]));
+    if ($image === '') {
+        return '';
+    }
+
+    $sources = '';
+    if (is_array($mobile_image) && !empty($mobile_image['url']) && !empty($mobile_image['width'])) {
+        $sources .= sprintf(
+            '<source media="(max-width: 780px)" srcset="%s" sizes="100vw">',
+            esc_attr($mobile_image['url'] . ' ' . (int) $mobile_image['width'] . 'w')
+        );
+    }
+    if (is_array($desktop_image) && !empty($desktop_image['url']) && !empty($desktop_image['width'])) {
+        $sources .= sprintf(
+            '<source media="(min-width: 781px)" srcset="%s" sizes="100vw">',
+            esc_attr($desktop_image['url'] . ' ' . (int) $desktop_image['width'] . 'w')
+        );
+    }
+
+    return '<picture class="dgut-hero__picture">' . $sources . $image . '</picture>';
+}
+
 function dgut_social_links(): array
 {
     return [
@@ -496,6 +551,7 @@ function dgut_get_performance_card_data(WP_Post|int $post): array
     }
 
     $post_id = $post->ID;
+    $thumbnail_id = get_post_thumbnail_id($post);
     $title = get_the_title($post);
     $excerpt = trim((string) get_the_excerpt($post));
     if ($excerpt === '') {
@@ -510,6 +566,7 @@ function dgut_get_performance_card_data(WP_Post|int $post): array
         'excerpt' => $excerpt,
         'image' => get_the_post_thumbnail_url($post, 'dgut-event-grid-card') ?: '',
         'hero_image' => get_the_post_thumbnail_url($post, 'dgut-hero-slide') ?: '',
+        'thumbnail_id' => $thumbnail_id ?: 0,
         'permalink' => get_permalink($post),
         'focus' => function_exists('get_field') ? ((string) get_field('dgut_performance_image_focus', $post_id) ?: 'center top') : 'center top',
     ];
