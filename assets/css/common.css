@@ -202,10 +202,6 @@ a:focus-visible {
   color: var(--dgut-taupe)
 }
 
-.primary-nav__list li:last-child a {
-  border-bottom: 0
-}
-
 .primary-nav a:hover,
 .primary-nav .current-menu-item>a,
 .primary-nav .current_page_item>a {
@@ -528,10 +524,14 @@ a:focus-visible {
     top: 46px
   }
 
-  @media (max-width:600px) {
-    .admin-bar .site-header {
-      top: 0
-    }
+  .primary-nav__list li:last-child a {
+    border-bottom: 0
+  }
+}
+
+@media (max-width:600px) {
+  .admin-bar .site-header {
+    top: 0
   }
 
   .site-header__inner {

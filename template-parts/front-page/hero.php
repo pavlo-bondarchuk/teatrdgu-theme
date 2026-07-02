@@ -22,7 +22,7 @@ if (!dgut_front_bool($fields, 'home_hero_show', true) || empty($hero_slides)) {
                 <div class="dgut-hero__fade" aria-hidden="true"></div>
                 <div class="container dgut-hero__content">
                     <p class="eyebrow dgut-hero__eyebrow"><?php echo esc_html($slide['genre'] ?? ''); ?></p>
-                    <h1 class="display dgut-hero__title"><?php echo esc_html($slide['title']); ?></h1>
+                    <div class="display dgut-hero__title"><?php echo esc_html($slide['title']); ?></div>
                     <p class="dgut-hero__desc"><?php echo esc_html($slide['excerpt'] ?? ''); ?></p>
                     <p class="dgut-hero__date"><?php echo dgut_ui_icon('clock'); ?><?php echo esc_html($slide['date'] ?? ''); ?></p>
                     <a class="btn dgut-hero__button" href="<?php echo esc_url($slide['permalink'] ?? '#repertoire'); ?>"><?php esc_html_e('Детальніше', 'dgutheater'); ?></a>
