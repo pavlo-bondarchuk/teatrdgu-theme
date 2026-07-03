@@ -531,6 +531,35 @@ function dgut_performance_services(): array
     return $services;
 }
 
+function dgut_performance_credit_line(int $post_id): string
+{
+    if (!function_exists('get_field')) {
+        return '';
+    }
+
+    $rows = get_field('dgut_performance_backstage', $post_id);
+    if (!is_array($rows)) {
+        return '';
+    }
+
+    $credits = [];
+    foreach ($rows as $row) {
+        if (!is_array($row)) {
+            continue;
+        }
+
+        $role = trim((string) ($row['role'] ?? ''));
+        $name = trim((string) ($row['name'] ?? ''));
+        if ($role === '' && $name === '') {
+            continue;
+        }
+
+        $credits[] = trim($role . ($role !== '' && $name !== '' ? ' ' : '') . $name);
+    }
+
+    return implode(' · ', array_slice($credits, 0, 3));
+}
+
 function dgut_performance_ticket_services(array $services, string $ticket_url): array
 {
     if (!empty($services) || $ticket_url === '') {
@@ -650,6 +679,7 @@ function dgut_get_performance_card_data(WP_Post|int $post): array
         'genre' => wp_get_post_terms($post_id, 'performance_genre', ['fields' => 'names'])[0] ?? '',
         'date' => function_exists('get_field') ? (string) get_field('dgut_performance_date', $post_id) : '',
         'duration' => function_exists('get_field') ? (string) get_field('dgut_performance_duration', $post_id) : '',
+        'credits' => dgut_performance_credit_line($post_id),
         'excerpt' => $excerpt,
         'image' => get_the_post_thumbnail_url($post, 'dgut-event-grid-card') ?: '',
         'hero_image' => get_the_post_thumbnail_url($post, 'dgut-hero-slide') ?: '',

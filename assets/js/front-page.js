@@ -14,6 +14,7 @@
     }
 
     let current = 0;
+    let isPaused = false;
     const show = (index) => {
       current = (index + slides.length) % slides.length;
       slides.forEach((slide, i) => slide.classList.toggle('is-active', i === current));
@@ -80,8 +81,30 @@
       show(event.deltaX > 0 ? current + 1 : current - 1);
     }, { passive: false });
 
+    slider.addEventListener('mouseenter', () => {
+      isPaused = true;
+    });
+
+    slider.addEventListener('mouseleave', () => {
+      isPaused = slider.contains(document.activeElement);
+    });
+
+    slider.addEventListener('focusin', () => {
+      isPaused = true;
+    });
+
+    slider.addEventListener('focusout', () => {
+      window.setTimeout(() => {
+        isPaused = slider.matches(':hover') || slider.contains(document.activeElement);
+      }, 0);
+    });
+
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      window.setInterval(() => show(current + 1), 6500);
+      window.setInterval(() => {
+        if (!isPaused && !document.hidden) {
+          show(current + 1);
+        }
+      }, 6500);
     }
   });
 })();

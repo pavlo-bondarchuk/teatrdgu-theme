@@ -125,6 +125,7 @@
 .dgut-hero__eyebrow,
 .dgut-hero__title,
 .dgut-hero__desc,
+.dgut-hero__credits,
 .dgut-hero__date {
   width: min(100%, 520px)
 }
@@ -149,6 +150,12 @@
   margin: 0 0 4px;
   color: var(--dgut-taupe);
   font: 500 14px/1.6 var(--dgut-body)
+}
+
+.dgut-hero__credits {
+  margin: 0 0 10px;
+  color: var(--dgut-taupe);
+  font: 500 14px/1.55 var(--dgut-body)
 }
 
 .dgut-hero__date {
@@ -793,6 +800,7 @@
   .dgut-hero__eyebrow,
   .dgut-hero__title,
   .dgut-hero__desc,
+  .dgut-hero__credits,
   .dgut-hero__date {
     width: 100%
   }
@@ -811,6 +819,11 @@
   .dgut-hero__desc {
     min-height: 0;
     margin-bottom: 12px
+  }
+
+  .dgut-hero__credits {
+    margin-bottom: 12px;
+    font-size: 13px
   }
 
   .dgut-hero__date {
