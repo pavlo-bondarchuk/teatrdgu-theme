@@ -63,6 +63,34 @@
             "append": ""
         },
         {
+            "key": "field_dgut_home_hero_performances",
+            "label": "Вистави у головному банері",
+            "name": "home_hero_performances",
+            "aria-label": "",
+            "type": "relationship",
+            "instructions": "Оберіть вистави вручну. Якщо список порожній, у банері автоматично будуть показані останні опубліковані вистави за кількістю з поля вище.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "performance"
+            ],
+            "taxonomy": "",
+            "filters": [
+                "search"
+            ],
+            "return_format": "object",
+            "min": "",
+            "max": 12,
+            "elements": "",
+            "bidirectional": 0,
+            "bidirectional_target": []
+        },
+        {
             "key": "field_dgut_home_tab_repertoire",
             "label": "Репертуар",
             "name": "",

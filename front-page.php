@@ -28,7 +28,21 @@ foreach ($performance_posts as $performance_post) {
     $performances[] = dgut_get_performance_card_data($performance_post);
 }
 
-$hero_slides = array_slice($performances, 0, max(1, (int) dgut_front_field($fields, 'home_hero_count', 3)));
+$hero_count = max(1, (int) dgut_front_field($fields, 'home_hero_count', 3));
+$hero_performance_posts = array_values(array_filter((array) dgut_front_field($fields, 'home_hero_performances', [])));
+if (empty($hero_performance_posts)) {
+    $hero_performance_posts = dgut_front_posts('performance', $hero_count, [
+        'orderby' => 'date',
+        'order' => 'DESC',
+    ]);
+}
+$hero_slides = [];
+foreach (array_slice($hero_performance_posts, 0, $hero_count) as $hero_performance_post) {
+    $hero_slide = dgut_get_performance_card_data($hero_performance_post);
+    if (!empty($hero_slide)) {
+        $hero_slides[] = $hero_slide;
+    }
+}
 
 $news_posts = dgut_front_posts('post', max(1, (int) dgut_front_field($fields, 'home_news_count', 4)));
 $news_items = [];
