@@ -6,53 +6,141 @@
             "key": "field_dgut_about_tab_hero",
             "label": "Hero",
             "name": "",
+            "aria-label": "",
             "type": "tab",
-            "placement": "top"
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_dgut_about_hero_eyebrow",
             "label": "Надзаголовок",
             "name": "about_hero_eyebrow",
+            "aria-label": "",
             "type": "text",
-            "default_value": "Про театр"
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Про театр",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_dgut_about_hero_title",
             "label": "Заголовок",
             "name": "about_hero_title",
+            "aria-label": "",
             "type": "text",
-            "default_value": "Театр «ДГУ»"
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Театр «ДГУ»",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_dgut_about_hero_subtitle",
             "label": "Підзаголовок",
             "name": "about_hero_subtitle",
+            "aria-label": "",
             "type": "text",
-            "default_value": "Український театр і культурна платформа Дніпра"
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Український театр і культурна платформа Дніпра",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_dgut_about_hero_tagline",
             "label": "Слоган",
             "name": "about_hero_tagline",
+            "aria-label": "",
             "type": "text",
-            "default_value": "ДНІПРО_ГОРДІСТЬ_УКРАЇНИ"
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "ДНІПРО_ГОРДІСТЬ_УКРАЇНИ",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_dgut_about_history_cards",
             "label": "Картки історії",
             "name": "about_history_cards",
+            "aria-label": "",
             "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "layout": "block",
             "button_label": "Додати картку",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
             "sub_fields": [
                 {
                     "key": "field_dgut_about_history_card_text",
                     "label": "Текст",
                     "name": "text",
+                    "aria-label": "",
                     "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
                     "rows": 4,
                     "new_lines": "",
-                    "parent_repeater": "field_dgut_about_history_cards"
+                    "parent_repeater": "field_dgut_about_history_cards",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": ""
                 }
             ]
         },
@@ -60,44 +148,115 @@
             "key": "field_dgut_about_tab_work",
             "label": "Що ми робимо",
             "name": "",
+            "aria-label": "",
             "type": "tab",
-            "placement": "top"
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_dgut_about_work_show",
             "label": "Показати блок",
             "name": "about_work_show",
+            "aria-label": "",
             "type": "true_false",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "default_value": 1,
-            "ui": 1
+            "ui": 1,
+            "message": "",
+            "ui_on_text": "",
+            "ui_off_text": ""
         },
         {
             "key": "field_dgut_about_work_eyebrow",
             "label": "Надзаголовок",
             "name": "about_work_eyebrow",
+            "aria-label": "",
             "type": "text",
-            "default_value": "Що ми робимо"
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Що ми робимо",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_dgut_about_work_title",
             "label": "Заголовок",
             "name": "about_work_title",
+            "aria-label": "",
             "type": "text",
-            "default_value": "Театр, проєкти та місто"
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Театр, проєкти та місто",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_dgut_about_work_cards",
             "label": "Картки напрямів",
             "name": "about_work_cards",
+            "aria-label": "",
             "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "layout": "block",
             "button_label": "Додати напрям",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
             "sub_fields": [
                 {
                     "key": "field_dgut_about_work_card_icon",
                     "label": "Іконка",
                     "name": "icon",
+                    "aria-label": "",
                     "type": "select",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
                     "choices": {
                         "ticket": "Квиток",
                         "sparkles": "Іскри",
@@ -106,23 +265,56 @@
                     },
                     "default_value": "ticket",
                     "return_format": "value",
-                    "parent_repeater": "field_dgut_about_work_cards"
+                    "parent_repeater": "field_dgut_about_work_cards",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "create_options": 0,
+                    "save_options": 0
                 },
                 {
                     "key": "field_dgut_about_work_card_title",
                     "label": "Заголовок",
                     "name": "title",
+                    "aria-label": "",
                     "type": "text",
-                    "parent_repeater": "field_dgut_about_work_cards"
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "parent_repeater": "field_dgut_about_work_cards",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
                 },
                 {
                     "key": "field_dgut_about_work_card_text",
                     "label": "Текст",
                     "name": "text",
+                    "aria-label": "",
                     "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
                     "rows": 3,
                     "new_lines": "",
-                    "parent_repeater": "field_dgut_about_work_cards"
+                    "parent_repeater": "field_dgut_about_work_cards",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": ""
                 }
             ]
         },
@@ -130,36 +322,94 @@
             "key": "field_dgut_about_tab_initiatives",
             "label": "Ініціативи",
             "name": "",
+            "aria-label": "",
             "type": "tab",
-            "placement": "top"
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_dgut_about_initiatives_show",
             "label": "Показати блок",
             "name": "about_initiatives_show",
+            "aria-label": "",
             "type": "true_false",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "default_value": 1,
-            "ui": 1
+            "ui": 1,
+            "message": "",
+            "ui_on_text": "",
+            "ui_off_text": ""
         },
         {
             "key": "field_dgut_about_initiatives_eyebrow",
             "label": "Надзаголовок",
             "name": "about_initiatives_eyebrow",
+            "aria-label": "",
             "type": "text",
-            "default_value": "Серед наших ініціатив"
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Серед наших ініціатив",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_dgut_about_initiatives_title",
             "label": "Заголовок",
             "name": "about_initiatives_title",
+            "aria-label": "",
             "type": "text",
-            "default_value": "Культурна робота поза сценою"
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Культурна робота поза сценою",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_dgut_about_initiatives_source",
             "label": "Джерело списку",
             "name": "about_initiatives_source",
+            "aria-label": "",
             "type": "select",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "choices": {
                 "manual": "Ручний список",
                 "category_posts": "Останні новини з категорії"
@@ -168,21 +418,20 @@
             "return_format": "value",
             "ui": 1,
             "allow_null": 0,
-            "multiple": 0
+            "multiple": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
         },
         {
             "key": "field_dgut_about_initiatives_category",
             "label": "Категорія новин",
             "name": "about_initiatives_category",
+            "aria-label": "",
             "type": "taxonomy",
-            "taxonomy": "category",
-            "field_type": "select",
-            "return_format": "id",
-            "allow_null": 1,
-            "add_term": 0,
-            "save_terms": 0,
-            "load_terms": 0,
-            "multiple": 0,
+            "instructions": "",
+            "required": false,
             "conditional_logic": [
                 [
                     {
@@ -191,22 +440,89 @@
                         "value": "category_posts"
                     }
                 ]
-            ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "category",
+            "field_type": "select",
+            "return_format": "id",
+            "allow_null": 1,
+            "add_term": 0,
+            "save_terms": 0,
+            "load_terms": 0,
+            "multiple": 0,
+            "bidirectional_target": []
         },
         {
             "key": "field_dgut_about_initiatives",
             "label": "Список ініціатив",
             "name": "about_initiatives",
+            "aria-label": "",
             "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_dgut_about_initiatives_source",
+                        "operator": "==contains",
+                        "value": "manual"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
             "button_label": "Додати ініціативу",
+            "rows_per_page": 20,
             "sub_fields": [
                 {
                     "key": "field_dgut_about_initiative_text",
                     "label": "Текст",
                     "name": "text",
+                    "aria-label": "",
                     "type": "text",
-                    "parent_repeater": "field_dgut_about_initiatives"
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "parent_repeater": "field_dgut_about_initiatives",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_dgut_about_initiative_link",
+                    "label": "Посилання",
+                    "name": "link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "Необов'язково. Якщо заповнено, пункт списку буде посиланням.",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "parent_repeater": "field_dgut_about_initiatives",
+                    "return_format": "array"
                 }
             ]
         }
@@ -231,5 +547,8 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1783067400
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1783071000
 }

@@ -42,11 +42,16 @@ if ($eyebrow === '' && $title === '' && empty($initiatives)) {
                     <?php if ($text === '') : ?>
                         <?php continue; ?>
                     <?php endif; ?>
+                    <?php
+                    $link = $initiative['link'] ?? ($initiative['url'] ?? '');
+                    $link_url = is_array($link) ? trim((string) ($link['url'] ?? '')) : trim((string) $link);
+                    $link_target = is_array($link) ? trim((string) ($link['target'] ?? '')) : '';
+                    ?>
                     <article class="dgut-about-initiative">
                         <span><?php echo esc_html(sprintf('%02d', $index + 1)); ?></span>
                         <p>
-                            <?php if (!empty($initiative['url'])) : ?>
-                                <a href="<?php echo esc_url((string) $initiative['url']); ?>">
+                            <?php if ($link_url !== '') : ?>
+                                <a href="<?php echo esc_url($link_url); ?>" <?php echo $link_target !== '' ? 'target="' . esc_attr($link_target) . '" rel="noopener noreferrer"' : ''; ?>>
                                     <?php echo esc_html($text); ?>
                                 </a>
                             <?php else : ?>
