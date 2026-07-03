@@ -129,13 +129,18 @@ $related_query = new WP_Query([
                         $related_id = get_the_ID();
                         $related_categories = get_the_category($related_id);
                         $related_category = !empty($related_categories) ? $related_categories[0]->name : __('Новини', 'dgutheater');
-                        $related_image = get_the_post_thumbnail_url($related_id, 'dgut-news-card');
+                        $related_image_id = get_post_thumbnail_id($related_id);
                         ?>
                         <article class="card dgut-news-card dgut-news-archive-card">
                             <a href="<?php the_permalink(); ?>">
                                 <div class="media-frame dgut-news-card__image">
-                                    <?php if ($related_image) : ?>
-                                        <img src="<?php echo esc_url($related_image); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" loading="lazy" decoding="async">
+                                    <?php if ($related_image_id) : ?>
+                                        <?php echo dgut_responsive_news_image(
+                                            (int) $related_image_id,
+                                            get_the_title(),
+                                            'dgut-news-card',
+                                            '(max-width: 640px) calc(100vw - 40px), (max-width: 1180px) calc((100vw - 72px) / 2), 373px'
+                                        ); ?>
                                     <?php endif; ?>
                                 </div>
 

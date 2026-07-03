@@ -46,6 +46,49 @@ function dgut_img(string $src, string $alt = '', string $class = '', array $attr
     return $html . '>';
 }
 
+function dgut_responsive_news_image(int $attachment_id, string $alt = '', string $size = 'dgut-news-card', string $sizes = '', array $attrs = []): string
+{
+    if ($attachment_id <= 0) {
+        return '';
+    }
+
+    $attrs = array_merge([
+        'alt' => $alt,
+        'loading' => 'lazy',
+        'decoding' => 'async',
+    ], $attrs);
+
+    if ($sizes !== '') {
+        $attrs['sizes'] = $sizes;
+    }
+
+    return wp_get_attachment_image($attachment_id, $size, false, $attrs);
+}
+
+function dgut_responsive_news_image_from_url(string $src, string $alt = '', string $size = 'dgut-news-grid-card', string $sizes = '', array $attrs = []): string
+{
+    if ($src === '') {
+        return '';
+    }
+
+    $attachment_id = attachment_url_to_postid($src);
+    if ($attachment_id <= 0) {
+        $original_src = preg_replace('/-\d+x\d+(?=\.[^.]+$)/', '', $src);
+        if (is_string($original_src) && $original_src !== $src) {
+            $attachment_id = attachment_url_to_postid($original_src);
+        }
+    }
+    if ($attachment_id > 0) {
+        return dgut_responsive_news_image($attachment_id, $alt, $size, $sizes, $attrs);
+    }
+
+    if ($sizes !== '') {
+        $attrs['sizes'] = $sizes;
+    }
+
+    return dgut_img($src, $alt, '', $attrs);
+}
+
 function dgut_hero_picture(int $attachment_id, string $alt = '', string $focus = 'center center', array $attrs = []): string
 {
     if ($attachment_id <= 0) {

@@ -18,14 +18,19 @@ $paged = max(1, (int) get_query_var('paged'));
                         $post_id = get_the_ID();
                         $categories = get_the_category($post_id);
                         $category = !empty($categories) ? $categories[0]->name : __('Новини', 'dgutheater');
-                        $image = get_the_post_thumbnail_url($post_id, 'dgut-news-grid-card');
+                        $image_id = get_post_thumbnail_id($post_id);
                         ?>
 
                         <article class="card dgut-news-card dgut-news-archive-card">
                             <a href="<?php the_permalink(); ?>">
                                 <div class="media-frame dgut-news-card__image">
-                                    <?php if ($image) : ?>
-                                        <img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" loading="lazy" decoding="async">
+                                    <?php if ($image_id) : ?>
+                                        <?php echo dgut_responsive_news_image(
+                                            (int) $image_id,
+                                            get_the_title(),
+                                            'dgut-news-card',
+                                            '(max-width: 640px) calc(100vw - 40px), (max-width: 1180px) calc((100vw - 72px) / 2), 373px'
+                                        ); ?>
                                     <?php endif; ?>
                                 </div>
 

@@ -34,7 +34,12 @@ $archive_link_target = is_array($archive_link) ? (string) ($archive_link['target
                         <a href="<?php echo esc_url($item['url']); ?>">
                             <div class="media-frame dgut-news-card__image">
                                 <?php if (!empty($item['image'])) : ?>
-                                    <?php echo dgut_img($item['image'], $item['title']); ?>
+                                    <?php echo dgut_responsive_news_image_from_url(
+                                        (string) $item['image'],
+                                        (string) $item['title'],
+                                        'dgut-news-grid-card',
+                                        '(max-width: 640px) calc(100vw - 40px), (max-width: 1024px) calc((100vw - 72px) / 2), 275px'
+                                    ); ?>
                                 <?php endif; ?>
                             </div>
                             <div class="dgut-news-card__body">

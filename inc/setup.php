@@ -14,7 +14,9 @@ add_action('after_setup_theme', function (): void {
     add_image_size('dgut-hero-slide-mobile', 780, 585, true);
     add_image_size('dgut-event-grid-card', 372, 464, true);
     add_image_size('dgut-news-card', 373, 280, true);
+    add_image_size('dgut-news-card-2x', 746, 560, true);
     add_image_size('dgut-news-grid-card', 275, 206, true);
+    add_image_size('dgut-news-grid-card-2x', 550, 412, true);
     add_image_size('dgut-card', 720, 900, true);
     add_image_size('dgut-wide', 1280, 720, true);
     add_image_size('dgut-event-single', 446, 595, true);
