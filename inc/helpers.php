@@ -537,27 +537,7 @@ function dgut_performance_credit_line(int $post_id): string
         return '';
     }
 
-    $rows = get_field('dgut_performance_backstage', $post_id);
-    if (!is_array($rows)) {
-        return '';
-    }
-
-    $credits = [];
-    foreach ($rows as $row) {
-        if (!is_array($row)) {
-            continue;
-        }
-
-        $role = trim((string) ($row['role'] ?? ''));
-        $name = trim((string) ($row['name'] ?? ''));
-        if ($role === '' && $name === '') {
-            continue;
-        }
-
-        $credits[] = trim($role . ($role !== '' && $name !== '' ? ' ' : '') . $name);
-    }
-
-    return implode(' · ', array_slice($credits, 0, 3));
+    return trim((string) get_field('dgut_performance_hero_credits', $post_id));
 }
 
 function dgut_performance_ticket_services(array $services, string $ticket_url): array

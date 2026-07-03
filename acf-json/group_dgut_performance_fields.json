@@ -61,6 +61,27 @@
             "append": ""
         },
         {
+            "key": "field_dgut_performance_hero_credits",
+            "label": "Текст авторів у головному слайдері",
+            "name": "dgut_performance_hero_credits",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Короткий рядок для головного банера. Наприклад: Автор Григорій Гельфер. Якщо поле порожнє, рядок у слайдері не показується.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 2,
+            "placeholder": "Автор Григорій Гельфер",
+            "new_lines": "",
+            "acfe_textarea_code": 0
+        },
+        {
             "key": "field_dgut_performance_tab_about",
             "label": "Про виставу",
             "name": "",
