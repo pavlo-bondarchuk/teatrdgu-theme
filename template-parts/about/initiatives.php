@@ -8,7 +8,16 @@ if (!dgut_about_bool($fields, 'about_initiatives_show', (bool) $defaults['about_
 
 $eyebrow = trim((string) dgut_about_field($fields, 'about_initiatives_eyebrow', $defaults['about_initiatives_eyebrow']));
 $title = trim((string) dgut_about_field($fields, 'about_initiatives_title', $defaults['about_initiatives_title']));
+$source = trim((string) dgut_about_field($fields, 'about_initiatives_source', 'manual'));
+$category = dgut_about_field($fields, 'about_initiatives_category', 0);
 $initiatives = dgut_about_rows($fields, 'about_initiatives', $defaults['about_initiatives']);
+
+if ($source === 'category_posts') {
+    $post_initiatives = dgut_about_initiative_posts($category);
+    if (!empty($post_initiatives)) {
+        $initiatives = $post_initiatives;
+    }
+}
 
 if ($eyebrow === '' && $title === '' && empty($initiatives)) {
     return;
@@ -35,7 +44,15 @@ if ($eyebrow === '' && $title === '' && empty($initiatives)) {
                     <?php endif; ?>
                     <article class="dgut-about-initiative">
                         <span><?php echo esc_html(sprintf('%02d', $index + 1)); ?></span>
-                        <p><?php echo esc_html($text); ?></p>
+                        <p>
+                            <?php if (!empty($initiative['url'])) : ?>
+                                <a href="<?php echo esc_url((string) $initiative['url']); ?>">
+                                    <?php echo esc_html($text); ?>
+                                </a>
+                            <?php else : ?>
+                                <?php echo esc_html($text); ?>
+                            <?php endif; ?>
+                        </p>
                     </article>
                 <?php endforeach; ?>
             </div>

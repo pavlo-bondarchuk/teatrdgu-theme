@@ -156,6 +156,44 @@
             "default_value": "Культурна робота поза сценою"
         },
         {
+            "key": "field_dgut_about_initiatives_source",
+            "label": "Джерело списку",
+            "name": "about_initiatives_source",
+            "type": "select",
+            "choices": {
+                "manual": "Ручний список",
+                "category_posts": "Останні новини з категорії"
+            },
+            "default_value": "manual",
+            "return_format": "value",
+            "ui": 1,
+            "allow_null": 0,
+            "multiple": 0
+        },
+        {
+            "key": "field_dgut_about_initiatives_category",
+            "label": "Категорія новин",
+            "name": "about_initiatives_category",
+            "type": "taxonomy",
+            "taxonomy": "category",
+            "field_type": "select",
+            "return_format": "id",
+            "allow_null": 1,
+            "add_term": 0,
+            "save_terms": 0,
+            "load_terms": 0,
+            "multiple": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_dgut_about_initiatives_source",
+                        "operator": "==",
+                        "value": "category_posts"
+                    }
+                ]
+            ]
+        },
+        {
             "key": "field_dgut_about_initiatives",
             "label": "Список ініціатив",
             "name": "about_initiatives",
@@ -193,5 +231,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1782915000
+    "modified": 1783067400
 }

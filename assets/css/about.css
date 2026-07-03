@@ -223,6 +223,20 @@
     color: var(--dgut-graphite);
 }
 
+.dgut-about-initiative a {
+    color: inherit;
+    text-decoration: none;
+    transition: color .2s ease;
+}
+
+.dgut-about-initiative a:hover,
+.dgut-about-initiative a:focus-visible {
+    color: var(--dgut-charcoal);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+}
+
 @media (max-width: 900px) {
     .dgut-about-breadcrumbs-wrap {
         padding-inline: 24px;

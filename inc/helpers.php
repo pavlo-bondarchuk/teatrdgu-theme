@@ -319,6 +319,50 @@ function dgut_about_rows(array $fields, string $key, array $default = []): array
     return $clean_rows;
 }
 
+function dgut_about_initiative_posts(mixed $category): array
+{
+    $category_id = dgut_about_initiative_category_id($category);
+    if ($category_id <= 0) {
+        return [];
+    }
+
+    $posts = get_posts([
+        'post_type' => 'post',
+        'post_status' => 'publish',
+        'posts_per_page' => 3,
+        'cat' => $category_id,
+        'orderby' => 'date',
+        'order' => 'DESC',
+        'ignore_sticky_posts' => true,
+        'no_found_rows' => true,
+    ]);
+
+    if (empty($posts)) {
+        return [];
+    }
+
+    return array_map(static function (WP_Post $post): array {
+        return [
+            'text' => get_the_title($post),
+            'url' => get_permalink($post),
+        ];
+    }, $posts);
+}
+
+function dgut_about_initiative_category_id(mixed $category): int
+{
+    if ($category instanceof WP_Term) {
+        return (int) $category->term_id;
+    }
+
+    if (is_array($category)) {
+        $first = reset($category);
+        return dgut_about_initiative_category_id($first);
+    }
+
+    return is_numeric($category) ? (int) $category : 0;
+}
+
 function dgut_yoast_breadcrumbs(string $class = 'dgut-breadcrumbs'): string
 {
     if (!function_exists('yoast_breadcrumb')) {
