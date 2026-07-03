@@ -73,7 +73,10 @@
                                 if ($language_url === '') {
                                     continue;
                                 }
-                                $language_label = strtoupper((string) ($language['slug'] ?? $language['name'] ?? ''));
+                                $language_label = (string) ($language['name'] ?? '');
+                                if ($language_label === '') {
+                                    $language_label = strtoupper((string) ($language['slug'] ?? ''));
+                                }
                                 $is_current_language = !empty($language['current_lang']);
                                 ?>
                                 <a class="<?php echo $is_current_language ? 'is-active' : ''; ?>" href="<?php echo esc_url($language_url); ?>" <?php echo $is_current_language ? 'aria-current="true"' : ''; ?>>
