@@ -2,6 +2,17 @@
 get_header();
 
 $paged = max(1, (int) get_query_var('paged'));
+$posts_per_page = max(1, (int) get_option('posts_per_page'));
+$news_archive_posts = function_exists('dgut_ordered_translated_posts')
+    ? dgut_ordered_translated_posts('post', -1, [
+        'orderby' => 'date',
+        'order' => 'DESC',
+        'ignore_sticky_posts' => true,
+    ])
+    : [];
+$total_news_posts = count($news_archive_posts);
+$news_archive_posts = array_slice($news_archive_posts, ($paged - 1) * $posts_per_page, $posts_per_page);
+$max_num_pages = (int) ceil($total_news_posts / $posts_per_page);
 ?>
 
 <main id="primary" class="site-main dgut-news-archive-page">
@@ -11,9 +22,9 @@ $paged = max(1, (int) get_query_var('paged'));
                 <h1 class="section-title"><?php esc_html_e('Новини', 'dgutheater'); ?></h1>
             </div>
 
-            <?php if (have_posts()) : ?>
+            <?php if (!empty($news_archive_posts)) : ?>
                 <div class="dgut-news-archive__grid">
-                    <?php while (have_posts()) : the_post(); ?>
+                    <?php foreach ($news_archive_posts as $post) : setup_postdata($post); ?>
                         <?php
                         $post_id = get_the_ID();
                         $categories = get_the_category($post_id);
@@ -56,11 +67,14 @@ $paged = max(1, (int) get_query_var('paged'));
                                 </div>
                             </a>
                         </article>
-                    <?php endwhile; ?>
+                    <?php endforeach; ?>
+                    <?php wp_reset_postdata(); ?>
                 </div>
 
                 <?php
                 $pagination = paginate_links([
+                    'current' => $paged,
+                    'total' => $max_num_pages,
                     'mid_size' => 1,
                     'prev_text' => __('← Назад', 'dgutheater'),
                     'next_text' => __('Далі →', 'dgutheater'),

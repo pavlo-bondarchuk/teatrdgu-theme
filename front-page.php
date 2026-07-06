@@ -22,7 +22,9 @@ if ($home_h1 === '') {
     $home_h1 = __('Театр ДГУ - театр і культурна платформа Дніпра', 'dgutheater');
 }
 
-$performance_posts = dgut_front_posts('performance', -1);
+$performance_posts = function_exists('dgut_ordered_translated_posts')
+    ? dgut_ordered_translated_posts('performance', -1)
+    : dgut_front_posts('performance', -1);
 $performances = [];
 foreach ($performance_posts as $performance_post) {
     $performances[] = dgut_get_performance_card_data($performance_post);
@@ -31,10 +33,19 @@ foreach ($performance_posts as $performance_post) {
 $hero_count = max(1, (int) dgut_front_field($fields, 'home_hero_count', 3));
 $hero_performance_posts = array_values(array_filter((array) dgut_front_field($fields, 'home_hero_performances', [])));
 if (empty($hero_performance_posts)) {
-    $hero_performance_posts = dgut_front_posts('performance', $hero_count, [
-        'orderby' => 'date',
-        'order' => 'DESC',
-    ]);
+    $hero_performance_posts = function_exists('dgut_ordered_translated_posts')
+        ? dgut_ordered_translated_posts('performance', $hero_count, [
+            'orderby' => 'date',
+            'order' => 'DESC',
+        ])
+        : dgut_front_posts('performance', $hero_count, [
+            'orderby' => 'date',
+            'order' => 'DESC',
+        ]);
+} else {
+    $hero_performance_posts = function_exists('dgut_current_language_posts')
+        ? dgut_current_language_posts($hero_performance_posts, $hero_count)
+        : array_slice($hero_performance_posts, 0, $hero_count);
 }
 $hero_slides = [];
 foreach (array_slice($hero_performance_posts, 0, $hero_count) as $hero_performance_post) {
@@ -44,7 +55,10 @@ foreach (array_slice($hero_performance_posts, 0, $hero_count) as $hero_performan
     }
 }
 
-$news_posts = dgut_front_posts('post', max(1, (int) dgut_front_field($fields, 'home_news_count', 4)));
+$news_limit = max(1, (int) dgut_front_field($fields, 'home_news_count', 100));
+$news_posts = function_exists('dgut_ordered_translated_posts')
+    ? dgut_ordered_translated_posts('post', $news_limit)
+    : dgut_front_posts('post', $news_limit);
 $news_items = [];
 foreach ($news_posts as $news_post) {
     $news_items[] = [
@@ -82,9 +96,10 @@ $about_images = array_values(array_filter(array_map(
 )));
 $has_about = $about_eyebrow !== '' || $about_title !== '' || $about_text_1 !== '' || $about_text_2 !== '' || !empty($about_stats) || !empty($about_images);
 
-$team_posts = dgut_front_posts('team_member', max(1, (int) dgut_front_field($fields, 'home_team_count', 14)), [
-    'lang' => '',
-]);
+$team_limit = max(1, (int) dgut_front_field($fields, 'home_team_count', 14));
+$team_posts = function_exists('dgut_ordered_translated_posts')
+    ? dgut_ordered_translated_posts('team_member', $team_limit)
+    : dgut_front_posts('team_member', $team_limit);
 $team = [];
 foreach ($team_posts as $team_post) {
     $team[] = dgut_get_team_member_card_data($team_post);

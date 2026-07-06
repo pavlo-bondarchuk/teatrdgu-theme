@@ -262,6 +262,89 @@ function dgut_front_posts(string $post_type, int $limit, array $args = []): arra
     ], $args));
 }
 
+function dgut_ordered_translated_posts(string $post_type, int $limit, array $args = []): array
+{
+    if (!function_exists('pll_current_language') || !function_exists('pll_default_language') || !function_exists('pll_get_post')) {
+        return dgut_front_posts($post_type, $limit, $args);
+    }
+
+    $current_language = (string) pll_current_language('slug');
+    $base_language = (string) pll_default_language('slug');
+    if ($current_language === '' || $base_language === '') {
+        return dgut_front_posts($post_type, $limit, $args);
+    }
+
+    $base_limit = $current_language !== $base_language && $limit > 0 ? -1 : $limit;
+    $base_posts = dgut_front_posts($post_type, $base_limit, array_merge($args, [
+        'lang' => $base_language,
+        'suppress_filters' => false,
+    ]));
+
+    if ($current_language === $base_language) {
+        return $base_posts;
+    }
+
+    $translated_posts = [];
+    foreach ($base_posts as $base_post) {
+        if (!$base_post instanceof WP_Post) {
+            continue;
+        }
+
+        $translated_id = pll_get_post($base_post->ID, $current_language);
+        $translated_post = $translated_id ? get_post($translated_id) : null;
+        if (
+            $translated_post instanceof WP_Post
+            && $translated_post->post_status === 'publish'
+            && $translated_post->post_type === $post_type
+        ) {
+            $translated_posts[] = $translated_post;
+        }
+
+        if ($limit > 0 && count($translated_posts) >= $limit) {
+            break;
+        }
+    }
+
+    return $translated_posts;
+}
+
+function dgut_current_language_posts(array $posts, int $limit = -1): array
+{
+    if (!function_exists('pll_current_language') || !function_exists('pll_get_post_language') || !function_exists('pll_get_post')) {
+        return $limit > 0 ? array_slice($posts, 0, $limit) : $posts;
+    }
+
+    $current_language = (string) pll_current_language('slug');
+    if ($current_language === '') {
+        return $limit > 0 ? array_slice($posts, 0, $limit) : $posts;
+    }
+
+    $language_posts = [];
+    foreach ($posts as $post) {
+        $post = get_post($post);
+        if (!$post instanceof WP_Post) {
+            continue;
+        }
+
+        $post_language = (string) pll_get_post_language($post->ID, 'slug');
+        if ($post_language === $current_language) {
+            $language_posts[] = $post;
+        } else {
+            $translated_id = pll_get_post($post->ID, $current_language);
+            $translated_post = $translated_id ? get_post($translated_id) : null;
+            if ($translated_post instanceof WP_Post && $translated_post->post_status === 'publish') {
+                $language_posts[] = $translated_post;
+            }
+        }
+
+        if ($limit > 0 && count($language_posts) >= $limit) {
+            break;
+        }
+    }
+
+    return $language_posts;
+}
+
 function dgut_front_page_url(string $slug, string $fallback): string
 {
     $page = get_page_by_path($slug);
@@ -709,22 +792,10 @@ function dgut_get_team_member_card_data(WP_Post|int $post): array
 
 function dgut_repertoire_posts(): array
 {
-    $args = [
-        'post_type' => 'performance',
-        'posts_per_page' => -1,
-        'post_status' => 'publish',
+    return dgut_ordered_translated_posts('performance', -1, [
         'orderby' => 'menu_order date',
         'order' => 'ASC',
-    ];
-
-    if (function_exists('pll_current_language')) {
-        $language = pll_current_language('slug');
-        if (is_string($language) && $language !== '') {
-            $args['lang'] = $language;
-        }
-    }
-
-    return get_posts($args);
+    ]);
 }
 
 if (!function_exists('dgut_repertoire_filters')) {
