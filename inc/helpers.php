@@ -351,6 +351,25 @@ function dgut_front_page_url(string $slug, string $fallback): string
     return $page ? get_permalink($page) : home_url($fallback);
 }
 
+function dgut_news_archive_url(): string
+{
+    $posts_page_id = (int) get_option('page_for_posts');
+
+    if ($posts_page_id > 0) {
+        if (function_exists('pll_current_language') && function_exists('pll_get_post')) {
+            $current_language = (string) pll_current_language('slug');
+            $translated_id = $current_language !== '' ? (int) pll_get_post($posts_page_id, $current_language) : 0;
+            if ($translated_id > 0) {
+                return get_permalink($translated_id);
+            }
+        }
+
+        return get_permalink($posts_page_id);
+    }
+
+    return home_url('/novyny/');
+}
+
 function dgut_page_fields(): array
 {
     $fields = function_exists('get_fields') ? get_fields() : [];
@@ -905,7 +924,7 @@ add_filter('nav_menu_css_class', function ($classes, $item) {
     }
 
     if (is_singular('post')) {
-        $active_urls[] = untrailingslashit(home_url('/novyny/'));
+        $active_urls[] = untrailingslashit(dgut_news_archive_url());
 
         $posts_page_id = (int) get_option('page_for_posts');
 
@@ -939,7 +958,7 @@ add_filter('nav_menu_link_attributes', function ($atts, $item) {
     }
 
     if (is_singular('post')) {
-        $active_urls[] = untrailingslashit(home_url('/novyny/'));
+        $active_urls[] = untrailingslashit(dgut_news_archive_url());
 
         $posts_page_id = (int) get_option('page_for_posts');
 

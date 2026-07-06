@@ -7,7 +7,7 @@ if (!dgut_front_bool($fields, 'home_news_show', true) || empty($news_items)) {
 }
 
 $archive_link = dgut_front_field($fields, 'home_news_archive_link', []);
-$archive_link_url = is_array($archive_link) ? (string) ($archive_link['url'] ?? '') : '';
+$archive_link_url = function_exists('dgut_news_archive_url') ? dgut_news_archive_url() : '';
 $archive_link_title = is_array($archive_link) ? (string) ($archive_link['title'] ?? '') : '';
 $archive_link_target = is_array($archive_link) ? (string) ($archive_link['target'] ?? '') : '';
 ?>

@@ -4,6 +4,7 @@ get_header();
 $post_id = get_the_ID();
 $categories = get_the_category($post_id);
 $category = !empty($categories) ? $categories[0]->name : __('Новини', 'dgutheater');
+$news_archive_url = function_exists('dgut_news_archive_url') ? dgut_news_archive_url() : home_url('/novyny/');
 
 $related_query = new WP_Query([
     'post_type' => 'post',
@@ -20,7 +21,7 @@ $related_query = new WP_Query([
             <nav class="dgut-breadcrumbs" aria-label="<?php esc_attr_e('Хлібні крихти', 'dgutheater'); ?>">
                 <a href="<?php echo esc_url(home_url('/')); ?>"><?php esc_html_e('Головна', 'dgutheater'); ?></a>
                 <span aria-hidden="true">›</span>
-                <a href="<?php echo esc_url(home_url('/novyny/')); ?>"><?php esc_html_e('Новини', 'dgutheater'); ?></a>
+                <a href="<?php echo esc_url($news_archive_url); ?>"><?php esc_html_e('Новини', 'dgutheater'); ?></a>
                 <span aria-hidden="true">›</span>
                 <span><?php the_title(); ?></span>
             </nav>
@@ -118,7 +119,7 @@ $related_query = new WP_Query([
                 <div class="dgut-section-head">
                     <h2 class="section-title"><?php esc_html_e('Читайте також', 'dgutheater'); ?></h2>
 
-                    <a class="dgut-section-link" href="<?php echo esc_url(home_url('/novyny/')); ?>">
+                    <a class="dgut-section-link" href="<?php echo esc_url($news_archive_url); ?>">
                         <?php esc_html_e('Усі новини', 'dgutheater'); ?> <span aria-hidden="true">→</span>
                     </a>
                 </div>
