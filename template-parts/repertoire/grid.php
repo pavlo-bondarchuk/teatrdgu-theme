@@ -59,6 +59,7 @@ $title = isset($args['title']) && $args['title'] !== ''
                 $date = (string) ($performance['date'] ?? '');
                 $excerpt = (string) ($performance['excerpt'] ?? '');
                 $image = (string) ($performance['image'] ?? '');
+                $thumbnail_id = (int) ($performance['thumbnail_id'] ?? 0);
                 $focus = (string) ($performance['focus'] ?? 'center top');
                 $filter_text = (string) ($performance['filter_text'] ?? '');
                 $genre_ids = isset($performance['genre_ids']) && is_array($performance['genre_ids'])
@@ -71,7 +72,9 @@ $title = isset($args['title']) && $args['title'] !== ''
                     data-repertoire-genres="<?php echo esc_attr(implode(' ', $genre_ids)); ?>"
                     data-filter-text="<?php echo esc_attr($filter_text); ?>">
                     <a class="dgut-repertoire-card__media" href="<?php echo esc_url($permalink); ?>" aria-label="<?php echo esc_attr($title); ?>">
-                        <?php if ($image !== '') : ?>
+                        <?php if ($thumbnail_id > 0) : ?>
+                            <?php echo dgut_responsive_image($thumbnail_id, 'dgut-repertoire-archive-card', $title, '(min-width: 1240px) 216px, (min-width: 1024px) calc((100vw - 160px) / 5), (min-width: 640px) calc((100vw - 88px) / 3), calc((100vw - 64px) / 2)', ['style' => 'object-position: ' . $focus . ';']); ?>
+                        <?php elseif ($image !== '') : ?>
                             <img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($title); ?>" loading="lazy" decoding="async" style="object-position: <?php echo esc_attr($focus); ?>;">
                         <?php endif; ?>
 

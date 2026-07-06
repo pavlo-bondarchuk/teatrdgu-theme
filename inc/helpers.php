@@ -89,6 +89,25 @@ function dgut_responsive_news_image_from_url(string $src, string $alt = '', stri
     return dgut_img($src, $alt, '', $attrs);
 }
 
+function dgut_responsive_image(int $attachment_id, string $size, string $alt = '', string $sizes = '', array $attrs = []): string
+{
+    if ($attachment_id <= 0) {
+        return '';
+    }
+
+    $attrs = array_merge([
+        'alt' => $alt,
+        'loading' => 'lazy',
+        'decoding' => 'async',
+    ], $attrs);
+
+    if ($sizes !== '') {
+        $attrs['sizes'] = $sizes;
+    }
+
+    return wp_get_attachment_image($attachment_id, $size, false, $attrs);
+}
+
 function dgut_hero_picture(int $attachment_id, string $alt = '', string $focus = 'center center', array $attrs = []): string
 {
     if ($attachment_id <= 0) {
@@ -661,7 +680,7 @@ function dgut_get_performance_card_data(WP_Post|int $post): array
         'duration' => function_exists('get_field') ? (string) get_field('dgut_performance_duration', $post_id) : '',
         'credits' => dgut_performance_credit_line($post_id),
         'excerpt' => $excerpt,
-        'image' => get_the_post_thumbnail_url($post, 'dgut-event-grid-card') ?: '',
+        'image' => get_the_post_thumbnail_url($post, 'dgut-repertoire-home-card') ?: '',
         'hero_image' => get_the_post_thumbnail_url($post, 'dgut-hero-slide') ?: '',
         'thumbnail_id' => $thumbnail_id ?: 0,
         'permalink' => get_permalink($post),
@@ -770,6 +789,7 @@ function dgut_repertoire_label(string $key): string
 function dgut_repertoire_card_data($post): array
 {
     $post_id = is_object($post) ? (int) $post->ID : (int) $post;
+    $thumbnail_id = get_post_thumbnail_id($post_id);
 
     $terms = wp_get_post_terms($post_id, 'performance_genre');
 
@@ -792,7 +812,8 @@ function dgut_repertoire_card_data($post): array
         'genre_ids' => $genre_ids,
         'date' => isset($fields['dgut_performance_date']) ? (string) $fields['dgut_performance_date'] : '',
         'excerpt' => get_the_excerpt($post_id),
-        'image' => get_the_post_thumbnail_url($post_id, 'dgut-card') ?: '',
+        'image' => get_the_post_thumbnail_url($post_id, 'dgut-repertoire-archive-card') ?: '',
+        'thumbnail_id' => $thumbnail_id ?: 0,
         'focus' => isset($fields['dgut_performance_image_focus']) ? (string) $fields['dgut_performance_image_focus'] : 'center top',
         'filter_text' => mb_strtolower(get_the_title($post_id) . ' ' . get_the_excerpt($post_id) . ' ' . implode(' ', $genre_names)),
     ];

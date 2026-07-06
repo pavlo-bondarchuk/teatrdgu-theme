@@ -38,7 +38,9 @@ $archive_link_target = is_array($archive_link) ? (string) ($archive_link['target
                     <article class="card dgut-performance-card">
                         <a href="<?php echo esc_url($item['permalink'] ?? '#tickets'); ?>">
                             <div class="media-frame dgut-performance-card__image">
-                                <?php if (!empty($item['image'])) : ?>
+                                <?php if (!empty($item['thumbnail_id'])) : ?>
+                                    <?php echo dgut_responsive_image((int) $item['thumbnail_id'], 'dgut-repertoire-home-card', (string) $item['title'], '(min-width: 1240px) 373px, (min-width: 1024px) calc((100vw - 120px) / 3), (min-width: 640px) calc((100vw - 68px) / 2), calc(100vw - 48px)', ['style' => 'object-position:' . ($item['focus'] ?? 'center')]); ?>
+                                <?php elseif (!empty($item['image'])) : ?>
                                     <?php echo dgut_img($item['image'], $item['title'], '', ['style' => 'object-position:' . ($item['focus'] ?? 'center')]); ?>
                                 <?php endif; ?>
                                 <span class="dgut-performance-card__badge"><?php echo esc_html($item['genre'] ?? ''); ?></span>

@@ -12,6 +12,10 @@ add_action('after_setup_theme', function (): void {
     add_theme_support('html5', ['search-form', 'comment-form', 'comment-list', 'gallery', 'caption', 'style', 'script']);
     add_image_size('dgut-hero-slide', 1920, 720, true);
     add_image_size('dgut-hero-slide-mobile', 780, 585, true);
+    add_image_size('dgut-repertoire-home-card', 372, 465, true);
+    add_image_size('dgut-repertoire-home-card-2x', 744, 930, true);
+    add_image_size('dgut-repertoire-archive-card', 216, 288, true);
+    add_image_size('dgut-repertoire-archive-card-2x', 432, 576, true);
     add_image_size('dgut-event-grid-card', 372, 464, true);
     add_image_size('dgut-news-card', 373, 280, true);
     add_image_size('dgut-news-card-2x', 746, 560, true);
