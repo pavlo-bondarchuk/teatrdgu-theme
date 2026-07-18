@@ -44,8 +44,8 @@ $archive_link_target = is_array($archive_link) ? (string) ($archive_link['target
                                     <?php echo dgut_img($item['image'], $item['title'], '', ['style' => 'object-position:' . ($item['focus'] ?? 'center')]); ?>
                                 <?php endif; ?>
                                 <span class="dgut-performance-card__badge"><?php echo esc_html($item['genre'] ?? ''); ?></span>
-                                <?php if (!empty($item['age_18'])) : ?>
-                                    <span class="dgut-performance-card__age">18+</span>
+                                <?php if (!empty($item['age_rating'])) : ?>
+                                    <span class="dgut-performance-card__age"><?php echo esc_html($item['age_rating']); ?></span>
                                 <?php endif; ?>
                             </div>
                             <div class="dgut-performance-card__body">

@@ -61,12 +61,12 @@
             "append": ""
         },
         {
-            "key": "field_dgut_performance_age_18",
-            "label": "Вікове обмеження 18+",
-            "name": "dgut_performance_age_18",
+            "key": "field_dgut_performance_age_rating",
+            "label": "Віковий допуск",
+            "name": "dgut_performance_age_rating",
             "aria-label": "",
-            "type": "true_false",
-            "instructions": "Увімкніть, щоб показати позначку 18+ на картці та сторінці вистави.",
+            "type": "text",
+            "instructions": "Наприклад: 18+ або 14+. Якщо залишити поле порожнім, позначка не показуватиметься.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -74,11 +74,11 @@
                 "class": "",
                 "id": ""
             },
-            "message": "Вистава має вікове обмеження 18+",
-            "default_value": 0,
-            "ui_on_text": "18+",
-            "ui_off_text": "Без позначки",
-            "ui": 1
+            "default_value": "18+",
+            "maxlength": "10",
+            "placeholder": "18+",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_dgut_performance_hero_credits",
@@ -685,5 +685,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1784379600
+    "modified": 1784392142
 }
