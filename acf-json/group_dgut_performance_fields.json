@@ -61,12 +61,12 @@
             "append": ""
         },
         {
-            "key": "field_dgut_performance_age_rating",
-            "label": "Віковий допуск",
-            "name": "dgut_performance_age_rating",
+            "key": "field_6a5b7b2e9de4e",
+            "label": "Вікове обмеження 18+",
+            "name": "dgut_performance_age",
             "aria-label": "",
             "type": "text",
-            "instructions": "Наприклад: 18+ або 14+. Якщо залишити поле порожнім, позначка не показуватиметься.",
+            "instructions": "Введіть данні про допустимий вік",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {

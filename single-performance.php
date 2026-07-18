@@ -4,7 +4,7 @@ the_post();
 
 $date = dgut_performance_text_field('dgut_performance_date');
 $duration = dgut_performance_text_field('dgut_performance_duration');
-$age_rating = function_exists('get_field') ? trim((string) get_field('dgut_performance_age_rating')) : '';
+$age_rating = function_exists('get_field') ? trim((string) get_field('dgut_performance_age')) : '';
 $video_url = dgut_performance_text_field('dgut_performance_video_url');
 $about_eyebrow = dgut_performance_text_field('dgut_performance_about_eyebrow');
 $about_title = dgut_performance_text_field('dgut_performance_about_title');
