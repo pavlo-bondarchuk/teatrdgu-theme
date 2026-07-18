@@ -68,6 +68,24 @@
     max-width: none;
 }
 
+.dgut-event-hero__labels {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.dgut-event-hero__age {
+    display: inline-flex;
+    align-items: center;
+    min-height: 26px;
+    padding: 7px 11px 6px;
+    background: var(--dgut-charcoal);
+    color: var(--dgut-cream);
+    font: 700 11px/1 var(--dgut-body);
+    letter-spacing: .16em;
+}
+
 .dgut-event-eyebrow {
     display: inline-flex;
     width: max-content;

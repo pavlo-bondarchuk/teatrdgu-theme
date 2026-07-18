@@ -4,6 +4,7 @@ the_post();
 
 $date = dgut_performance_text_field('dgut_performance_date');
 $duration = dgut_performance_text_field('dgut_performance_duration');
+$age_18 = function_exists('get_field') && (bool) get_field('dgut_performance_age_18');
 $video_url = dgut_performance_text_field('dgut_performance_video_url');
 $about_eyebrow = dgut_performance_text_field('dgut_performance_about_eyebrow');
 $about_title = dgut_performance_text_field('dgut_performance_about_title');
@@ -40,8 +41,15 @@ $breadcrumbs = dgut_yoast_breadcrumbs();
                 </div>
             <?php endif; ?>
             <div class="dgut-event-hero__content">
-                <?php if (!empty($terms)) : ?>
-                    <p class="eyebrow dgut-event-eyebrow dgut-event-hero__eyebrow"><?php echo esc_html($terms[0]); ?></p>
+                <?php if (!empty($terms) || $age_18) : ?>
+                    <div class="dgut-event-hero__labels">
+                        <?php if (!empty($terms)) : ?>
+                            <p class="eyebrow dgut-event-eyebrow dgut-event-hero__eyebrow"><?php echo esc_html($terms[0]); ?></p>
+                        <?php endif; ?>
+                        <?php if ($age_18) : ?>
+                            <span class="dgut-event-hero__age">18+</span>
+                        <?php endif; ?>
+                    </div>
                 <?php endif; ?>
                 <h1 class="display dgut-event-hero__title"><?php the_title(); ?></h1>
                 <?php if (has_excerpt()) : ?>

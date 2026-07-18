@@ -315,6 +315,21 @@
   text-transform: uppercase
 }
 
+.dgut-performance-card__age {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 7px 11px 6px;
+  background: var(--dgut-charcoal);
+  color: var(--dgut-cream);
+  font: 700 11px/1 var(--dgut-body);
+  letter-spacing: .16em
+}
+
 .dgut-performance-card__body {
   min-height: 212px;
   padding: 18px 18px 16px;
