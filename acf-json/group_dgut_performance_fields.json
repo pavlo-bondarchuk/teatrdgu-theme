@@ -75,7 +75,8 @@
                 "id": ""
             },
             "default_value": "18+",
-            "maxlength": "10",
+            "maxlength": "",
+            "allow_in_bindings": 0,
             "placeholder": "18+",
             "prepend": "",
             "append": ""
@@ -685,5 +686,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1784392142
+    "modified": 1784392258
 }

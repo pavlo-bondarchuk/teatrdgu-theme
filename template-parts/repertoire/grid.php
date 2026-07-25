@@ -56,6 +56,7 @@ $title = isset($args['title']) && $args['title'] !== ''
                 }
 
                 $genre = (string) ($performance['genre'] ?? '');
+                $age_rating = (string) ($performance['age_rating'] ?? '');
                 $date = (string) ($performance['date'] ?? '');
                 $excerpt = (string) ($performance['excerpt'] ?? '');
                 $image = (string) ($performance['image'] ?? '');
@@ -77,11 +78,16 @@ $title = isset($args['title']) && $args['title'] !== ''
                         <?php elseif ($image !== '') : ?>
                             <img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($title); ?>" loading="lazy" decoding="async" style="object-position: <?php echo esc_attr($focus); ?>;">
                         <?php endif; ?>
-
-                        <?php if ($genre !== '') : ?>
-                            <span class="dgut-repertoire-card__badge"><?php echo esc_html($genre); ?></span>
+                        <?php if ($genre !== '' || $age_rating !== '') : ?>
+                            <div class="dgut-repertoire-card__badge__wrapper">
+                                <?php if ($genre !== '') : ?>
+                                    <span class="dgut-repertoire-card__badge"><?php echo esc_html($genre); ?></span>
+                                <?php endif; ?>
+                                <?php if ($age_rating !== '') : ?>
+                                    <span class="dgut-performance-card__age"><?php echo esc_html($age_rating); ?></span>
+                                <?php endif; ?>
+                            </div>
                         <?php endif; ?>
-
 
                     </a>
 

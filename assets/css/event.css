@@ -73,6 +73,7 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 10px;
+    margin: 0 0 24px;
 }
 
 .dgut-event-hero__age {
@@ -80,7 +81,7 @@
     align-items: center;
     min-height: 26px;
     padding: 7px 11px 6px;
-    background: var(--dgut-charcoal);
+    background: var(--dgut-red);
     color: var(--dgut-cream);
     font: 700 11px/1 var(--dgut-body);
     letter-spacing: .16em;
@@ -96,7 +97,7 @@
 }
 
 .dgut-event-hero__eyebrow {
-    margin: 0 0 24px;
+    margin: 0;
 }
 
 .dgut-event-hero__title {
@@ -132,6 +133,7 @@
 
 .dgut-event-meta__icon {
     color: var(--dgut-sand);
+    flex-shrink: 0;
 }
 
 .dgut-event-meta__icon svg {

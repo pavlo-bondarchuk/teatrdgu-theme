@@ -35,7 +35,7 @@
     color: var(--dgut-charcoal);
 }
 
-.dgut-repertoire-breadcrumbs > span {
+.dgut-repertoire-breadcrumbs>span {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -117,11 +117,16 @@
     transform: scale(1.04);
 }
 
-.dgut-repertoire-card__badge {
+.dgut-repertoire-card__badge__wrapper {
     position: absolute;
     top: 12px;
     left: 12px;
     max-width: calc(100% - 24px);
+    display: flex;
+    gap: 6px;
+}
+
+.dgut-repertoire-card__badge {
     padding: 6px 10px;
     background: var(--dgut-dust);
     color: var(--dgut-taupe);
@@ -130,6 +135,16 @@
     text-transform: uppercase;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dgut-performance-card__age {
+    padding: 6px 10px;
+    background: var(--dgut-red);
+    color: white;
+    font: 700 10px/1 var(--dgut-body);
+    letter-spacing: .2em;
+    text-transform: uppercase;
     white-space: nowrap;
 }
 
@@ -162,10 +177,9 @@
 }
 
 .dgut-repertoire-card h2 {
-    height: 3.9em;
     margin: 0 0 10px;
     color: var(--dgut-charcoal);
-    font: 700 13px/1.3 var(--dgut-body);
+    font: 300 13px/1.3 var(--dgut-body);
     letter-spacing: .08em;
     text-transform: uppercase;
     overflow: hidden;
@@ -175,7 +189,6 @@
 }
 
 .dgut-repertoire-card__excerpt {
-    height: 4.8em;
     margin: 0 0 12px;
     color: var(--dgut-taupe);
     font: 400 12px/1.6 var(--dgut-body);

@@ -324,7 +324,7 @@
   align-items: center;
   min-height: 24px;
   padding: 7px 11px 6px;
-  background: var(--dgut-charcoal);
+  background: var(--dgut-red);
   color: var(--dgut-cream);
   font: 700 11px/1 var(--dgut-body);
   letter-spacing: .16em
