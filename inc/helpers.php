@@ -67,6 +67,11 @@ function dgut_responsive_news_image(int $attachment_id, string $alt = '', string
 
 function dgut_responsive_news_image_from_url(string $src, string $alt = '', string $size = 'dgut-news-grid-card', string $sizes = '', array $attrs = []): string
 {
+    return dgut_responsive_image_from_url($src, $alt, $size, $sizes, $attrs);
+}
+
+function dgut_responsive_image_from_url(string $src, string $alt = '', string $size = 'medium_large', string $sizes = '', array $attrs = []): string
+{
     if ($src === '') {
         return '';
     }
@@ -79,7 +84,7 @@ function dgut_responsive_news_image_from_url(string $src, string $alt = '', stri
         }
     }
     if ($attachment_id > 0) {
-        return dgut_responsive_news_image($attachment_id, $alt, $size, $sizes, $attrs);
+        return dgut_responsive_image($attachment_id, $size, $alt, $sizes, $attrs);
     }
 
     if ($sizes !== '') {

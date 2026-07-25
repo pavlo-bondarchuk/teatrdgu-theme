@@ -60,7 +60,12 @@ $archive_link_target = is_array($archive_link) ? (string) ($archive_link['target
             <div class="dgut-about__media">
                 <?php foreach ($about_images as $index => $about_image) : ?>
                     <div class="dgut-about__image<?php echo $index === 0 ? ' dgut-about__image--wide' : ''; ?>">
-                        <?php echo dgut_img($about_image, $about_title); ?>
+                        <?php echo dgut_responsive_image_from_url(
+                            (string) $about_image,
+                            wp_strip_all_tags($about_title),
+                            'medium_large',
+                            '(max-width: 640px) calc(100vw - 40px), (max-width: 1024px) calc((100vw - 72px) / 2), 364px'
+                        ); ?>
                     </div>
                 <?php endforeach; ?>
             </div>

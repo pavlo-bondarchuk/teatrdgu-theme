@@ -30,7 +30,15 @@ if (!dgut_front_bool($fields, 'home_team_show', true) || empty($team)) {
             <?php foreach ($team as $person) : ?>
                 <article class="card dgut-team-card">
                     <?php if (!empty($person['image'])) : ?>
-                        <div class="media-frame dgut-team-card__image"><?php echo dgut_img($person['image'], $person['name'], '', ['style' => 'object-position:' . ($person['focus'] ?? 'center top')]); ?></div>
+                        <div class="media-frame dgut-team-card__image">
+                            <?php echo dgut_responsive_image_from_url(
+                                (string) $person['image'],
+                                (string) $person['name'],
+                                'medium_large',
+                                '(max-width: 640px) calc(100vw - 40px), (max-width: 1024px) calc((100vw - 72px) / 2), 267px',
+                                ['style' => 'object-position:' . ($person['focus'] ?? 'center top')]
+                            ); ?>
+                        </div>
                     <?php endif; ?>
                     <div class="dgut-team-card__body">
                         <h3><?php echo esc_html($person['name']); ?></h3>
