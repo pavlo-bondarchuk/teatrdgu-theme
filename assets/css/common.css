@@ -241,7 +241,7 @@ a:focus-visible {
   transform: translateY(-1px)
 }
 
-.site-header__cta-link.is-active {
+.site-header__cta-link.is-active:hover {
   box-shadow: inset 0 -3px 0 var(--dgut-charcoal), 0 2px 16px rgba(207, 161, 107, .34)
 }
 
@@ -280,12 +280,12 @@ a:focus-visible {
 
 .site-header__socials a {
   display: flex;
-  color: var(--dgut-stone);
+  color: var(--dgut-charcoal);
   transition: color .18s
 }
 
 .site-header__socials a:hover {
-  color: var(--dgut-charcoal)
+  color: var(--dgut-stone)
 }
 
 .site-header__socials svg {
