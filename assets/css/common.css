@@ -258,6 +258,12 @@ a:focus-visible {
   height: 19px
 }
 
+@media (hover:hover) and (pointer:fine) {
+  .site-header__cta-link {
+    cursor: url("../img/cursor-sparkles.svg") 16 16, pointer
+  }
+}
+
 .site-header__tools {
   display: flex;
   align-items: center;
