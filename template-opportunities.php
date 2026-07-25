@@ -14,7 +14,6 @@ if ($hero_title === '') {
 }
 
 $hero_text = trim((string) ($fields['opportunities_hero_text'] ?? ''));
-$hero_button_text = trim((string) ($fields['opportunities_hero_button_text'] ?? ''));
 $hero_button_link = $fields['opportunities_hero_button_link'] ?? [];
 $hero_image_id = (int) ($fields['opportunities_hero_image'] ?? 0);
 $hero_badge = trim((string) ($fields['opportunities_hero_badge'] ?? ''));
@@ -32,13 +31,13 @@ $opportunities_tabs = is_array($opportunities_tabs) ? array_values(array_filter(
     static fn (mixed $tab): bool => is_array($tab) && trim((string) ($tab['tab_title'] ?? '')) !== ''
 )) : [];
 
-$normalize_link = static function (mixed $link, string $fallback_label = ''): array {
+$normalize_link = static function (mixed $link): array {
     if (!is_array($link)) {
         return [];
     }
 
     $url = trim((string) ($link['url'] ?? ''));
-    $label = trim($fallback_label !== '' ? $fallback_label : (string) ($link['title'] ?? ''));
+    $label = trim((string) ($link['title'] ?? ''));
     if ($url === '' || $label === '') {
         return [];
     }
@@ -50,7 +49,7 @@ $normalize_link = static function (mixed $link, string $fallback_label = ''): ar
     ];
 };
 
-$hero_button = $normalize_link($hero_button_link, $hero_button_text);
+$hero_button = $normalize_link($hero_button_link);
 $secondary_link = $normalize_link($hero_secondary_link);
 $hero_alt = $hero_image_id > 0 ? trim((string) get_post_meta($hero_image_id, '_wp_attachment_image_alt', true)) : '';
 if ($hero_alt === '') {
@@ -60,7 +59,7 @@ if ($hero_alt === '') {
 $component_id = 'opportunities-' . max(1, $page_id);
 ?>
 <main id="primary" class="site-main opportunities-page">
-    <section class="opportunities-hero<?php echo $hero_image_id <= 0 ? ' opportunities-hero--without-image' : ''; ?>">
+    <section class="opportunities-hero">
         <div class="opportunities-hero__content">
             <h1 class="opportunities-hero__title"><?php echo nl2br(esc_html($hero_title)); ?></h1>
 
@@ -97,8 +96,8 @@ $component_id = 'opportunities-' . max(1, $page_id);
             <?php endif; ?>
         </div>
 
-        <?php if ($hero_image_id > 0) : ?>
-            <div class="opportunities-hero__media">
+        <div class="opportunities-hero__media">
+            <?php if ($hero_image_id > 0) : ?>
                 <?php
                 echo wp_get_attachment_image($hero_image_id, 'dgut-hero-slide', false, [
                     'class' => 'opportunities-hero__image',
@@ -109,14 +108,14 @@ $component_id = 'opportunities-' . max(1, $page_id);
                     'sizes' => '(max-width: 900px) 100vw, 62vw',
                 ]);
                 ?>
+            <?php endif; ?>
 
-                <?php if ($hero_badge !== '') : ?>
-                    <div class="opportunities-hero__badge">
-                        <?php echo nl2br(esc_html($hero_badge)); ?>
-                    </div>
-                <?php endif; ?>
-            </div>
-        <?php endif; ?>
+            <?php if ($hero_badge !== '') : ?>
+                <div class="opportunities-hero__badge">
+                    <?php echo nl2br(esc_html($hero_badge)); ?>
+                </div>
+            <?php endif; ?>
+        </div>
     </section>
 
     <section class="opportunities-tabs-section" aria-labelledby="<?php echo esc_attr($component_id); ?>-title">
