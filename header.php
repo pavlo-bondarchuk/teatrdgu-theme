@@ -34,6 +34,41 @@
             <?php
             $primary_location = 'primary';
             $has_primary_menu = has_nav_menu($primary_location);
+            $header_cta = function_exists('get_field') ? get_field('header_cta_link', 'option') : [];
+            $header_cta_url = is_array($header_cta) ? trim((string) ($header_cta['url'] ?? '')) : '';
+            $header_cta_label = is_array($header_cta) ? trim((string) ($header_cta['title'] ?? '')) : '';
+            $header_cta_target = is_array($header_cta) ? (string) ($header_cta['target'] ?? '') : '';
+            $header_cta_page_id = 0;
+
+            if ($header_cta_label !== '' && function_exists('pll__')) {
+                $header_cta_label = (string) pll__($header_cta_label);
+            }
+
+            if ($header_cta_url !== '' && !str_starts_with($header_cta_url, '#')) {
+                $header_cta_url_without_fragment = strtok($header_cta_url, '#');
+                $header_cta_page_id = $header_cta_url_without_fragment !== false
+                    ? (int) url_to_postid($header_cta_url_without_fragment)
+                    : 0;
+
+                if ($header_cta_page_id > 0 && function_exists('pll_get_post')) {
+                    $translated_cta_page_id = (int) pll_get_post($header_cta_page_id);
+                    if ($translated_cta_page_id > 0) {
+                        $header_cta_page_id = $translated_cta_page_id;
+                        $translated_cta_url = get_permalink($translated_cta_page_id);
+                        $header_cta_fragment = wp_parse_url($header_cta_url, PHP_URL_FRAGMENT);
+                        if (is_string($translated_cta_url) && $translated_cta_url !== '') {
+                            $header_cta_url = $translated_cta_url;
+                            if (is_string($header_cta_fragment) && $header_cta_fragment !== '') {
+                                $header_cta_url .= '#' . $header_cta_fragment;
+                            }
+                        }
+                    }
+                }
+            }
+
+            $show_header_cta = $header_cta_url !== '' && $header_cta_label !== '';
+            $header_cta_is_active = $header_cta_page_id > 0
+                && get_queried_object_id() === $header_cta_page_id;
             ?>
             <?php if ($has_primary_menu) : ?>
                 <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-menu">
@@ -52,6 +87,21 @@
                     ]);
                     ?>
                 </nav>
+            <?php endif; ?>
+
+            <?php if ($show_header_cta) : ?>
+                <div class="site-header__cta">
+                    <a
+                        class="site-header__cta-link<?php echo $header_cta_is_active ? ' is-active' : ''; ?>"
+                        href="<?php echo esc_url($header_cta_url); ?>"
+                        target="<?php echo esc_attr($header_cta_target !== '' ? $header_cta_target : '_self'); ?>"
+                        <?php echo $header_cta_target === '_blank' ? 'rel="noopener noreferrer"' : ''; ?>
+                        <?php echo $header_cta_is_active ? 'aria-current="page"' : ''; ?>
+                    >
+                        <span class="site-header__cta-icon" aria-hidden="true"><?php echo dgut_ui_icon('sparkles'); ?></span>
+                        <span class="site-header__cta-label"><?php echo esc_html($header_cta_label); ?></span>
+                    </a>
+                </div>
             <?php endif; ?>
 
             <div class="site-header__tools" aria-label="<?php esc_attr_e('Header tools', 'dgutheater'); ?>">

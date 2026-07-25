@@ -37,6 +37,11 @@ add_action('wp_enqueue_scripts', function (): void {
     if (is_page_template('template-contacts.php')) {
         wp_enqueue_style('dgut-contacts-page', DGUTHEME_URI . '/assets/css/contacts.css', ['dgut-common'], DGUTHEME_VERSION);
     }
+    if (is_page_template('template-opportunities.php')) {
+        wp_enqueue_style('dgut-opportunities-page', DGUTHEME_URI . '/assets/css/opportunities.css', ['dgut-common'], DGUTHEME_VERSION);
+        wp_enqueue_script('dgut-opportunities-tabs', DGUTHEME_URI . '/assets/js/opportunities-tabs.js', [], DGUTHEME_VERSION, true);
+        wp_script_add_data('dgut-opportunities-tabs', 'defer', true);
+    }
     if (is_singular('performance')) {
         wp_enqueue_style('dgut-event', DGUTHEME_URI . '/assets/css/event.css', ['dgut-common'], DGUTHEME_VERSION);
     }

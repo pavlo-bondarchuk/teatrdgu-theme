@@ -141,6 +141,22 @@
             "mime_types": ""
         },
         {
+            "key": "field_dgut_header_cta_link",
+            "label": "Акцентна кнопка",
+            "name": "header_cta_link",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "Кнопка поруч із головною навігацією. Якщо поле порожнє, кнопка не відображається.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
             "key": "field_6a4398df3014c",
             "label": "Footer",
             "name": "",
@@ -481,5 +497,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1782820288
+    "modified": 1785000191
 }
