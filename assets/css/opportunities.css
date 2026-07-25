@@ -61,16 +61,19 @@
 
 .opportunities-hero__button {
   min-height: 44px;
-  border: 1px solid rgba(207, 161, 107, .8);
+  border: 1px solid var(--dgut-sand);
   border-radius: 3px;
-  background: var(--dgut-red, #5b171a);
-  box-shadow: 0 0 12px rgba(91, 23, 26, .22);
+  background: var(--dgut-sand);
+  box-shadow: 0 0 12px rgba(207, 161, 107, .28);
+  color: var(--dgut-charcoal);
   text-transform: uppercase;
 }
 
 .opportunities-hero__button:hover {
-  background: #722126;
-  box-shadow: 0 2px 16px rgba(91, 23, 26, .3);
+  border-color: var(--dgut-charcoal);
+  background: var(--dgut-sand);
+  box-shadow: 0 2px 16px rgba(207, 161, 107, .38);
+  color: var(--dgut-charcoal);
   transform: translateY(-1px);
 }
 
@@ -120,11 +123,11 @@
   width: clamp(112px, 11vw, 148px);
   aspect-ratio: 1;
   padding: 18px;
-  border: 1px solid var(--dgut-sand);
+  border: 1px solid var(--dgut-cream);
   border-radius: 50%;
-  background: rgba(91, 23, 26, .94);
+  background: var(--dgut-sand);
   box-shadow: 0 8px 28px rgba(30, 25, 20, .24);
-  color: var(--dgut-cream);
+  color: var(--dgut-charcoal);
   font: 600 clamp(.68rem, 1vw, .82rem)/1.45 var(--dgut-body);
   letter-spacing: .04em;
   text-align: center;
@@ -209,9 +212,9 @@
 .opportunities-tabs__tab.is-active {
   position: relative;
   border-color: var(--dgut-sand);
-  background: var(--dgut-red, #5b171a);
-  box-shadow: inset 0 -3px 0 var(--dgut-sand);
-  color: var(--dgut-cream);
+  background: var(--dgut-sand);
+  box-shadow: inset 0 -3px 0 var(--dgut-charcoal);
+  color: var(--dgut-charcoal);
   font-weight: 700;
 }
 
@@ -221,7 +224,7 @@
   bottom: 7px;
   left: 12px;
   height: 2px;
-  background: var(--dgut-sand);
+  background: var(--dgut-charcoal);
   content: "";
 }
 
@@ -261,7 +264,7 @@
   height: 76px;
   overflow: hidden;
   border-radius: 50%;
-  background: var(--dgut-red, #5b171a);
+  background: var(--dgut-sand);
 }
 
 .opportunities-tabs__panel-icon img {
@@ -306,8 +309,9 @@
 }
 
 .opportunities-tabs__panel-content a {
-  color: var(--dgut-red, #5b171a);
+  color: var(--dgut-charcoal);
   text-decoration: underline;
+  text-decoration-color: var(--dgut-sand);
   text-underline-offset: 3px;
 }
 
