@@ -9,10 +9,6 @@ $fields = dgut_page_fields();
 $page_id = get_queried_object_id();
 
 $hero_title = trim((string) ($fields['opportunities_hero_title'] ?? ''));
-if ($hero_title === '') {
-    $hero_title = get_the_title($page_id);
-}
-
 $hero_text = trim((string) ($fields['opportunities_hero_text'] ?? ''));
 $hero_button_link = $fields['opportunities_hero_button_link'] ?? [];
 $hero_image_id = (int) ($fields['opportunities_hero_image'] ?? 0);
@@ -20,10 +16,6 @@ $hero_badge = trim((string) ($fields['opportunities_hero_badge'] ?? ''));
 $hero_secondary_link = $fields['opportunities_hero_secondary_link'] ?? [];
 
 $opportunities_title = trim((string) ($fields['opportunities_title'] ?? ''));
-if ($opportunities_title === '') {
-    $opportunities_title = 'Можливості «ДГУ» для вас';
-}
-
 $opportunities_subtitle = trim((string) ($fields['opportunities_subtitle'] ?? ''));
 $opportunities_tabs = $fields['opportunities_tabs'] ?? [];
 $opportunities_tabs = is_array($opportunities_tabs) ? array_values(array_filter(
@@ -51,94 +43,113 @@ $normalize_link = static function (mixed $link): array {
 
 $hero_button = $normalize_link($hero_button_link);
 $secondary_link = $normalize_link($hero_secondary_link);
+$has_hero_content = $hero_title !== '' || $hero_text !== '' || $hero_button || $secondary_link;
+$has_hero = $has_hero_content || $hero_image_id > 0 || $hero_badge !== '';
+$has_opportunities_section = $opportunities_title !== '' || $opportunities_subtitle !== '' || $opportunities_tabs;
+$tabs_label = $opportunities_title !== '' ? $opportunities_title : __('Можливості', 'dgutheater');
 $hero_alt = $hero_image_id > 0 ? trim((string) get_post_meta($hero_image_id, '_wp_attachment_image_alt', true)) : '';
 if ($hero_alt === '') {
-    $hero_alt = wp_strip_all_tags(str_replace(["\r", "\n"], ' ', $hero_title));
+    $hero_alt_source = $hero_title !== '' ? $hero_title : get_the_title($page_id);
+    $hero_alt = wp_strip_all_tags(str_replace(["\r", "\n"], ' ', $hero_alt_source));
 }
 
 $component_id = 'opportunities-' . max(1, $page_id);
 ?>
 <main id="primary" class="site-main opportunities-page">
-    <section class="opportunities-hero">
-        <div class="opportunities-hero__content">
-            <h1 class="opportunities-hero__title"><?php echo nl2br(esc_html($hero_title)); ?></h1>
-
-            <?php if ($hero_text !== '') : ?>
-                <div class="opportunities-hero__text">
-                    <?php echo wp_kses_post(wpautop($hero_text)); ?>
-                </div>
-            <?php endif; ?>
-
-            <?php if ($hero_button || $secondary_link) : ?>
-                <div class="opportunities-hero__actions">
-                    <?php if ($hero_button) : ?>
-                        <a
-                            class="btn opportunities-hero__button"
-                            href="<?php echo esc_url($hero_button['url']); ?>"
-                            target="<?php echo esc_attr($hero_button['target'] !== '' ? $hero_button['target'] : '_self'); ?>"
-                            <?php echo $hero_button['target'] === '_blank' ? 'rel="noopener noreferrer"' : ''; ?>
-                        >
-                            <?php echo esc_html($hero_button['label']); ?>
-                        </a>
+    <?php if ($has_hero) : ?>
+        <section class="opportunities-hero<?php echo $has_hero_content ? '' : ' opportunities-hero--media-only'; ?>">
+            <?php if ($has_hero_content) : ?>
+                <div class="opportunities-hero__content">
+                    <?php if ($hero_title !== '') : ?>
+                        <h1 class="opportunities-hero__title"><?php echo nl2br(esc_html($hero_title)); ?></h1>
                     <?php endif; ?>
 
-                    <?php if ($secondary_link) : ?>
-                        <a
-                            class="opportunities-hero__secondary-link"
-                            href="<?php echo esc_url($secondary_link['url']); ?>"
-                            target="<?php echo esc_attr($secondary_link['target'] !== '' ? $secondary_link['target'] : '_self'); ?>"
-                            <?php echo $secondary_link['target'] === '_blank' ? 'rel="noopener noreferrer"' : ''; ?>
-                        >
-                            <?php echo esc_html($secondary_link['label']); ?>
-                        </a>
+                    <?php if ($hero_text !== '') : ?>
+                        <div class="opportunities-hero__text">
+                            <?php echo wp_kses_post(wpautop($hero_text)); ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ($hero_button || $secondary_link) : ?>
+                        <div class="opportunities-hero__actions">
+                            <?php if ($hero_button) : ?>
+                                <a
+                                    class="btn opportunities-hero__button"
+                                    href="<?php echo esc_url($hero_button['url']); ?>"
+                                    target="<?php echo esc_attr($hero_button['target'] !== '' ? $hero_button['target'] : '_self'); ?>"
+                                    <?php echo $hero_button['target'] === '_blank' ? 'rel="noopener noreferrer"' : ''; ?>
+                                >
+                                    <?php echo esc_html($hero_button['label']); ?>
+                                </a>
+                            <?php endif; ?>
+
+                            <?php if ($secondary_link) : ?>
+                                <a
+                                    class="opportunities-hero__secondary-link"
+                                    href="<?php echo esc_url($secondary_link['url']); ?>"
+                                    target="<?php echo esc_attr($secondary_link['target'] !== '' ? $secondary_link['target'] : '_self'); ?>"
+                                    <?php echo $secondary_link['target'] === '_blank' ? 'rel="noopener noreferrer"' : ''; ?>
+                                >
+                                    <?php echo esc_html($secondary_link['label']); ?>
+                                </a>
+                            <?php endif; ?>
+                        </div>
                     <?php endif; ?>
                 </div>
             <?php endif; ?>
-        </div>
 
-        <div class="opportunities-hero__media">
-            <?php if ($hero_image_id > 0) : ?>
-                <?php
-                echo wp_get_attachment_image($hero_image_id, 'dgut-hero-slide', false, [
-                    'class' => 'opportunities-hero__image',
-                    'alt' => $hero_alt,
-                    'loading' => 'eager',
-                    'fetchpriority' => 'high',
-                    'decoding' => 'async',
-                    'sizes' => '(max-width: 900px) 100vw, 62vw',
-                ]);
-                ?>
-            <?php endif; ?>
+            <div class="opportunities-hero__media">
+                <?php if ($hero_image_id > 0) : ?>
+                    <?php
+                    echo wp_get_attachment_image($hero_image_id, 'dgut-hero-slide', false, [
+                        'class' => 'opportunities-hero__image',
+                        'alt' => $hero_alt,
+                        'loading' => 'eager',
+                        'fetchpriority' => 'high',
+                        'decoding' => 'async',
+                        'sizes' => '(max-width: 900px) 100vw, 62vw',
+                    ]);
+                    ?>
+                <?php endif; ?>
 
-            <?php if ($hero_badge !== '') : ?>
-                <div class="opportunities-hero__badge">
-                    <?php echo nl2br(esc_html($hero_badge)); ?>
-                </div>
-            <?php endif; ?>
-        </div>
-    </section>
-
-    <section class="opportunities-tabs-section" aria-labelledby="<?php echo esc_attr($component_id); ?>-title">
-        <div class="container">
-            <header class="opportunities-tabs-section__header">
-                <h2 id="<?php echo esc_attr($component_id); ?>-title" class="opportunities-tabs-section__title">
-                    <?php echo esc_html($opportunities_title); ?>
-                </h2>
-
-                <?php if ($opportunities_subtitle !== '') : ?>
-                    <div class="opportunities-tabs-section__subtitle">
-                        <?php echo wp_kses_post(wpautop($opportunities_subtitle)); ?>
+                <?php if ($hero_badge !== '') : ?>
+                    <div class="opportunities-hero__badge">
+                        <?php echo nl2br(esc_html($hero_badge)); ?>
                     </div>
                 <?php endif; ?>
-            </header>
+            </div>
+        </section>
+    <?php endif; ?>
 
-            <?php if ($opportunities_tabs) : ?>
-                <div class="opportunities-tabs" data-opportunities-tabs>
-                    <div
-                        class="opportunities-tabs__list"
-                        role="tablist"
-                        aria-label="<?php echo esc_attr($opportunities_title); ?>"
-                    >
+    <?php if ($has_opportunities_section) : ?>
+        <section
+            class="opportunities-tabs-section"
+            <?php echo $opportunities_title !== '' ? 'aria-labelledby="' . esc_attr($component_id) . '-title"' : 'aria-label="' . esc_attr($tabs_label) . '"'; ?>
+        >
+            <div class="container">
+                <?php if ($opportunities_title !== '' || $opportunities_subtitle !== '') : ?>
+                    <header class="opportunities-tabs-section__header">
+                        <?php if ($opportunities_title !== '') : ?>
+                            <h2 id="<?php echo esc_attr($component_id); ?>-title" class="opportunities-tabs-section__title">
+                                <?php echo esc_html($opportunities_title); ?>
+                            </h2>
+                        <?php endif; ?>
+
+                        <?php if ($opportunities_subtitle !== '') : ?>
+                            <div class="opportunities-tabs-section__subtitle">
+                                <?php echo wp_kses_post(wpautop($opportunities_subtitle)); ?>
+                            </div>
+                        <?php endif; ?>
+                    </header>
+                <?php endif; ?>
+
+                <?php if ($opportunities_tabs) : ?>
+                    <div class="opportunities-tabs" data-opportunities-tabs>
+                        <div
+                            class="opportunities-tabs__list"
+                            role="tablist"
+                            aria-label="<?php echo esc_attr($tabs_label); ?>"
+                        >
                         <?php foreach ($opportunities_tabs as $index => $tab) : ?>
                             <?php
                             $tab_number = $index + 1;
@@ -158,9 +169,9 @@ $component_id = 'opportunities-' . max(1, $page_id);
                                 <?php echo esc_html((string) $tab['tab_title']); ?>
                             </button>
                         <?php endforeach; ?>
-                    </div>
+                        </div>
 
-                    <div class="opportunities-tabs__panels">
+                        <div class="opportunities-tabs__panels">
                         <?php foreach ($opportunities_tabs as $index => $tab) : ?>
                             <?php
                             $tab_number = $index + 1;
@@ -194,15 +205,18 @@ $component_id = 'opportunities-' . max(1, $page_id);
 
                                 <div class="opportunities-tabs__panel-content">
                                     <h3><?php echo esc_html($tab_title); ?></h3>
-                                    <?php echo wp_kses_post($tab_content); ?>
+                                    <?php if ($tab_content !== '') : ?>
+                                        <?php echo wp_kses_post($tab_content); ?>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         <?php endforeach; ?>
+                        </div>
                     </div>
-                </div>
-            <?php endif; ?>
-        </div>
-    </section>
+                <?php endif; ?>
+            </div>
+        </section>
+    <?php endif; ?>
 </main>
 <?php
 get_footer();

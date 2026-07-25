@@ -11,6 +11,10 @@
   background: var(--dgut-cream);
 }
 
+.opportunities-hero--media-only {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .opportunities-hero__content {
   position: relative;
   z-index: 2;
