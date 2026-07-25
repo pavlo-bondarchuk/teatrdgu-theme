@@ -24,7 +24,9 @@ $archive_link_target = is_array($archive_link) ? (string) ($archive_link['target
                 <p class="eyebrow dgut-about__eyebrow"><?php echo esc_html($about_eyebrow); ?></p>
             <?php endif; ?>
             <?php if ($about_title !== '') : ?>
-                <h2 class="section-title dgut-about__title"><?php echo esc_html($about_title); ?></h2>
+                <h2 class="section-title dgut-about__title">
+                    <?php echo wp_kses_post($about_title); ?>
+                </h2>
             <?php endif; ?>
             <?php if ($about_text_1 !== '' || $about_text_2 !== '') : ?>
                 <div class="dgut-about__copy">
@@ -51,7 +53,7 @@ $archive_link_target = is_array($archive_link) ? (string) ($archive_link['target
                 </div>
             <?php endif; ?>
             <?php if ($archive_link_url !== '') : ?>
-                <a class="btn dgut-about__button" href="<?php echo esc_url($archive_link_url); ?>"<?php echo $archive_link_target !== '' ? ' target="' . esc_attr($archive_link_target) . '"' : ''; ?><?php echo $archive_link_target === '_blank' ? ' rel="noopener noreferrer"' : ''; ?>>
+                <a class="btn dgut-about__button" href="<?php echo esc_url($archive_link_url); ?>" <?php echo $archive_link_target !== '' ? ' target="' . esc_attr($archive_link_target) . '"' : ''; ?><?php echo $archive_link_target === '_blank' ? ' rel="noopener noreferrer"' : ''; ?>>
                     <?php echo esc_html($archive_link_title ?: __('Про театр', 'dgutheater')); ?> <span aria-hidden="true">→</span>
                 </a>
             <?php endif; ?>

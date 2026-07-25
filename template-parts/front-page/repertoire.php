@@ -22,7 +22,7 @@ $archive_link_target = is_array($archive_link) ? (string) ($archive_link['target
             <?php endif; ?>
             <div class="dgut-section-actions">
                 <?php if ($archive_link_url !== '') : ?>
-                    <a class="dgut-section-link" href="<?php echo esc_url($archive_link_url); ?>"<?php echo $archive_link_target !== '' ? ' target="' . esc_attr($archive_link_target) . '"' : ''; ?><?php echo $archive_link_target === '_blank' ? ' rel="noopener noreferrer"' : ''; ?>>
+                    <a class="dgut-section-link" href="<?php echo esc_url($archive_link_url); ?>" <?php echo $archive_link_target !== '' ? ' target="' . esc_attr($archive_link_target) . '"' : ''; ?><?php echo $archive_link_target === '_blank' ? ' rel="noopener noreferrer"' : ''; ?>>
                         <?php echo esc_html($archive_link_title ?: __('Весь репертуар', 'dgutheater')); ?> <span aria-hidden="true">→</span>
                     </a>
                 <?php endif; ?>

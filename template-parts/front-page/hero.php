@@ -33,7 +33,6 @@ if (!dgut_front_bool($fields, 'home_hero_show', true) || empty($hero_slides)) {
                 <div class="container dgut-hero__content">
                     <p class="eyebrow dgut-hero__eyebrow"><?php echo esc_html($slide['genre'] ?? ''); ?></p>
                     <div class="display dgut-hero__title"><?php echo esc_html($slide['title']); ?></div>
-                    <p class="dgut-hero__desc"><?php echo esc_html($slide['excerpt'] ?? ''); ?></p>
                     <?php if (!empty($slide['credits'])) : ?>
                         <p class="dgut-hero__credits"><?php echo esc_html((string) $slide['credits']); ?></p>
                     <?php endif; ?>

@@ -345,7 +345,7 @@
   overflow: hidden;
   margin: 0;
   font-family: var(--dgut-body);
-  font-weight: 500;
+  font-weight: 300;
   text-transform: none;
   font-size: 15px;
   line-height: 1.25;
@@ -408,12 +408,12 @@
   scroll-snap-align: start;
   border: 0;
   background: var(--dgut-cream);
-  transform: none
+  transform: none;
 }
 
 .dgut-news-card:hover {
   border-color: transparent;
-  transform: none
+  transform: none;
 }
 
 .dgut-news-card a {
@@ -620,11 +620,12 @@
 }
 
 .dgut-team-card {
-  scroll-snap-align: start
+  scroll-snap-align: start;
+  cursor: pointer;
 }
 
 .dgut-team-card__image {
-  aspect-ratio: 4/5
+  aspect-ratio: 4/5;
 }
 
 .dgut-team-card__image img {
@@ -877,7 +878,7 @@
     background: var(--dgut-cream)
   }
 
-  .dgut-hero__controls > .dgut-hero__arrow {
+  .dgut-hero__controls>.dgut-hero__arrow {
     display: none
   }
 }
