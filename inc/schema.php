@@ -228,7 +228,9 @@ function dgut_schema_performance_event(int $post_id, string $organization_id): a
     $image = get_the_post_thumbnail_url($post, 'full');
     $date_text = function_exists('get_field') ? (string) get_field('dgut_performance_date', $post_id) : '';
     $start_date = dgut_schema_parse_date($date_text);
-    $services = dgut_schema_performance_services($post_id);
+    if ($start_date === '') {
+        return [];
+    }
 
     $event = [
         '@type' => ['Event', 'TheaterEvent'],
@@ -243,60 +245,10 @@ function dgut_schema_performance_event(int $post_id, string $organization_id): a
         'organizer' => ['@id' => $organization_id],
         'performer' => ['@id' => $organization_id],
         'inLanguage' => get_bloginfo('language') ?: 'uk',
+        'startDate' => $start_date,
     ];
 
-    if ($start_date !== '') {
-        $event['startDate'] = $start_date;
-    }
-
-    if (!empty($services)) {
-        $event['offers'] = array_values(array_map(static function (array $service): array {
-            return array_filter([
-                '@type' => 'Offer',
-                'url' => esc_url_raw((string) ($service['url'] ?? '')),
-                'name' => trim((string) ($service['name'] ?? 'Квитки')),
-                'availability' => 'https://schema.org/InStock',
-                'priceCurrency' => 'UAH',
-                'seller' => [
-                    '@type' => 'Organization',
-                    'name' => trim((string) ($service['name'] ?? 'Квитковий сервіс')),
-                ],
-            ]);
-        }, $services));
-    }
-
     return array_filter($event);
-}
-
-function dgut_schema_performance_services(int $post_id): array
-{
-    if (!function_exists('get_field')) {
-        return [];
-    }
-
-    $rows = get_field('dgut_performance_ticket_services', $post_id);
-    if (!is_array($rows)) {
-        return [];
-    }
-
-    $services = [];
-    foreach ($rows as $row) {
-        if (!is_array($row)) {
-            continue;
-        }
-
-        $url = trim((string) ($row['url'] ?? ''));
-        if ($url === '') {
-            continue;
-        }
-
-        $services[] = [
-            'name' => trim((string) ($row['name'] ?? 'Квитки')),
-            'url' => $url,
-        ];
-    }
-
-    return $services;
 }
 
 function dgut_schema_news_article(int $post_id, string $organization_id): array
