@@ -188,11 +188,12 @@
                 "class": "",
                 "id": ""
             },
-            "rows": 2,
             "default_value": "",
-            "new_lines": "",
             "maxlength": "",
-            "placeholder": ""
+            "allow_in_bindings": 1,
+            "rows": 2,
+            "placeholder": "",
+            "new_lines": "br"
         },
         {
             "key": "field_dgut_footer_address",

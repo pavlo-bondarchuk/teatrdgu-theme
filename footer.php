@@ -4,7 +4,9 @@
             <a class="site-footer__logo" href="<?php echo esc_url(home_url('/')); ?>" aria-label="<?php bloginfo('name'); ?>">
                 <img src="<?php echo esc_url(DGUTHEME_URI . '/assets/img/logo-dark.svg'); ?>" width="106" height="62" alt="<?php bloginfo('name'); ?>" loading="lazy" decoding="async">
             </a>
-            <p><?php echo esc_html(dgut_option('dgut_footer_tagline', __('Дніпро Гордість України - культурний бренд міста', 'dgutheater'))); ?></p>
+            <p>
+                <?php echo wp_kses_post((string) dgut_option('dgut_footer_tagline', __('Дніпро Гордість України - культурний бренд міста', 'dgutheater'))); ?>
+            </p>
             <div class="site-footer__socials" aria-label="<?php esc_attr_e('Social links', 'dgutheater'); ?>">
                 <?php foreach (get_field('socials', 'options') as $social) : ?>
                     <a href="<?php echo esc_url($social['social_link']); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr($social['social_type']); ?>">
