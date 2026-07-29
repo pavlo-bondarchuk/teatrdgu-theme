@@ -6,6 +6,10 @@ $date = dgut_performance_text_field('dgut_performance_date');
 $duration = dgut_performance_text_field('dgut_performance_duration');
 $age_rating = function_exists('get_field') ? trim((string) get_field('dgut_performance_age')) : '';
 $video_url = dgut_performance_text_field('dgut_performance_video_url');
+$video_poster = dgut_get_image_from_field(
+    dgut_performance_field('dgut_performance_video_poster'),
+    get_the_post_thumbnail_url(get_the_ID(), 'full') ?: ''
+);
 $about_eyebrow = dgut_performance_text_field('dgut_performance_about_eyebrow');
 $about_title = dgut_performance_text_field('dgut_performance_about_title');
 $about_text = dgut_performance_text_field('dgut_performance_about_text');
@@ -23,7 +27,7 @@ $services = dgut_performance_services();
 $ticket_services = dgut_performance_ticket_services($services, '');
 $terms = wp_get_post_terms(get_the_ID(), 'performance_genre', ['fields' => 'names']);
 $has_ticket_links = !empty($ticket_services);
-$video_embed = dgut_performance_video_embed($video_url);
+$video_embed = dgut_performance_video_embed($video_url, $video_poster);
 $breadcrumbs = dgut_yoast_breadcrumbs();
 ?>
 <main id="primary" class="site-main dgut-event">

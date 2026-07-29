@@ -727,7 +727,7 @@ function dgut_performance_gallery(): array
     return $gallery;
 }
 
-function dgut_performance_video_embed(string $video_url): string
+function dgut_performance_video_embed(string $video_url, string $poster_url = ''): string
 {
     if ($video_url === '') {
         return '';
@@ -749,7 +749,13 @@ function dgut_performance_video_embed(string $video_url): string
     }
 
     if (str_ends_with(strtolower(parse_url($video_url, PHP_URL_PATH) ?: ''), '.mp4')) {
-        return sprintf('<video controls preload="metadata"><source src="%s" type="video/mp4"></video>', esc_url($video_url));
+        $poster_attribute = $poster_url !== '' ? sprintf(' poster="%s"', esc_url($poster_url)) : '';
+
+        return sprintf(
+            '<video controls preload="metadata"%s><source src="%s" type="video/mp4"></video>',
+            $poster_attribute,
+            esc_url($video_url)
+        );
     }
 
     $embed = wp_oembed_get($video_url);
