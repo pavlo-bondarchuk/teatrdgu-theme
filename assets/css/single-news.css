@@ -8,29 +8,6 @@
     background: var(--dgut-ivory);
 }
 
-.dgut-breadcrumbs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    align-items: center;
-    margin-bottom: clamp(32px, 5vw, 56px);
-    color: var(--dgut-taupe);
-    font: 500 13px/1.4 var(--dgut-body);
-}
-
-.dgut-breadcrumbs a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.dgut-breadcrumbs a:hover {
-    color: var(--dgut-charcoal);
-}
-
-.dgut-breadcrumbs span:last-child {
-    color: var(--dgut-charcoal);
-}
-
 .dgut-single-news-hero__grid {
     display: grid;
     grid-template-columns: 1fr;

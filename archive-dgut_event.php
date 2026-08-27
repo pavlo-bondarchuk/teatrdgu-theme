@@ -21,7 +21,7 @@ $breadcrumbs = dgut_yoast_breadcrumbs('dgut-breadcrumbs dgut-afisha-breadcrumbs'
 ?>
 <main id="primary" class="site-main dgut-afisha-page">
     <?php if ($breadcrumbs !== '') : ?>
-        <div class="container dgut-afisha-breadcrumbs-wrap"><?php echo $breadcrumbs; ?></div>
+        <div class="container dgut-breadcrumbs-wrap dgut-afisha-breadcrumbs-wrap"><?php echo $breadcrumbs; ?></div>
     <?php endif; ?>
 
     <section class="dgut-afisha-archive">

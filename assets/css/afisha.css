@@ -4,20 +4,6 @@
   background: var(--dgut-ivory)
 }
 
-.dgut-afisha-breadcrumbs-wrap {
-  padding-top: 40px
-}
-
-.dgut-afisha-breadcrumbs,
-.dgut-afisha-breadcrumbs #breadcrumbs {
-  color: var(--dgut-taupe);
-  font: 500 12px/20px var(--dgut-body)
-}
-
-.dgut-afisha-breadcrumbs a:hover {
-  color: var(--dgut-charcoal)
-}
-
 .dgut-afisha-archive {
   padding-block: 72px 96px
 }
@@ -482,10 +468,6 @@
 }
 
 @media (max-width: 767px) {
-  .dgut-afisha-breadcrumbs-wrap {
-    padding-top: 24px
-  }
-
   .dgut-afisha-archive {
     padding-block: 48px 64px
   }

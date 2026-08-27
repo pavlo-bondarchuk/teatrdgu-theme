@@ -16,16 +16,20 @@ $related_query = new WP_Query([
 ?>
 
 <main id="primary" class="site-main dgut-single-news-page">
+    <div class="container dgut-breadcrumbs-wrap">
+        <nav class="dgut-breadcrumbs" aria-label="<?php esc_attr_e('Хлібні крихти', 'dgutheater'); ?>">
+            <span>
+                <span><a href="<?php echo esc_url(home_url('/')); ?>"><?php esc_html_e('Головна', 'dgutheater'); ?></a></span>
+                <?php echo dgut_breadcrumb_separator_icon(); ?>
+                <span><a href="<?php echo esc_url($news_archive_url); ?>"><?php esc_html_e('Новини', 'dgutheater'); ?></a></span>
+                <?php echo dgut_breadcrumb_separator_icon(); ?>
+                <span class="breadcrumb_last" aria-current="page"><?php the_title(); ?></span>
+            </span>
+        </nav>
+    </div>
+
     <section class="dgut-single-news-hero">
         <div class="container">
-            <nav class="dgut-breadcrumbs" aria-label="<?php esc_attr_e('Хлібні крихти', 'dgutheater'); ?>">
-                <a href="<?php echo esc_url(home_url('/')); ?>"><?php esc_html_e('Головна', 'dgutheater'); ?></a>
-                <span aria-hidden="true">›</span>
-                <a href="<?php echo esc_url($news_archive_url); ?>"><?php esc_html_e('Новини', 'dgutheater'); ?></a>
-                <span aria-hidden="true">›</span>
-                <span><?php the_title(); ?></span>
-            </nav>
-
             <div class="dgut-single-news-hero__grid">
                 <div class="dgut-single-news-hero__content">
                     <div class="dgut-news-card__meta">

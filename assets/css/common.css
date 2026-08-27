@@ -89,6 +89,52 @@ a:focus-visible {
   padding-inline: 40px
 }
 
+.dgut-breadcrumbs,
+.dgut-breadcrumbs #breadcrumbs {
+  min-width: 0;
+  color: var(--dgut-taupe);
+  font: 500 12px/20px var(--dgut-body)
+}
+
+.dgut-breadcrumbs-wrap {
+  padding-top: 40px
+}
+
+.dgut-breadcrumbs>span,
+.dgut-breadcrumbs #breadcrumbs>span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0
+}
+
+.dgut-breadcrumbs a {
+  color: inherit;
+  text-decoration: none;
+  transition: color .18s ease
+}
+
+.dgut-breadcrumbs a:hover,
+.dgut-breadcrumbs a:focus-visible {
+  color: var(--dgut-charcoal)
+}
+
+.dgut-breadcrumbs .breadcrumb_last {
+  display: block;
+  max-width: min(52vw, 520px);
+  overflow: hidden;
+  color: var(--dgut-charcoal);
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
+
+.dgut-breadcrumb-separator {
+  flex: 0 0 12px;
+  width: 12px;
+  height: 12px;
+  color: currentColor
+}
+
 .section {
   padding-block: 80px
 }
@@ -574,6 +620,10 @@ a:focus-visible {
 
   .container {
     padding-inline: 24px
+  }
+
+  .dgut-breadcrumbs-wrap {
+    padding-top: 24px
   }
 
   .admin-bar .site-header {

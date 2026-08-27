@@ -11,7 +11,7 @@ $ticket_disabled = in_array($event['status_key'] ?? '', ['sold_out', 'cancelled'
 ?>
 <main id="primary" class="site-main dgut-afisha-page dgut-afisha-single">
     <?php if ($breadcrumbs !== '') : ?>
-        <div class="container dgut-afisha-breadcrumbs-wrap"><?php echo $breadcrumbs; ?></div>
+        <div class="container dgut-breadcrumbs-wrap dgut-afisha-breadcrumbs-wrap"><?php echo $breadcrumbs; ?></div>
     <?php endif; ?>
 
     <section class="section dgut-afisha-single__hero">

@@ -2,37 +2,6 @@
     background: var(--dgut-ivory);
 }
 
-.dgut-event-breadcrumbs {
-    padding-top: 40px;
-    padding-inline: 24px;
-}
-
-.dgut-breadcrumbs,
-.dgut-breadcrumbs #breadcrumbs {
-    font: 500 12px/1.45 var(--dgut-body);
-    color: var(--dgut-taupe);
-}
-
-.dgut-breadcrumbs a {
-    color: var(--dgut-taupe);
-}
-
-.dgut-breadcrumbs a:hover {
-    color: var(--dgut-charcoal);
-}
-
-.dgut-breadcrumbs>span {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.dgut-breadcrumb-separator {
-    width: 12px;
-    height: 12px;
-    vertical-align: -2px;
-}
-
 .dgut-event-hero {
     padding-block: 32px 64px;
 }

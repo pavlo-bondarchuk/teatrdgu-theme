@@ -5,6 +5,6 @@ if ($breadcrumbs === '') {
     return;
 }
 ?>
-<div class="dgut-repertoire-breadcrumbs-wrap">
+<div class="container dgut-breadcrumbs-wrap dgut-repertoire-breadcrumbs-wrap">
     <?php echo $breadcrumbs; ?>
 </div>

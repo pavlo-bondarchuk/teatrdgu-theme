@@ -32,7 +32,7 @@ $breadcrumbs = dgut_yoast_breadcrumbs();
 ?>
 <main id="primary" class="site-main dgut-event">
     <?php if ($breadcrumbs !== '') : ?>
-        <div class="container dgut-event-breadcrumbs">
+        <div class="container dgut-breadcrumbs-wrap dgut-event-breadcrumbs">
             <?php echo $breadcrumbs; ?>
         </div>
     <?php endif; ?>
