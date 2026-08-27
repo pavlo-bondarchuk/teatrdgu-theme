@@ -123,6 +123,7 @@
     left: 12px;
     max-width: calc(100% - 24px);
     display: flex;
+    /* flex-wrap: wrap; */
     gap: 6px;
 }
 

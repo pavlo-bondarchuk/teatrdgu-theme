@@ -25,8 +25,7 @@ $archive_link_target = is_array($archive_link) ? (string) ($archive_link['target
             <?php endif; ?>
             <?php if ($about_title !== '') : ?>
                 <h2 class="section-title dgut-about__title">
-                    <?php echo wp_kses_post($about_title); ?>
-                </h2>
+                    <?php echo $about_title; ?></h2>
             <?php endif; ?>
             <?php if ($about_text_1 !== '' || $about_text_2 !== '') : ?>
                 <div class="dgut-about__copy">

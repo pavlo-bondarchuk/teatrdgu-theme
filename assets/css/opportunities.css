@@ -30,7 +30,7 @@
   max-width: 650px;
   margin: 0;
   font-family: var(--dgut-display);
-  font-size: clamp(2.4rem, 4.3vw, 4.25rem);
+  font-size: clamp(2.4rem, 4.3vw, 3.25rem);
   font-weight: 300;
   line-height: 1.02;
   color: var(--dgut-charcoal);

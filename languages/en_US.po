@@ -1,317 +1,579 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Teatr DGU Theme\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-01 14:23+0000\n"
-"PO-Revision-Date: 2026-07-01 18:17+0000\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/teatrdgu-theme\n"
+"POT-Creation-Date: 2026-08-27T13:28:13+00:00\n"
+"PO-Revision-Date: 2026-07-06 13:32+0000\n"
 "Last-Translator: \n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.8.5; wp-7.0; php-8.2.29\n"
-"X-Domain: dgutheater"
+"X-Loco-Version: 2.8.5; wp-7.0; php-8.2.31\n"
+"X-Domain: dgutheater\n"
 
-#: inc/post-types.php:34
-msgid "Add team member"
-msgstr ""
+#. Theme Name of the theme
+#: style.css
+msgid "Teatr DGU Theme"
+msgstr "Teatr «DGU» Theme"
 
-#: index.php:16
-msgid "Content is being prepared"
-msgstr ""
-
-#. Name of the template
-#: template-coming-soon.php:2
-msgid "Development placeholder"
-msgstr ""
-
-#: inc/post-types.php:35
-msgid "Edit team member"
-msgstr ""
-
-#: footer.php:24
-msgid "Footer navigation"
-msgstr ""
-
-#: header.php:57
-msgid "Header tools"
-msgstr ""
-
-#: template-parts/front-page/hero.php:33
-msgid "Hero slides"
-msgstr ""
-
-#. URI of the theme
+#. Theme URI of the theme
+#: style.css
 msgid "https://teatrdgu.local/"
 msgstr ""
 
-#: header.php:69
-msgid "Language switcher"
+#. Description of the theme
+#: style.css
+msgid ""
+"Optimized WordPress theme for Theatre DGU, ported from the static prototype."
+msgstr ""
+"Optimized WordPress theme for Theatre «DGU», ported from the static "
+"prototype."
+
+#. Author of the theme
+#: style.css
+msgid "Theatre DGU"
+msgstr "Theatre «DGU»"
+
+#: archive-dgut_event.php:30
+msgid "Найближчі вистави та культурні події"
+msgstr "Upcoming performances and cultural events"
+
+#: archive-dgut_event.php:31 inc/post-types.php:32 inc/post-types.php:42
+msgid "Афіша"
+msgstr "What's on"
+
+#: archive-dgut_event.php:35
+msgid "Оберіть місяць"
+msgstr "Choose a month"
+
+#: archive-dgut_event.php:63 archive-dgut_event.php:89
+#: template-parts/front-page/hero.php:40
+#: template-parts/front-page/repertoire.php:61
+msgid "Детальніше"
+msgstr "More details"
+
+#. Template Name of the theme
+#: archive-dgut_event.php:64 archive-dgut_event.php:89 inc/afisha.php:237
+#: single-performance.php:269
+msgid "Квитки"
+msgstr "Tickets"
+
+#: archive-dgut_event.php:97
+msgid "У цьому місяці подій поки немає"
+msgstr "There are no events scheduled for this month yet"
+
+#: archive-dgut_event.php:98
+msgid "Оберіть інший місяць або перегляньте репертуар театру."
+msgstr "Choose another month or browse the theatre repertoire."
+
+#: archive-dgut_event.php:99 template-tickets.php:16 template-tickets.php:67
+msgid "Переглянути репертуар"
 msgstr ""
 
-#: header.php:41
+#. Template Name of the theme
+#: archive-performance.php:18 template-parts/repertoire/grid.php:10
+msgid "Репертуар"
+msgstr "Repertoire"
+
+#: footer.php:21
+msgid "Дніпро Гордість України - культурний бренд міста"
+msgstr ""
+
+#: footer.php:23 header.php:108
+msgid "Social links"
+msgstr ""
+
+#: footer.php:34
+msgid "Навігація"
+msgstr "Navigation"
+
+#: footer.php:39
+msgid "Footer navigation"
+msgstr ""
+
+#. Template Name of the theme
+#: footer.php:48 template-contacts.php:10
+msgid "Контакти"
+msgstr "Contacts"
+
+#: footer.php:65 template-contacts.php:44
+msgid "Графік роботи"
+msgstr "Work schedule"
+
+#: footer.php:70
+msgid "Усі права захищені."
+msgstr "All rights reserved."
+
+#: front-page.php:22
+msgid "Театр ДГУ - театр і культурна платформа Дніпра"
+msgstr "«DGU» Theater - theater and cultural platform of Dnipro"
+
+#: header.php:14
+msgid "Skip to content"
+msgstr ""
+
+#: header.php:76
 msgid "Menu"
 msgstr ""
 
-#. Description of the theme
+#: header.php:79
+msgid "Primary navigation"
+msgstr ""
+
+#: header.php:107
+msgid "Header tools"
+msgstr ""
+
+#: header.php:119
+msgid "Language switcher"
+msgstr ""
+
+#: helpers.php:363 inc/helpers.php:387 template-parts/front-page/about.php:56
+msgid "Про театр"
+msgstr ""
+
+#: helpers.php:365 inc/helpers.php:389
+msgid "Український театр і культурна платформа Дніпра"
+msgstr ""
+
+#: helpers.php:382 inc/helpers.php:406
+msgid "Що ми робимо"
+msgstr ""
+
+#: helpers.php:383 inc/helpers.php:407
+msgid "Театр, проєкти та місто"
+msgstr ""
+
+#: helpers.php:402 inc/helpers.php:426
+msgid "Серед наших ініціатив"
+msgstr ""
+
+#: helpers.php:403 inc/helpers.php:427
+msgid "Культурна робота поза сценою"
+msgstr ""
+
+#: helpers.php:524 inc/helpers.php:548 single-post.php:21
+msgid "Хлібні крихти"
+msgstr ""
+
+#: helpers.php:653 inc/helpers.php:677 single-dgut_event.php:37
+#: single-performance.php:100 template-tickets.php:10
+msgid "Купити квиток"
+msgstr "Buy a ticket"
+
+#: home.php:22 home.php:31 single-post.php:6 single-post.php:24
+#: single-post.php:132
+msgid "Новини"
+msgstr "News"
+
+#: home.php:65 single-post.php:165 template-parts/front-page/news.php:52
+msgid "Читати"
+msgstr "Read More"
+
+#: home.php:79
+msgid "← Назад"
+msgstr "← Back"
+
+#: home.php:80
+msgid "Далі →"
+msgstr "Next →"
+
+#: home.php:85
+#, fuzzy
+msgid "Пагінація новин"
+msgstr "Navigation"
+
+#: home.php:92
+msgid "Новин поки немає."
+msgstr "No news yet."
+
+#: inc/afisha.php:79
+#, fuzzy
+msgid "Є квитки"
+msgstr "Tickets"
+
+#: inc/afisha.php:80
+#, fuzzy
+msgid "Мало квитків"
+msgstr "Go to tickets"
+
+#: inc/afisha.php:81
+msgid "Продано"
+msgstr "Sold out"
+
+#: inc/afisha.php:82
+msgid "Перенесено"
+msgstr "Postponed"
+
+#: inc/afisha.php:83
+msgid "Скасовано"
+msgstr "Cancelled"
+
+#: inc/afisha.php:122
+msgid "Подія"
+msgstr "Event"
+
+#: inc/afisha.php:231
+#, fuzzy
+msgid "Назва події або вистави"
+msgstr "Event or performance title"
+
+#: inc/afisha.php:235
+#, fuzzy
+msgid "Дата і час"
+msgstr "Date and time"
+
+#: inc/afisha.php:236
+#, fuzzy
+msgid "Вистава"
+msgstr "Performance"
+
+#: inc/maintenance.php:85
+msgid "Сайт незабаром відкриється"
+msgstr ""
+
+#: inc/maintenance.php:87 template-coming-soon.php:49
 msgid ""
-"Optimized WordPress theme for Theatre DGU, ported from the static prototype."
+"Ми працюємо над новим сайтом сучасної культурної платформи — простором для "
+"театру, діалогу та натхнення. Скоро тут з’являться репертуар, події та "
+"новини."
+msgstr ""
+"We are working on a new website for a modern cultural platform — a space for "
+"theater, dialogue, and inspiration. Repertoire, events, and news will be "
+"available here soon."
+
+#: inc/post-types.php:9
+msgid "Performances"
 msgstr ""
 
 #: inc/post-types.php:10
 msgid "Performance"
 msgstr ""
 
-#: inc/post-types.php:23
-msgid "Performance genre"
-msgstr ""
-
 #: inc/post-types.php:22
 msgid "Performance genres"
 msgstr ""
 
-#: inc/post-types.php:9
-msgid "Performances"
-msgstr ""
-
-#: inc/setup.php:20
-msgid "Primary menu"
-msgstr ""
-
-#: header.php:44
-msgid "Primary navigation"
-msgstr ""
-
-#: header.php:14
-msgid "Skip to content"
-msgstr ""
-
-#: header.php:58 footer.php:8
-msgid "Social links"
-msgstr ""
-
-#: inc/post-types.php:32
-msgid "Team"
+#: inc/post-types.php:23
+msgid "Performance genre"
 msgstr ""
 
 #: inc/post-types.php:33
+msgid "Подія афіші"
+msgstr "Event listing"
+
+#: inc/post-types.php:34
+msgid "Додати подію"
+msgstr "Add event"
+
+#: inc/post-types.php:35
+msgid "Додати подію афіші"
+msgstr "Add event listing"
+
+#: inc/post-types.php:36
+msgid "Редагувати подію афіші"
+msgstr "Edit event listing"
+
+#: inc/post-types.php:37
+msgid "Нова подія афіші"
+msgstr "New event listing"
+
+#: inc/post-types.php:38
+msgid "Переглянути подію"
+msgstr "View event"
+
+#: inc/post-types.php:39
+msgid "Шукати в афіші"
+msgstr "Search events"
+
+#: inc/post-types.php:40
+msgid "Подій не знайдено"
+msgstr "No events found"
+
+#: inc/post-types.php:41
+msgid "Уся афіша"
+msgstr "All events"
+
+#: inc/post-types.php:54
+msgid "Типи подій"
+msgstr "Event types"
+
+#: inc/post-types.php:55
+msgid "Тип події"
+msgstr "Event type"
+
+#: inc/post-types.php:65
+msgid "Team"
+msgstr ""
+
+#: inc/post-types.php:66
 msgid "Team member"
 msgstr ""
 
-#. Name of the theme
-msgid "Teatr DGU Theme"
+#: inc/post-types.php:67
+msgid "Add team member"
 msgstr ""
 
-#. Author of the theme
-msgid "Theatre DGU"
+#: inc/post-types.php:68
+msgid "Edit team member"
 msgstr ""
 
-#: single-performance.php:120
-msgid "Акторський склад"
+#: inc/setup.php:29
+msgid "Primary menu"
 msgstr ""
 
-#: template-parts/front-page/repertoire.php:26
-msgid "Весь репертуар"
+#: index.php:16
+msgid "Content is being prepared"
 msgstr ""
 
-#: single-performance.php:252
-msgid "Готові побачити виставу?"
-msgstr "Ready to see the show?"
-
-#: footer.php:50
-msgid "Графік роботи"
-msgstr "Work schedule"
-
-#: single-performance.php:59
+#: single-dgut_event.php:30 single-performance.php:72
 msgid "Дата"
 msgstr "Date"
 
-#: template-parts/front-page/hero.php:28
-#: template-parts/front-page/repertoire.php:50
-msgid "Детальніше"
-msgstr ""
+#: single-dgut_event.php:31
+msgid "Час"
+msgstr "Time"
 
-#: footer.php:7
-msgid "Дніпро Гордість України - культурний бренд міста"
-msgstr ""
+#: single-dgut_event.php:32
+msgid "Місце"
+msgstr "Venue"
 
-#: single-performance.php:142
+#: single-dgut_event.php:33 single-performance.php:87
+msgid "Тривалість"
+msgstr "Duration"
+
+#: single-dgut_event.php:34
+#, fuzzy
+msgid "Вартість"
+msgstr "Price"
+
+#: single-dgut_event.php:47
+msgid "Про подію"
+msgstr "About the event"
+
+#: single-dgut_event.php:47
+msgid "Подробиці"
+msgstr "Details"
+
+#: single-dgut_event.php:56
+#, fuzzy
+msgid "У репертуарі"
+msgstr "In the repertoire"
+
+#: single-dgut_event.php:57
+#, fuzzy
+msgid "Про виставу"
+msgstr "About the performance"
+
+#: single-dgut_event.php:65
+msgid "Ще можна побачити"
+msgstr "See it again"
+
+#: single-dgut_event.php:66
+msgid "Інші дати"
+msgstr "Other dates"
+
+#: single-performance.php:132
+msgid "На сцені"
+msgstr "On stage"
+
+#: single-performance.php:133
+msgid "Акторський склад"
+msgstr "Cast"
+
+#: single-performance.php:155
 msgid "За лаштунками"
 msgstr "Backstage"
 
-#: single-performance.php:250
+#: single-performance.php:156
+msgid "Постановча команда"
+msgstr "Production team"
+
+#: single-performance.php:193
+msgid "Попередні фото"
+msgstr "Previous photos"
+
+#: single-performance.php:194
+msgid "Наступні фото"
+msgstr "Next photos"
+
+#: single-performance.php:267
+msgid "Швидкий перехід до квитків"
+msgstr ""
+
+#: single-performance.php:268
 msgid "Закрити"
 msgstr ""
 
-#: single-performance.php:251
-msgid "Квитки"
-msgstr "Tickets"
+#: single-performance.php:270
+msgid "Готові побачити виставу?"
+msgstr "Ready to see the show?"
 
-#: footer.php:33
-msgid "Контакти"
-msgstr "Contacts"
+#: single-performance.php:273
+msgid "Перейти до квитків"
+msgstr "Go to tickets"
+
+#: single-post.php:22
+msgid "Головна"
+msgstr "Home"
+
+#: single-post.php:75
+msgid "Фотогалерея"
+msgstr "Photo gallery"
+
+#: single-post.php:120
+msgid "Читайте також"
+msgstr "Read also"
+
+#: single-post.php:123 template-parts/front-page/news.php:21
+msgid "Усі новини"
+msgstr "All news"
+
+#. Template Name of the theme
+msgid "Про нас"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Development placeholder"
+msgstr ""
+
+#: template-coming-soon.php:11
+msgid "Офіційний сайт Театру ДГУ незабаром відкриється"
+msgstr "The official website of the «DGU» Theater will be launched soon"
 
 #: template-coming-soon.php:39
 msgid "Культурна платформа"
 msgstr ""
 
-#: inc/helpers.php:203
-msgid "Культурна робота поза сценою"
-msgstr ""
+#: template-coming-soon.php:41
+msgid "Офіційний сайт Театру ДГУ"
+msgstr "Official website of the «DGU» Theater"
 
-#: single-performance.php:87 inc/helpers.php:400
-msgid "Купити квиток"
-msgstr "Buy a ticket"
-
-#: template-coming-soon.php:49 inc/maintenance.php:73
-msgid ""
-"Ми працюємо над новим сайтом сучасної культурної платформи — простором для "
-"театру, діалогу та натхнення. Скоро тут з’являться репертуар, події та "
-"новини."
-msgstr ""
-
-#: single-performance.php:119
-msgid "На сцені"
-msgstr "On stage"
-
-#: footer.php:19
-msgid "Навігація"
+#: template-coming-soon.php:42
+msgid "незабаром відкриється"
 msgstr ""
 
 #: template-coming-soon.php:56
 msgid "Написати нам"
 msgstr ""
 
-#: template-parts/front-page/team.php:26
-msgid "Наступна група команди"
+#: template-coming-soon.php:63
+msgid "м. Дніпро"
+msgstr ""
+
+#: template-contacts.php:11
+msgid ""
+"Ми завжди відкриті до спілкування.\n"
+"Зв'яжіться з нами зручним для вас способом."
+msgstr ""
+
+#: template-contacts.php:12
+msgid "Напишіть нам"
+msgstr ""
+
+#: template-contacts.php:15 template-contacts.php:52
+msgid "Переглянути на Google Maps"
+msgstr ""
+
+#: template-contacts.php:26
+msgid "Адреса"
+msgstr ""
+
+#: template-contacts.php:32
+msgid "Телефон"
+msgstr ""
+
+#: template-contacts.php:129
+msgid "Оберіть контактну форму в налаштуваннях сторінки."
+msgstr ""
+
+#. Template Name of the theme
+msgid "Можливості ДГУ"
+msgstr ""
+
+#: template-opportunities.php:49
+msgid "Можливості"
+msgstr ""
+
+#: template-parts/front-page/hero.php:28 template-parts/front-page/hero.php:46
+msgid "Попередній слайд"
+msgstr "Previous slide"
+
+#: template-parts/front-page/hero.php:29 template-parts/front-page/hero.php:54
+msgid "Наступний слайд"
+msgstr "Next slide"
+
+#: template-parts/front-page/hero.php:45
+msgid "Hero slides"
+msgstr ""
+
+#: template-parts/front-page/news.php:17
+msgid "Новини | Культурна платформа"
+msgstr "News | Cultural Platform"
+
+#: template-parts/front-page/news.php:25
+msgid "Попередня група новин"
 msgstr ""
 
 #: template-parts/front-page/news.php:26
 msgid "Наступна група новин"
 msgstr ""
 
+#: template-parts/front-page/repertoire.php:26
+msgid "Весь репертуар"
+msgstr "The entire repertoire"
+
+#: template-parts/front-page/repertoire.php:30
+msgid "Попередня група репертуару"
+msgstr "Previous repertoire group"
+
 #: template-parts/front-page/repertoire.php:31
 msgid "Наступна група репертуару"
-msgstr ""
-
-#: template-parts/front-page/hero.php:42
-msgid "Наступний слайд"
-msgstr ""
-
-#: single-performance.php:176
-msgid "Наступні фото"
-msgstr ""
-
-#: template-parts/front-page/news.php:17
-msgid "Новини | Культурна платформа"
-msgstr ""
-
-#: template-coming-soon.php:41
-msgid "Офіційний сайт Театру ДГУ"
-msgstr ""
-
-#: template-coming-soon.php:11
-msgid "Офіційний сайт Театру ДГУ незабаром відкриється"
-msgstr ""
-
-#: single-performance.php:255
-msgid "Перейти до квитків"
-msgstr "Go to tickets"
+msgstr "Next repertoire group"
 
 #: template-parts/front-page/team.php:25
 msgid "Попередня група команди"
 msgstr ""
 
-#: template-parts/front-page/news.php:25
-msgid "Попередня група новин"
-msgstr ""
-
-#: template-parts/front-page/repertoire.php:30
-msgid "Попередня група репертуару"
-msgstr ""
-
-#: single-performance.php:175
-msgid "Попередні фото"
-msgstr ""
-
-#: template-parts/front-page/hero.php:34
-msgid "Попередній слайд"
-msgstr ""
-
-#: single-performance.php:143
-msgid "Постановча команда"
-msgstr ""
-
-#. Name of the template
-#: template-about.php:2
-msgid "Про нас"
-msgstr ""
-
-#: inc/helpers.php:163 template-parts/front-page/about.php:55
-msgid "Про театр"
-msgstr ""
-
-#. Name of the template
-#: archive-performance.php:18 template-repertoire.php:3
-#: template-parts/repertoire/grid.php:10
-msgid "Репертуар"
-msgstr ""
-
-#: inc/maintenance.php:71
-msgid "Сайт незабаром відкриється"
-msgstr ""
-
-#: inc/helpers.php:202
-msgid "Серед наших ініціатив"
-msgstr ""
-
-#: inc/helpers.php:183
-msgid "Театр, проєкти та місто"
-msgstr ""
-
-#: single-performance.php:74
-msgid "Тривалість"
-msgstr "Duration"
-
-#: inc/helpers.php:165
-msgid "Український театр і культурна платформа Дніпра"
+#: template-parts/front-page/team.php:26
+msgid "Наступна група команди"
 msgstr ""
 
 #: template-parts/repertoire/grid.php:26
 msgid "Усі вистави"
 msgstr "All events"
 
-#: template-parts/front-page/news.php:21
-msgid "Усі новини"
+#: template-tickets.php:11
+msgid ""
+"Квитки продаються через офіційні онлайн-сервіси. Оберіть зручний сервіс та "
+"придбайте квиток онлайн."
 msgstr ""
 
-#: footer.php:55
-msgid "Усі права захищені."
+#: template-tickets.php:12
+msgid "Або телефонуйте: +380974136285 (з 10 до 18)."
 msgstr ""
 
-#: inc/helpers.php:280
-msgid "Хлібні крихти"
+#: template-tickets.php:26
+msgid "Прямий онлайн-продаж квитків на актуальні події театру."
 msgstr ""
 
-#: template-parts/front-page/news.php:47
-msgid "Читати"
+#: template-tickets.php:29 template-tickets.php:39 template-tickets.php:49
+#: template-tickets.php:59 template-tickets.php:124
+msgid "Перейти"
 msgstr ""
 
-#: single-performance.php:249
-msgid "Швидкий перехід до квитків"
+#: template-tickets.php:36
+msgid "Афіша та продаж квитків на події простору «Театральний поверх»."
 msgstr ""
 
-#: inc/helpers.php:182
-msgid "Що ми робимо"
+#: template-tickets.php:46
+msgid "Онлайн-купівля квитків через сервіс Internet Bilet."
 msgstr ""
 
-#: template-coming-soon.php:63
-msgid "м. Дніпро"
-msgstr ""
-
-#: template-coming-soon.php:42
-msgid "незабаром відкриється"
+#: template-tickets.php:56
+msgid "Продаж квитків на майданчик через сервіс Kontramarka."
 msgstr ""

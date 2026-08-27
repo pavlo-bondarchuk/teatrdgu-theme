@@ -21,10 +21,6 @@
     color: var(--dgut-charcoal);
 }
 
-.dgut-breadcrumbs .breadcrumb_last {
-    color: var(--dgut-charcoal);
-}
-
 .dgut-breadcrumbs>span {
     display: flex;
     align-items: center;
@@ -34,7 +30,6 @@
 .dgut-breadcrumb-separator {
     width: 12px;
     height: 12px;
-    color: var(--dgut-stone);
     vertical-align: -2px;
 }
 
@@ -233,6 +228,7 @@
     color: var(--dgut-sand);
     width: 18px;
     height: 18px;
+    flex-shrink: 0;
 }
 
 .dgut-event-person span {

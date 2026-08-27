@@ -56,7 +56,7 @@ $archive_link_target = is_array($archive_link) ? (string) ($archive_link['target
                             </div>
                             <div class="dgut-performance-card__body">
                                 <h3><?php echo esc_html($item['title']); ?></h3>
-                                <p><?php echo esc_html($item['excerpt']); ?></p>
+                                <p><?php echo $item['excerpt']; ?></p>
                                 <span class="dgut-performance-card__date"><?php echo dgut_ui_icon('clock'); ?><?php echo esc_html($item['date']); ?></span>
                                 <span class="btn dgut-performance-card__button"><?php esc_html_e('Детальніше', 'dgutheater'); ?></span>
                             </div>

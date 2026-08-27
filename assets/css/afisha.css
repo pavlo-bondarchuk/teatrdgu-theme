@@ -1,0 +1,544 @@
+.dgut-afisha-page {
+  min-height: 60vh;
+  overflow-x: hidden;
+  background: var(--dgut-ivory)
+}
+
+.dgut-afisha-breadcrumbs-wrap {
+  padding-top: 40px
+}
+
+.dgut-afisha-breadcrumbs,
+.dgut-afisha-breadcrumbs #breadcrumbs {
+  color: var(--dgut-taupe);
+  font: 500 12px/20px var(--dgut-body)
+}
+
+.dgut-afisha-breadcrumbs a:hover {
+  color: var(--dgut-charcoal)
+}
+
+.dgut-afisha-archive {
+  padding-block: 72px 96px
+}
+
+.dgut-afisha-header {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 36px
+}
+
+.dgut-afisha-header .section-title {
+  font-size: clamp(2.8rem, 7vw, 6.5rem)
+}
+
+.dgut-afisha-months {
+  display: flex;
+  gap: 8px;
+  margin: 0 0 48px;
+  padding: 0 0 10px;
+  overflow-x: auto;
+  scrollbar-width: thin
+}
+
+.dgut-afisha-month {
+  flex: 0 0 auto;
+  min-height: 40px;
+  padding: 12px 18px;
+  border: 1px solid var(--dgut-stone);
+  color: var(--dgut-taupe);
+  font: 600 11px/1 var(--dgut-body);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  transition: background .18s, border-color .18s, color .18s
+}
+
+.dgut-afisha-month:hover,
+.dgut-afisha-month.is-active {
+  border-color: var(--dgut-charcoal);
+  background: var(--dgut-charcoal);
+  color: var(--dgut-cream)
+}
+
+.dgut-afisha-featured {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(340px, .8fr);
+  min-height: 540px;
+  margin-bottom: 56px;
+  background: var(--dgut-cream)
+}
+
+.dgut-afisha-featured__media {
+  min-height: 420px;
+  overflow: hidden;
+  background: var(--dgut-dust)
+}
+
+.dgut-afisha-featured__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s ease
+}
+
+.dgut-afisha-featured__media:hover img {
+  transform: scale(1.025)
+}
+
+.dgut-afisha-featured__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(32px, 5vw, 64px)
+}
+
+.dgut-afisha-date-lockup {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  display: grid;
+  min-width: 64px;
+  text-align: center
+}
+
+.dgut-afisha-date-lockup strong {
+  color: var(--dgut-charcoal);
+  font: 300 3rem/.9 var(--dgut-display)
+}
+
+.dgut-afisha-date-lockup span {
+  margin-top: 7px;
+  color: var(--dgut-sand);
+  font: 700 10px/1 var(--dgut-body);
+  letter-spacing: .16em;
+  text-transform: uppercase
+}
+
+.dgut-afisha-featured h2 {
+  max-width: 540px;
+  margin: 18px 0;
+  font: 300 clamp(2rem, 4vw, 4rem)/.98 var(--dgut-display);
+  text-transform: uppercase
+}
+
+.dgut-afisha-featured__date {
+  margin: 0 0 18px;
+  color: var(--dgut-charcoal);
+  font: 600 14px/1.4 var(--dgut-body)
+}
+
+.dgut-afisha-featured__excerpt {
+  margin: 0 0 20px;
+  color: var(--dgut-taupe);
+  font: 400 14px/1.7 var(--dgut-body)
+}
+
+.dgut-afisha-featured__venue {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 28px;
+  color: var(--dgut-taupe);
+  font: 500 12px/1.4 var(--dgut-body)
+}
+
+.dgut-afisha-featured__venue svg {
+  width: 15px;
+  height: 15px;
+  color: var(--dgut-sand)
+}
+
+.dgut-afisha-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px
+}
+
+.btn--outline {
+  border: 1px solid var(--dgut-charcoal);
+  background: transparent;
+  color: var(--dgut-charcoal)
+}
+
+.btn--outline:hover {
+  background: var(--dgut-charcoal);
+  color: var(--dgut-cream)
+}
+
+.dgut-afisha-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--dgut-taupe);
+  font: 600 10px/1 var(--dgut-body);
+  letter-spacing: .1em;
+  text-transform: uppercase
+}
+
+.dgut-afisha-status::before {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--dgut-sand);
+  content: ""
+}
+
+.dgut-afisha-status--sold_out::before,
+.dgut-afisha-status--cancelled::before {
+  background: var(--dgut-red)
+}
+
+.dgut-afisha-status--postponed::before {
+  background: var(--dgut-taupe)
+}
+
+.dgut-afisha-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px
+}
+
+.dgut-afisha-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  background: var(--dgut-cream)
+}
+
+.dgut-afisha-card__media {
+  position: relative;
+  display: block;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--dgut-dust)
+}
+
+.dgut-afisha-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s ease
+}
+
+.dgut-afisha-card:hover .dgut-afisha-card__media img {
+  transform: scale(1.04)
+}
+
+.dgut-afisha-card__date {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: grid;
+  min-width: 58px;
+  padding: 9px 12px;
+  background: var(--dgut-cream);
+  text-align: center
+}
+
+.dgut-afisha-card__date strong {
+  font: 300 2rem/.9 var(--dgut-display)
+}
+
+.dgut-afisha-card__date span {
+  margin-top: 5px;
+  color: var(--dgut-sand);
+  font: 700 9px/1 var(--dgut-body);
+  letter-spacing: .14em;
+  text-transform: uppercase
+}
+
+.dgut-afisha-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 260px;
+  padding: 20px
+}
+
+.dgut-afisha-card h2 {
+  margin: 12px 0;
+  font: 400 18px/1.2 var(--dgut-display);
+  text-transform: uppercase
+}
+
+.dgut-afisha-card__time {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0 0 8px;
+  color: var(--dgut-charcoal);
+  font: 600 13px/1 var(--dgut-body)
+}
+
+.dgut-afisha-card__time svg {
+  width: 13px;
+  height: 13px;
+  color: var(--dgut-sand)
+}
+
+.dgut-afisha-card__venue {
+  margin: 0;
+  color: var(--dgut-taupe);
+  font: 400 12px/1.5 var(--dgut-body)
+}
+
+.dgut-afisha-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--dgut-stone)
+}
+
+.dgut-afisha-card__footer>a {
+  font: 700 11px/1 var(--dgut-body);
+  text-decoration: underline;
+  text-underline-offset: 4px
+}
+
+.dgut-afisha-empty {
+  max-width: 680px;
+  padding: 56px;
+  border: 1px solid var(--dgut-stone);
+  background: var(--dgut-cream)
+}
+
+.dgut-afisha-empty h2 {
+  margin: 0 0 12px;
+  font: 300 clamp(1.8rem, 4vw, 3rem)/1 var(--dgut-display);
+  text-transform: uppercase
+}
+
+.dgut-afisha-empty p {
+  margin: 0 0 24px;
+  color: var(--dgut-taupe)
+}
+
+.dgut-afisha-single__grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 5fr) minmax(0, 7fr);
+  align-items: center;
+  gap: clamp(40px, 7vw, 90px)
+}
+
+.dgut-afisha-single__image {
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: var(--dgut-dust)
+}
+
+.dgut-afisha-single__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover
+}
+
+.dgut-afisha-single__labels {
+  display: flex;
+  align-items: center;
+  gap: 12px
+}
+
+.dgut-afisha-age {
+  padding: 6px 9px;
+  background: var(--dgut-red);
+  color: #fff;
+  font: 700 10px/1 var(--dgut-body)
+}
+
+.dgut-afisha-single h1 {
+  margin: 22px 0 24px;
+  font-size: clamp(2.7rem, 6vw, 5.5rem)
+}
+
+.dgut-afisha-single__excerpt {
+  max-width: 680px;
+  margin: 0 0 30px;
+  color: var(--dgut-taupe);
+  font: 400 16px/1.7 var(--dgut-body)
+}
+
+.dgut-afisha-single__meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 30px
+}
+
+.dgut-afisha-single__meta>div {
+  display: grid;
+  gap: 5px;
+  padding: 16px;
+  border: 1px solid var(--dgut-stone);
+  background: var(--dgut-cream)
+}
+
+.dgut-afisha-single__meta span {
+  color: var(--dgut-taupe);
+  font: 600 9px/1 var(--dgut-body);
+  letter-spacing: .15em;
+  text-transform: uppercase
+}
+
+.dgut-afisha-single__meta strong {
+  font: 600 13px/1.4 var(--dgut-body)
+}
+
+.dgut-afisha-single__about {
+  background: var(--dgut-cream)
+}
+
+.dgut-afisha-single__about-grid {
+  display: grid;
+  grid-template-columns: 4fr 8fr;
+  gap: 64px
+}
+
+.dgut-afisha-single__about .flow {
+  max-width: 760px;
+  color: var(--dgut-graphite)
+}
+
+.dgut-afisha-performance-link {
+  padding-block: 56px;
+  background: var(--dgut-charcoal);
+  color: var(--dgut-cream)
+}
+
+.dgut-afisha-performance-link__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px
+}
+
+.dgut-afisha-performance-link h2 {
+  margin: 10px 0 0;
+  font: 300 clamp(1.8rem, 4vw, 3.5rem)/1 var(--dgut-display);
+  text-transform: uppercase
+}
+
+.dgut-afisha-other .section-title {
+  margin: 12px 0 32px
+}
+
+.dgut-afisha-other__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px
+}
+
+.dgut-afisha-other__grid a {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 18px;
+  padding: 22px;
+  border: 1px solid var(--dgut-stone);
+  background: var(--dgut-cream)
+}
+
+.dgut-afisha-other__grid strong {
+  color: var(--dgut-sand);
+  font: 300 2.3rem/1 var(--dgut-display)
+}
+
+.dgut-afisha-other__grid span {
+  color: var(--dgut-taupe);
+  font: 500 12px/1.4 var(--dgut-body)
+}
+
+.dgut-afisha-other__grid svg {
+  width: 18px;
+  height: 18px
+}
+
+@media (max-width: 1023px) {
+  .dgut-afisha-featured {
+    grid-template-columns: 1fr
+  }
+
+  .dgut-afisha-featured__media {
+    aspect-ratio: 16/10;
+    min-height: 0
+  }
+
+  .dgut-afisha-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+  }
+
+  .dgut-afisha-single__grid {
+    grid-template-columns: 4fr 6fr;
+    gap: 40px
+  }
+
+  .dgut-afisha-other__grid {
+    grid-template-columns: 1fr
+  }
+}
+
+@media (max-width: 767px) {
+  .dgut-afisha-breadcrumbs-wrap {
+    padding-top: 24px
+  }
+
+  .dgut-afisha-archive {
+    padding-block: 48px 64px
+  }
+
+  .dgut-afisha-months {
+    width: calc(100% + 24px);
+    margin-bottom: 32px
+  }
+
+  .dgut-afisha-featured {
+    min-height: 0;
+    margin-bottom: 32px
+  }
+
+  .dgut-afisha-featured__media {
+    aspect-ratio: 4/3
+  }
+
+  .dgut-afisha-featured__content {
+    padding: 28px 24px
+  }
+
+  .dgut-afisha-date-lockup {
+    position: static;
+    width: max-content;
+    margin-bottom: 24px
+  }
+
+  .dgut-afisha-grid {
+    grid-template-columns: 1fr;
+    gap: 20px
+  }
+
+  .dgut-afisha-card__body {
+    min-height: 230px
+  }
+
+  .dgut-afisha-single__grid,
+  .dgut-afisha-single__about-grid {
+    grid-template-columns: 1fr;
+    gap: 36px
+  }
+
+  .dgut-afisha-single__meta {
+    grid-template-columns: 1fr
+  }
+
+  .dgut-afisha-performance-link__inner {
+    align-items: flex-start;
+    flex-direction: column
+  }
+
+  .dgut-afisha-empty {
+    padding: 32px 24px
+  }
+}

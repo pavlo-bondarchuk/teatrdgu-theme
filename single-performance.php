@@ -57,7 +57,8 @@ $breadcrumbs = dgut_yoast_breadcrumbs();
                 <?php endif; ?>
                 <h1 class="display dgut-event-hero__title"><?php the_title(); ?></h1>
                 <?php if (has_excerpt()) : ?>
-                    <p class="dgut-event-hero__excerpt"><?php echo esc_html(get_the_excerpt()); ?></p>
+                    <p class="dgut-event-hero__excerpt">
+                        <?php echo get_the_excerpt(); ?></p>
                 <?php endif; ?>
                 <?php if ($date !== '' || $duration !== '') : ?>
                     <div class="dgut-event-meta">
@@ -86,7 +87,7 @@ $breadcrumbs = dgut_yoast_breadcrumbs();
                                         <?php esc_html_e('Тривалість', 'dgutheater'); ?>
                                     </span>
                                     <strong>
-                                        <?php echo esc_html($duration); ?>
+                                        <?php echo $duration; ?>
                                     </strong>
                                 </div>
                             </div>
@@ -156,12 +157,17 @@ $breadcrumbs = dgut_yoast_breadcrumbs();
                         <div class="dgut-event-people__list">
                             <?php foreach ($backstage as $person) : ?>
                                 <div class="dgut-event-person">
-                                    <?php if ($person['role'] !== '') : ?>
-                                        <span><?php echo esc_html($person['role']); ?></span>
-                                    <?php endif; ?>
-                                    <?php if ($person['name'] !== '') : ?>
-                                        <strong><?php echo esc_html($person['name']); ?></strong>
-                                    <?php endif; ?>
+                                    <div class="dgut-event-person__icon">
+                                        <?php echo dgut_ui_icon('user'); ?>
+                                    </div>
+                                    <div class="dgut-event-person__column">
+                                        <?php if ($person['role'] !== '') : ?>
+                                            <span><?php echo esc_html($person['role']); ?></span>
+                                        <?php endif; ?>
+                                        <?php if ($person['name'] !== '') : ?>
+                                            <strong><?php echo esc_html($person['name']); ?></strong>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
                             <?php endforeach; ?>
                         </div>

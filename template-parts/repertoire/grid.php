@@ -97,7 +97,8 @@ $title = isset($args['title']) && $args['title'] !== ''
                         </h2>
 
                         <?php if ($excerpt !== '') : ?>
-                            <p class="dgut-repertoire-card__excerpt"><?php echo esc_html($excerpt); ?></p>
+                            <p class="dgut-repertoire-card__excerpt">
+                                <?php echo $excerpt; ?></p>
                         <?php endif; ?>
 
                         <?php if ($date !== '') : ?>

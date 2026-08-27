@@ -24,6 +24,7 @@ add_action('after_setup_theme', function (): void {
     add_image_size('dgut-card', 720, 900, true);
     add_image_size('dgut-wide', 1280, 720, true);
     add_image_size('dgut-event-single', 446, 595, true);
+    add_image_size('dgut-afisha-card', 640, 640, true);
     register_nav_menus([
         'primary' => __('Primary menu', 'dgutheater'),
     ]);

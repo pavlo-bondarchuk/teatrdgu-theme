@@ -2,10 +2,23 @@
     <div class="container site-footer__grid">
         <div class="site-footer__brand">
             <a class="site-footer__logo" href="<?php echo esc_url(home_url('/')); ?>" aria-label="<?php bloginfo('name'); ?>">
-                <img src="<?php echo esc_url(DGUTHEME_URI . '/assets/img/logo-dark.svg'); ?>" width="106" height="62" alt="<?php bloginfo('name'); ?>" loading="lazy" decoding="async">
+                <?php
+                $logo_id = dgut_option('dgut_header_logo');
+                if ($logo_id) {
+                    echo wp_get_attachment_image((int) $logo_id, 'medium', false, [
+                        'class' => 'site-logo__img',
+                        'loading' => 'eager',
+                        'decoding' => 'async',
+                    ]);
+                } else {
+                ?>
+                    <img class="site-logo__img" src="<?php echo esc_url(DGUTHEME_URI . '/assets/img/logo-dark.svg'); ?>" width="106" height="62" alt="<?php bloginfo('name'); ?>" decoding="async">
+                <?php
+                }
+                ?>
             </a>
             <p>
-                <?php echo wp_kses_post((string) dgut_option('dgut_footer_tagline', __('Дніпро Гордість України - культурний бренд міста', 'dgutheater'))); ?>
+                <?php echo dgut_option('dgut_footer_tagline', __('Дніпро Гордість України - культурний бренд міста', 'dgutheater')); ?>
             </p>
             <div class="site-footer__socials" aria-label="<?php esc_attr_e('Social links', 'dgutheater'); ?>">
                 <?php foreach (get_field('socials', 'options') as $social) : ?>
