@@ -8,3 +8,4 @@
 - Simplified the Afisha archive to one equal-card grid: three columns on desktop, two on tablet and one on mobile; removed the special featured event layout.
 - Replaced the homepage hero performance selector with a manual SCF repeater for image, crop focus, eyebrow, title, credits, date and CTA link.
 - Migrated the four existing homepage slides into the repeater without changing their public content or order.
+- Appended the three September Afisha event posters to the homepage hero repeater with event dates and direct Afisha detail links.
