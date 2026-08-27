@@ -9,6 +9,11 @@ if (!dgut_front_bool($fields, 'home_hero_show', true) || empty($hero_slides)) {
 <section id="top" class="dgut-hero" data-hero-slider>
     <div class="dgut-hero__slides">
         <?php foreach ($hero_slides as $index => $slide) : ?>
+            <?php
+            $link_url = (string) ($slide['permalink'] ?? '');
+            $link_title = (string) ($slide['link_title'] ?? '') ?: __('Детальніше', 'dgutheater');
+            $link_target = (string) ($slide['link_target'] ?? '');
+            ?>
             <article class="dgut-hero__slide<?php echo $index === 0 ? ' is-active' : ''; ?>" data-hero-slide>
                 <?php $hero_image = $slide['hero_image'] ?? ($slide['image'] ?? ''); ?>
                 <?php $thumbnail_id = (int) ($slide['thumbnail_id'] ?? 0); ?>
@@ -31,13 +36,19 @@ if (!dgut_front_bool($fields, 'home_hero_show', true) || empty($hero_slides)) {
                 <div class="dgut-hero__shade" aria-hidden="true"></div>
                 <div class="dgut-hero__fade" aria-hidden="true"></div>
                 <div class="container dgut-hero__content">
-                    <p class="eyebrow dgut-hero__eyebrow"><?php echo esc_html($slide['genre'] ?? ''); ?></p>
+                    <?php if (!empty($slide['genre'])) : ?>
+                        <p class="eyebrow dgut-hero__eyebrow"><?php echo esc_html((string) $slide['genre']); ?></p>
+                    <?php endif; ?>
                     <div class="display dgut-hero__title"><?php echo esc_html($slide['title']); ?></div>
                     <?php if (!empty($slide['credits'])) : ?>
                         <p class="dgut-hero__credits"><?php echo esc_html((string) $slide['credits']); ?></p>
                     <?php endif; ?>
-                    <p class="dgut-hero__date"><?php echo dgut_ui_icon('clock'); ?><?php echo esc_html($slide['date'] ?? ''); ?></p>
-                    <a class="btn dgut-hero__button" href="<?php echo esc_url($slide['permalink'] ?? '#repertoire'); ?>"><?php esc_html_e('Детальніше', 'dgutheater'); ?></a>
+                    <?php if (!empty($slide['date'])) : ?>
+                        <p class="dgut-hero__date"><?php echo dgut_ui_icon('clock'); ?><?php echo esc_html((string) $slide['date']); ?></p>
+                    <?php endif; ?>
+                    <?php if ($link_url !== '') : ?>
+                        <a class="btn dgut-hero__button" href="<?php echo esc_url($link_url); ?>"<?php echo $link_target === '_blank' ? ' target="_blank" rel="noopener noreferrer"' : ''; ?>><?php echo esc_html($link_title); ?></a>
+                    <?php endif; ?>
                 </div>
             </article>
         <?php endforeach; ?>

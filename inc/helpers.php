@@ -256,6 +256,50 @@ function dgut_front_image(mixed $field, string $fallback = ''): string
     return dgut_get_image_from_field($field, $fallback);
 }
 
+function dgut_front_hero_slides(mixed $rows): array
+{
+    if (!is_array($rows)) {
+        return [];
+    }
+
+    $slides = [];
+    foreach ($rows as $row) {
+        if (!is_array($row)) {
+            continue;
+        }
+
+        $title = trim((string) ($row['title'] ?? ''));
+        if ($title === '') {
+            continue;
+        }
+
+        $image = $row['image'] ?? 0;
+        $thumbnail_id = 0;
+        if (is_numeric($image)) {
+            $thumbnail_id = (int) $image;
+        } elseif (is_array($image)) {
+            $thumbnail_id = (int) ($image['ID'] ?? ($image['id'] ?? 0));
+        }
+
+        $link = is_array($row['link'] ?? null) ? $row['link'] : [];
+        $slides[] = [
+            'title' => $title,
+            'genre' => trim((string) ($row['eyebrow'] ?? '')),
+            'credits' => trim((string) ($row['credits'] ?? '')),
+            'date' => trim((string) ($row['date'] ?? '')),
+            'image' => dgut_get_image_from_field($image),
+            'hero_image' => dgut_get_image_from_field($image),
+            'thumbnail_id' => $thumbnail_id,
+            'focus' => (string) ($row['focus'] ?? 'center top') ?: 'center top',
+            'permalink' => trim((string) ($link['url'] ?? '')),
+            'link_title' => trim((string) ($link['title'] ?? '')),
+            'link_target' => (string) ($link['target'] ?? ''),
+        ];
+    }
+
+    return $slides;
+}
+
 function dgut_front_posts(string $post_type, int $limit, array $args = []): array
 {
     return get_posts(array_merge([
@@ -767,10 +811,12 @@ function dgut_get_performance_card_data(WP_Post|int $post): array
     if ($excerpt === '') {
         $excerpt = wp_trim_words(wp_strip_all_tags((string) get_post_field('post_content', $post_id)), 18);
     }
+    $genre_terms = wp_get_post_terms($post_id, 'performance_genre', ['fields' => 'names']);
+    $genre = !is_wp_error($genre_terms) ? (string) ($genre_terms[0] ?? '') : '';
 
     return [
         'title' => $title,
-        'genre' => wp_get_post_terms($post_id, 'performance_genre', ['fields' => 'names'])[0] ?? '',
+        'genre' => $genre,
         'date' => function_exists('get_field') ? (string) get_field('dgut_performance_date', $post_id) : '',
         'duration' => function_exists('get_field') ? (string) get_field('dgut_performance_duration', $post_id) : '',
         'age_rating' => function_exists('get_field') ? trim((string) get_field('dgut_performance_age', $post_id)) : '',

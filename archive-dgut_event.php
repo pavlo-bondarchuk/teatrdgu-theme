@@ -5,18 +5,6 @@ $months = dgut_afisha_month_options();
 $selected_month = dgut_afisha_selected_month($months);
 $event_posts = dgut_afisha_posts_for_month($selected_month);
 $events = array_values(array_filter(array_map('dgut_afisha_event_data', $event_posts)));
-$featured_index = 0;
-foreach ($events as $index => $event) {
-    if (!empty($event['featured'])) {
-        $featured_index = $index;
-        break;
-    }
-}
-$featured = $events[$featured_index] ?? [];
-if ($events) {
-    unset($events[$featured_index]);
-    $events = array_values($events);
-}
 $breadcrumbs = dgut_yoast_breadcrumbs('dgut-breadcrumbs dgut-afisha-breadcrumbs');
 ?>
 <main id="primary" class="site-main dgut-afisha-page">
@@ -39,33 +27,6 @@ $breadcrumbs = dgut_yoast_breadcrumbs('dgut-breadcrumbs dgut-afisha-breadcrumbs'
                         </a>
                     <?php endforeach; ?>
                 </nav>
-            <?php endif; ?>
-
-            <?php if ($featured) : ?>
-                <?php $featured_sold = in_array($featured['status_key'], ['sold_out', 'cancelled'], true); ?>
-                <article class="dgut-afisha-featured">
-                    <a class="dgut-afisha-featured__media" href="<?php echo esc_url($featured['permalink']); ?>">
-                        <?php if ($featured['image_id']) : ?>
-                            <?php echo dgut_responsive_image((int) $featured['image_id'], 'dgut-wide', (string) $featured['title'], '(min-width: 900px) 58vw, 100vw'); ?>
-                        <?php endif; ?>
-                    </a>
-                    <div class="dgut-afisha-featured__content">
-                        <div class="dgut-afisha-date-lockup">
-                            <strong><?php echo esc_html($featured['day']); ?></strong>
-                            <span><?php echo esc_html($featured['weekday']); ?></span>
-                        </div>
-                        <p class="eyebrow"><?php echo esc_html($featured['type']); ?></p>
-                        <h2><a href="<?php echo esc_url($featured['permalink']); ?>"><?php echo esc_html($featured['title']); ?></a></h2>
-                        <p class="dgut-afisha-featured__date"><?php echo esc_html(trim($featured['date'] . ' · ' . $featured['time'], ' ·')); ?></p>
-                        <?php if ($featured['excerpt']) : ?><p class="dgut-afisha-featured__excerpt"><?php echo esc_html($featured['excerpt']); ?></p><?php endif; ?>
-                        <?php if ($featured['venue']) : ?><p class="dgut-afisha-featured__venue"><?php echo dgut_ui_icon('map-pin'); ?><?php echo esc_html($featured['venue']); ?></p><?php endif; ?>
-                        <div class="dgut-afisha-actions">
-                            <a class="btn" href="<?php echo esc_url($featured['permalink']); ?>"><?php esc_html_e('Детальніше', 'dgutheater'); ?></a>
-                            <?php if ($featured['ticket_url'] && !$featured_sold) : ?><a class="btn btn--outline" href="<?php echo esc_url($featured['ticket_url']); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Квитки', 'dgutheater'); ?></a><?php endif; ?>
-                            <span class="dgut-afisha-status dgut-afisha-status--<?php echo esc_attr($featured['status_key']); ?>"><?php echo esc_html($featured['status']); ?></span>
-                        </div>
-                    </div>
-                </article>
             <?php endif; ?>
 
             <?php if ($events) : ?>
@@ -92,7 +53,7 @@ $breadcrumbs = dgut_yoast_breadcrumbs('dgut-breadcrumbs dgut-afisha-breadcrumbs'
                         </article>
                     <?php endforeach; ?>
                 </div>
-            <?php elseif (!$featured) : ?>
+            <?php else : ?>
                 <div class="dgut-afisha-empty">
                     <h2><?php esc_html_e('У цьому місяці подій поки немає', 'dgutheater'); ?></h2>
                     <p><?php esc_html_e('Оберіть інший місяць або перегляньте репертуар театру.', 'dgutheater'); ?></p>

@@ -30,30 +30,7 @@ foreach ($performance_posts as $performance_post) {
     $performances[] = dgut_get_performance_card_data($performance_post);
 }
 
-$hero_count = max(1, (int) dgut_front_field($fields, 'home_hero_count', 3));
-$hero_performance_posts = array_values(array_filter((array) dgut_front_field($fields, 'home_hero_performances', [])));
-if (empty($hero_performance_posts)) {
-    $hero_performance_posts = function_exists('dgut_ordered_translated_posts')
-        ? dgut_ordered_translated_posts('performance', $hero_count, [
-            'orderby' => 'date',
-            'order' => 'DESC',
-        ])
-        : dgut_front_posts('performance', $hero_count, [
-            'orderby' => 'date',
-            'order' => 'DESC',
-        ]);
-} else {
-    $hero_performance_posts = function_exists('dgut_current_language_posts')
-        ? dgut_current_language_posts($hero_performance_posts, $hero_count)
-        : array_slice($hero_performance_posts, 0, $hero_count);
-}
-$hero_slides = [];
-foreach (array_slice($hero_performance_posts, 0, $hero_count) as $hero_performance_post) {
-    $hero_slide = dgut_get_performance_card_data($hero_performance_post);
-    if (!empty($hero_slide)) {
-        $hero_slides[] = $hero_slide;
-    }
-}
+$hero_slides = dgut_front_hero_slides(dgut_front_field($fields, 'home_hero_slides', []));
 
 $news_limit = max(1, (int) dgut_front_field($fields, 'home_news_count', 100));
 $news_posts = function_exists('dgut_ordered_translated_posts')

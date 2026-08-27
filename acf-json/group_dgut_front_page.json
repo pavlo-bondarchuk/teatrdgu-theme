@@ -41,12 +41,12 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_dgut_home_hero_count",
-            "label": "Кількість слайдів у головному банері",
-            "name": "home_hero_count",
+            "key": "field_dgut_home_hero_slides",
+            "label": "Слайди головного банера",
+            "name": "home_hero_slides",
             "aria-label": "",
-            "type": "number",
-            "instructions": "",
+            "type": "repeater",
+            "instructions": "Додайте слайди вручну та перетягніть їх у потрібному порядку.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -54,41 +54,174 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": 3,
-            "min": 1,
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
             "max": 12,
-            "step": 1,
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_dgut_home_hero_performances",
-            "label": "Вистави у головному банері",
-            "name": "home_hero_performances",
-            "aria-label": "",
-            "type": "relationship",
-            "instructions": "Оберіть вистави вручну. Якщо список порожній, у банері автоматично будуть показані останні опубліковані вистави за кількістю з поля вище.",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "post_type": [
-                "performance"
-            ],
-            "taxonomy": "",
-            "filters": [
-                "search"
-            ],
-            "return_format": "object",
-            "min": "",
-            "max": 12,
-            "elements": "",
-            "bidirectional": 0,
-            "bidirectional_target": []
+            "collapsed": "field_dgut_home_hero_slide_title",
+            "button_label": "Додати слайд",
+            "rows_per_page": 12,
+            "sub_fields": [
+                {
+                    "key": "field_dgut_home_hero_slide_image",
+                    "label": "Зображення",
+                    "name": "image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "Рекомендований формат — широкий банер 1881 × 720 px.",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "id",
+                    "library": "all",
+                    "preview_size": "medium",
+                    "min_width": 0,
+                    "min_height": 0,
+                    "min_size": 0,
+                    "max_width": 0,
+                    "max_height": 0,
+                    "max_size": 0,
+                    "mime_types": "",
+                    "parent_repeater": "field_dgut_home_hero_slides"
+                },
+                {
+                    "key": "field_dgut_home_hero_slide_focus",
+                    "label": "Фокус зображення",
+                    "name": "focus",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "Визначає, яка частина зображення залишається видимою при обрізанні.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "center top": "По центру зверху",
+                        "center center": "По центру",
+                        "center bottom": "По центру знизу",
+                        "left top": "Зліва зверху",
+                        "left center": "Зліва по центру",
+                        "right top": "Справа зверху",
+                        "right center": "Справа по центру"
+                    },
+                    "default_value": "center top",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "parent_repeater": "field_dgut_home_hero_slides"
+                },
+                {
+                    "key": "field_dgut_home_hero_slide_eyebrow",
+                    "label": "Надзаголовок",
+                    "name": "eyebrow",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Наприклад: Імерсивна вистава.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "35",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_dgut_home_hero_slides"
+                },
+                {
+                    "key": "field_dgut_home_hero_slide_title",
+                    "label": "Заголовок",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "65",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_dgut_home_hero_slides"
+                },
+                {
+                    "key": "field_dgut_home_hero_slide_credits",
+                    "label": "Автори та режисер",
+                    "name": "credits",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "60",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_dgut_home_hero_slides"
+                },
+                {
+                    "key": "field_dgut_home_hero_slide_date",
+                    "label": "Дата або підпис",
+                    "name": "date",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Наприклад: 9 вересня 2026 18:30 або Прем’єра 24.02.2026.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "40",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_dgut_home_hero_slides"
+                },
+                {
+                    "key": "field_dgut_home_hero_slide_link",
+                    "label": "Кнопка",
+                    "name": "link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "Вкажіть текст кнопки та посилання.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "100",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "parent_repeater": "field_dgut_home_hero_slides"
+                }
+            ]
         },
         {
             "key": "field_dgut_home_tab_repertoire",
@@ -595,5 +728,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1782902795
+    "modified": 1787842201
 }

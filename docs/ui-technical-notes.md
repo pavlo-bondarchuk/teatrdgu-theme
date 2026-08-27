@@ -5,3 +5,10 @@
 - Breadcrumb appearance and wrapper alignment belong in `assets/css/common.css`; page styles must not override them.
 - Render separators through `dgut_breadcrumb_separator_icon()` and keep the Yoast separator filter enabled for every theme breadcrumb.
 - Keep the final `.breadcrumb_last` item on one line with ellipsis so long titles do not break the breadcrumb row.
+
+## Afisha and homepage hero
+
+- The Afisha archive uses only `.dgut-afisha-grid`; keep all event cards equal and use the 3/2/1 desktop/tablet/mobile column pattern.
+- Do not promote the first or featured event into a separate wide card on the archive.
+- Homepage hero slides are page-level manual content in `home_hero_slides`; do not couple their displayed copy or artwork back to `performance` posts.
+- Each hero row owns its image, crop focus, eyebrow, title, credits, date and CTA link. Preserve this manual boundary when extending the banner.
