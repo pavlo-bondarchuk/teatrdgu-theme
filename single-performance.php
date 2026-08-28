@@ -2,7 +2,7 @@
 get_header();
 the_post();
 
-$date = dgut_performance_text_field('dgut_performance_date');
+$date = function_exists('dgut_performance_date_label') ? dgut_performance_date_label(get_the_ID()) : dgut_performance_text_field('dgut_performance_date');
 $duration = dgut_performance_text_field('dgut_performance_duration');
 $age_rating = function_exists('get_field') ? trim((string) get_field('dgut_performance_age')) : '';
 $video_url = dgut_performance_text_field('dgut_performance_video_url');

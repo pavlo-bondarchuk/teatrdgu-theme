@@ -57,14 +57,6 @@ add_filter('wpseo_schema_graph', function (array $graph): array {
         }
     }
 
-    if (is_singular('dgut_event')) {
-        $event = dgut_schema_afisha_event(get_queried_object_id(), $organization_id);
-        if (!empty($event)) {
-            $graph = dgut_schema_upsert_node($graph, $event);
-            $graph = dgut_schema_set_webpage_primary_entity($graph, $event['@id']);
-        }
-    }
-
     if (is_singular('post')) {
         $article = dgut_schema_news_article(get_queried_object_id(), $organization_id);
         if (!empty($article)) {
@@ -234,11 +226,11 @@ function dgut_schema_performance_event(int $post_id, string $organization_id): a
 
     $permalink = get_permalink($post);
     $image = get_the_post_thumbnail_url($post, 'full');
-    $date_text = function_exists('get_field') ? (string) get_field('dgut_performance_date', $post_id) : '';
-    $start_date = dgut_schema_parse_date($date_text);
-    if ($start_date === '') {
+    $start = function_exists('dgut_performance_datetime') ? dgut_performance_datetime($post_id) : null;
+    if (!$start instanceof DateTimeImmutable) {
         return [];
     }
+    $start_date = $start->format('H:i') === '00:00' ? $start->format('Y-m-d') : $start->format(DATE_ATOM);
 
     $event = [
         '@type' => ['Event', 'TheaterEvent'],
@@ -255,65 +247,6 @@ function dgut_schema_performance_event(int $post_id, string $organization_id): a
         'inLanguage' => get_bloginfo('language') ?: 'uk',
         'startDate' => $start_date,
     ];
-
-    return array_filter($event);
-}
-
-function dgut_schema_afisha_event(int $post_id, string $organization_id): array
-{
-    if (!function_exists('dgut_afisha_event_data')) {
-        return [];
-    }
-
-    $post = get_post($post_id);
-    $data = dgut_afisha_event_data($post_id);
-    $start = $data['start'] ?? null;
-    if (!$post || !$start instanceof DateTimeImmutable) {
-        return [];
-    }
-
-    $permalink = get_permalink($post);
-    $image_id = (int) ($data['image_id'] ?? 0);
-    $image = $image_id > 0 ? wp_get_attachment_image_url($image_id, 'full') : '';
-    $status_map = [
-        'postponed' => 'https://schema.org/EventPostponed',
-        'cancelled' => 'https://schema.org/EventCancelled',
-    ];
-    $event_status = $status_map[$data['status_key'] ?? ''] ?? 'https://schema.org/EventScheduled';
-    $venue = trim((string) ($data['venue'] ?? ''));
-    $location = $venue !== ''
-        ? ['@type' => 'Place', 'name' => $venue, 'address' => dgut_schema_postal_address((string) dgut_option('dgut_footer_address', 'Троїцька площа, 5А'))]
-        : ['@id' => $organization_id];
-
-    $event = [
-        '@type' => ['Event', 'TheaterEvent'],
-        '@id' => $permalink . '#event',
-        'name' => get_the_title($post),
-        'description' => wp_strip_all_tags((string) ($data['excerpt'] ?: wp_trim_words((string) get_post_field('post_content', $post_id), 35))),
-        'url' => $permalink,
-        'image' => $image ? [$image] : [],
-        'eventAttendanceMode' => 'https://schema.org/OfflineEventAttendanceMode',
-        'eventStatus' => $event_status,
-        'location' => $location,
-        'organizer' => ['@id' => $organization_id],
-        'performer' => ['@id' => $organization_id],
-        'inLanguage' => get_bloginfo('language') ?: 'uk',
-        'startDate' => $start->format(DATE_ATOM),
-    ];
-
-    $end = dgut_afisha_datetime($post_id, 'dgut_event_end');
-    if ($end) {
-        $event['endDate'] = $end->format(DATE_ATOM);
-    }
-    if (!empty($data['ticket_url'])) {
-        $event['offers'] = [
-            '@type' => 'Offer',
-            'url' => $data['ticket_url'],
-            'availability' => in_array($data['status_key'], ['sold_out', 'cancelled'], true)
-                ? 'https://schema.org/SoldOut'
-                : 'https://schema.org/InStock',
-        ];
-    }
 
     return array_filter($event);
 }

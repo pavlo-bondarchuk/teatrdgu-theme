@@ -12,4 +12,6 @@
 - Do not promote the first or featured event into a separate wide card on the archive.
 - Homepage hero slides are page-level manual content in `home_hero_slides`; do not couple their displayed copy or artwork back to `performance` posts.
 - Each hero row owns its image, crop focus, eyebrow, title, credits, date and CTA link. Preserve this manual boundary when extending the banner.
-- Event-promotion slides may coexist with performance slides, but must use their Afisha artwork and link directly to the matching `/afisha/` detail page.
+- Afisha is a virtual archive sourced from published `performance` posts with a valid `dgut_performance_date`; do not restore a separate event post type or event detail template.
+- Order month tabs newest first, but keep performance cards chronological inside the selected month.
+- Event-promotion slides may coexist with performance slides and keep manual Afisha artwork, but their CTA must link to the matching repertoire detail page.

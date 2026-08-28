@@ -3,74 +3,22 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-function dgut_afisha_raw_field(string $key, int $post_id = 0, mixed $default = ''): mixed
+function dgut_performance_datetime(int $post_id): ?DateTimeImmutable
 {
-    $post_id = $post_id ?: get_the_ID();
-    $value = get_post_meta($post_id, $key, true);
-
-    return $value !== '' && $value !== null ? $value : $default;
-}
-
-function dgut_afisha_datetime(int $post_id, string $key = 'dgut_event_start'): ?DateTimeImmutable
-{
-    $raw = trim((string) dgut_afisha_raw_field($key, $post_id));
+    $raw = trim((string) get_post_meta($post_id, 'dgut_performance_date', true));
     if ($raw === '') {
         return null;
     }
 
-    $timezone = wp_timezone();
-    $formats = ['Y-m-d H:i:s', 'Y-m-d H:i', 'd.m.Y H:i', DateTimeInterface::ATOM];
-    foreach ($formats as $format) {
-        $date = DateTimeImmutable::createFromFormat('!' . $format, $raw, $timezone);
-        if ($date instanceof DateTimeImmutable) {
+    foreach (['Y-m-d H:i:s', 'Y-m-d H:i'] as $format) {
+        $date = DateTimeImmutable::createFromFormat('!' . $format, $raw, wp_timezone());
+        $errors = DateTimeImmutable::getLastErrors();
+        if ($date instanceof DateTimeImmutable && ($errors === false || ($errors['warning_count'] === 0 && $errors['error_count'] === 0))) {
             return $date;
         }
     }
 
-    try {
-        return new DateTimeImmutable($raw, $timezone);
-    } catch (Exception) {
-        return null;
-    }
-}
-
-function dgut_afisha_performance_id(int $event_id): int
-{
-    $value = dgut_afisha_raw_field('dgut_event_performance', $event_id, 0);
-    if ($value instanceof WP_Post) {
-        return (int) $value->ID;
-    }
-    if (is_array($value)) {
-        $value = reset($value);
-    }
-
-    return absint($value);
-}
-
-function dgut_afisha_image_id(int $event_id): int
-{
-    $image_id = get_post_thumbnail_id($event_id);
-    if ($image_id > 0) {
-        return $image_id;
-    }
-
-    $performance_id = dgut_afisha_performance_id($event_id);
-    return $performance_id > 0 ? (int) get_post_thumbnail_id($performance_id) : 0;
-}
-
-function dgut_afisha_excerpt(int $event_id): string
-{
-    $excerpt = trim((string) get_post_field('post_excerpt', $event_id));
-    if ($excerpt !== '') {
-        return $excerpt;
-    }
-
-    $performance_id = dgut_afisha_performance_id($event_id);
-    if ($performance_id > 0) {
-        $excerpt = trim((string) get_post_field('post_excerpt', $performance_id));
-    }
-
-    return $excerpt;
+    return null;
 }
 
 function dgut_afisha_uses_ukrainian_dates(): bool
@@ -109,80 +57,84 @@ function dgut_afisha_weekday_label(DateTimeImmutable $date): string
     return $weekdays[(int) $date->format('N')];
 }
 
-function dgut_afisha_statuses(): array
+function dgut_performance_date_label(int $post_id): string
 {
-    return [
-        'available' => __('Є квитки', 'dgutheater'),
-        'few' => __('Мало квитків', 'dgutheater'),
-        'sold_out' => __('Продано', 'dgutheater'),
-        'postponed' => __('Перенесено', 'dgutheater'),
-        'cancelled' => __('Скасовано', 'dgutheater'),
-    ];
+    $date = dgut_performance_datetime($post_id);
+    if ($date) {
+        $label = dgut_afisha_date_label($date);
+        if ($date->format('H:i') !== '00:00') {
+            $label .= ' ' . $date->format('H:i');
+        }
+        return $label;
+    }
+
+    return trim((string) get_post_meta($post_id, 'dgut_performance_date_legacy', true));
 }
 
-function dgut_afisha_event_data(WP_Post|int $event): array
+function dgut_afisha_performance_data(WP_Post|int $performance): array
 {
-    $event = is_int($event) ? get_post($event) : $event;
-    if (!$event instanceof WP_Post) {
+    $performance = is_int($performance) ? get_post($performance) : $performance;
+    if (!$performance instanceof WP_Post || $performance->post_type !== 'performance') {
         return [];
     }
 
-    $start = dgut_afisha_datetime($event->ID);
-    $performance_id = dgut_afisha_performance_id($event->ID);
-    $status_key = sanitize_key((string) dgut_afisha_raw_field('dgut_event_ticket_status', $event->ID, 'available'));
-    $statuses = dgut_afisha_statuses();
-    $terms = wp_get_post_terms($event->ID, 'dgut_event_type', ['fields' => 'names']);
+    $date = dgut_performance_datetime($performance->ID);
+    if (!$date) {
+        return [];
+    }
+
+    $terms = wp_get_post_terms($performance->ID, 'performance_genre', ['fields' => 'names']);
 
     return [
-        'id' => $event->ID,
-        'title' => get_the_title($event),
-        'permalink' => get_permalink($event),
-        'excerpt' => dgut_afisha_excerpt($event->ID),
-        'image_id' => dgut_afisha_image_id($event->ID),
-        'start' => $start,
-        'month' => $start ? $start->format('Y-m') : '',
-        'day' => $start ? wp_date('d', $start->getTimestamp(), wp_timezone()) : '',
-        'weekday' => $start ? dgut_afisha_weekday_label($start) : '',
-        'date' => $start ? dgut_afisha_date_label($start) : '',
-        'time' => $start ? wp_date('H:i', $start->getTimestamp(), wp_timezone()) : '',
-        'venue' => trim((string) dgut_afisha_raw_field('dgut_event_venue', $event->ID)),
-        'price' => trim((string) dgut_afisha_raw_field('dgut_event_price', $event->ID)),
-        'age' => trim((string) dgut_afisha_raw_field('dgut_event_age', $event->ID)),
-        'duration' => trim((string) dgut_afisha_raw_field('dgut_event_duration', $event->ID)),
-        'ticket_url' => esc_url_raw((string) dgut_afisha_raw_field('dgut_event_ticket_url', $event->ID)),
-        'status_key' => $status_key,
-        'status' => $statuses[$status_key] ?? $statuses['available'],
-        'featured' => (bool) dgut_afisha_raw_field('dgut_event_featured', $event->ID, false),
-        'performance_id' => $performance_id,
-        'performance_url' => $performance_id > 0 ? get_permalink($performance_id) : '',
-        'type' => !is_wp_error($terms) && !empty($terms) ? (string) $terms[0] : __('Подія', 'dgutheater'),
+        'id' => $performance->ID,
+        'title' => get_the_title($performance),
+        'permalink' => get_permalink($performance),
+        'excerpt' => trim((string) get_the_excerpt($performance)),
+        'image_id' => (int) get_post_thumbnail_id($performance),
+        'start' => $date,
+        'month' => $date->format('Y-m'),
+        'day' => wp_date('d', $date->getTimestamp(), wp_timezone()),
+        'weekday' => dgut_afisha_weekday_label($date),
+        'date' => dgut_afisha_date_label($date),
+        'time' => $date->format('H:i') !== '00:00' ? $date->format('H:i') : '',
+        'type' => !is_wp_error($terms) && !empty($terms) ? (string) $terms[0] : __('Вистава', 'dgutheater'),
     ];
+}
+
+function dgut_afisha_language_query_args(): array
+{
+    if (!function_exists('pll_current_language')) {
+        return [];
+    }
+
+    $language = (string) pll_current_language('slug');
+    return $language !== '' ? ['lang' => $language] : [];
 }
 
 function dgut_afisha_month_options(): array
 {
-    $posts = get_posts([
-        'post_type' => 'dgut_event',
+    $posts = get_posts(array_merge([
+        'post_type' => 'performance',
         'post_status' => 'publish',
         'posts_per_page' => -1,
         'fields' => 'ids',
-        'meta_key' => 'dgut_event_start',
+        'meta_key' => 'dgut_performance_date',
         'orderby' => 'meta_value',
-        'order' => 'ASC',
+        'order' => 'DESC',
+        'suppress_filters' => false,
         'no_found_rows' => true,
-    ]);
+    ], dgut_afisha_language_query_args()));
 
     $months = [];
     foreach ($posts as $post_id) {
-        $date = dgut_afisha_datetime((int) $post_id);
+        $date = dgut_performance_datetime((int) $post_id);
         if (!$date) {
             continue;
         }
-        $key = $date->format('Y-m');
-        $months[$key] = dgut_afisha_date_label($date, false);
+        $months[$date->format('Y-m')] = dgut_afisha_date_label($date, false);
     }
 
-    ksort($months);
+    krsort($months);
     return $months;
 }
 
@@ -197,110 +149,288 @@ function dgut_afisha_selected_month(array $months): string
     if (isset($months[$current])) {
         return $current;
     }
-    foreach (array_keys($months) as $month) {
+
+    $chronological = array_keys($months);
+    sort($chronological);
+    foreach ($chronological as $month) {
         if ($month > $current) {
             return $month;
         }
     }
 
-    return $months ? (string) array_key_last($months) : $current;
+    return $months ? (string) array_key_first($months) : $current;
 }
 
 function dgut_afisha_posts_for_month(string $month): array
 {
     $from = $month . '-01 00:00:00';
-    $to_date = DateTimeImmutable::createFromFormat('!Y-m-d H:i:s', $from, wp_timezone());
-    if (!$to_date) {
+    $from_date = DateTimeImmutable::createFromFormat('!Y-m-d H:i:s', $from, wp_timezone());
+    if (!$from_date) {
         return [];
     }
-    $to = $to_date->modify('last day of this month')->setTime(23, 59, 59)->format('Y-m-d H:i:s');
+    $to = $from_date->modify('last day of this month')->setTime(23, 59, 59)->format('Y-m-d H:i:s');
 
-    return get_posts([
-        'post_type' => 'dgut_event',
+    return get_posts(array_merge([
+        'post_type' => 'performance',
         'post_status' => 'publish',
         'posts_per_page' => -1,
-        'meta_key' => 'dgut_event_start',
+        'meta_key' => 'dgut_performance_date',
         'orderby' => 'meta_value',
         'order' => 'ASC',
+        'suppress_filters' => false,
         'meta_query' => [[
-            'key' => 'dgut_event_start',
+            'key' => 'dgut_performance_date',
             'value' => [$from, $to],
             'compare' => 'BETWEEN',
             'type' => 'DATETIME',
         ]],
         'no_found_rows' => true,
-    ]);
+    ], dgut_afisha_language_query_args()));
 }
 
-function dgut_afisha_other_dates(int $event_id, int $performance_id, int $limit = 3): array
+function dgut_afisha_archive_url(): string
 {
-    if ($performance_id <= 0) {
-        return [];
+    if (function_exists('pll_current_language')) {
+        $language = (string) pll_current_language('slug');
+        $default_language = function_exists('pll_default_language') ? (string) pll_default_language('slug') : '';
+        if ($language !== '' && $default_language !== '' && $language !== $default_language) {
+            return home_url('/' . $language . '/afisha/');
+        }
     }
 
-    return get_posts([
-        'post_type' => 'dgut_event',
-        'post_status' => 'publish',
-        'posts_per_page' => $limit,
-        'post__not_in' => [$event_id],
-        'meta_key' => 'dgut_event_start',
-        'orderby' => 'meta_value',
-        'order' => 'ASC',
-        'meta_query' => [
-            [
-                'key' => 'dgut_event_performance',
-                'value' => $performance_id,
-                'compare' => '=',
-            ],
-            [
-                'key' => 'dgut_event_start',
-                'value' => current_time('mysql'),
-                'compare' => '>=',
-                'type' => 'DATETIME',
-            ],
-        ],
-        'no_found_rows' => true,
-    ]);
+    return home_url('/afisha/');
 }
 
-add_filter('enter_title_here', function (string $title, WP_Post $post): string {
-    return $post->post_type === 'dgut_event' ? __('Назва події або вистави', 'dgutheater') : $title;
-}, 10, 2);
+function dgut_is_afisha_archive(): bool
+{
+    return (bool) get_query_var('dgut_afisha_archive');
+}
 
-add_filter('manage_dgut_event_posts_columns', function (array $columns): array {
-    $columns['dgut_event_start'] = __('Дата і час', 'dgutheater');
-    $columns['dgut_event_performance'] = __('Вистава', 'dgutheater');
-    $columns['dgut_event_status'] = __('Квитки', 'dgutheater');
-    return $columns;
-});
-
-add_filter('manage_edit-dgut_event_sortable_columns', function (array $columns): array {
-    $columns['dgut_event_start'] = 'dgut_event_start';
-    return $columns;
-});
-
-add_action('manage_dgut_event_posts_custom_column', function (string $column, int $post_id): void {
-    if ($column === 'dgut_event_start') {
-        $date = dgut_afisha_datetime($post_id);
-        echo $date ? esc_html(wp_date('d.m.Y H:i', $date->getTimestamp(), wp_timezone())) : '—';
-    } elseif ($column === 'dgut_event_performance') {
-        $performance_id = dgut_afisha_performance_id($post_id);
-        echo $performance_id > 0 ? esc_html(get_the_title($performance_id)) : '—';
-    } elseif ($column === 'dgut_event_status') {
-        $data = dgut_afisha_event_data($post_id);
-        echo esc_html((string) ($data['status'] ?? '—'));
+function dgut_normalize_legacy_performance_datetime(string $raw): string
+{
+    $raw = trim($raw);
+    if ($raw === '') {
+        return '';
     }
-}, 10, 2);
 
-add_action('pre_get_posts', function (WP_Query $query): void {
-    if (!is_admin() || !$query->is_main_query() || $query->get('post_type') !== 'dgut_event') {
-        return;
+    foreach (['Y-m-d H:i:s', 'Y-m-d H:i'] as $format) {
+        $date = DateTimeImmutable::createFromFormat('!' . $format, $raw, wp_timezone());
+        $errors = DateTimeImmutable::getLastErrors();
+        if ($date instanceof DateTimeImmutable && ($errors === false || ($errors['warning_count'] === 0 && $errors['error_count'] === 0))) {
+            return $date->format('Y-m-d H:i:s');
+        }
     }
-    if ($query->get('orderby') === 'dgut_event_start' || !$query->get('orderby')) {
-        $query->set('meta_key', 'dgut_event_start');
-        $query->set('orderby', 'meta_value');
-        if (!$query->get('order')) {
-            $query->set('order', 'DESC');
+
+    if (preg_match('/\b(\d{1,2})\.(\d{1,2})\.(\d{4})(?:\s+(\d{1,2}):(\d{2}))?\b/u', $raw, $matches)) {
+        $day = (int) $matches[1];
+        $month = (int) $matches[2];
+        $year = (int) $matches[3];
+        $hour = (int) ($matches[4] ?? 0);
+        $minute = (int) ($matches[5] ?? 0);
+        return checkdate($month, $day, $year) && $hour <= 23 && $minute <= 59
+            ? sprintf('%04d-%02d-%02d %02d:%02d:00', $year, $month, $day, $hour, $minute)
+            : '';
+    }
+
+    $ukrainian_months = [
+        'січня' => 1, 'лютого' => 2, 'березня' => 3, 'квітня' => 4,
+        'травня' => 5, 'червня' => 6, 'липня' => 7, 'серпня' => 8,
+        'вересня' => 9, 'жовтня' => 10, 'листопада' => 11, 'грудня' => 12,
+    ];
+    if (preg_match('/\b(\d{1,2})\s+([а-яіїєґ]+)\s+(\d{4})(?:\s+(\d{1,2}):(\d{2}))?\b/ui', $raw, $matches)) {
+        $month_name = mb_strtolower($matches[2]);
+        if (isset($ukrainian_months[$month_name])) {
+            $day = (int) $matches[1];
+            $month = $ukrainian_months[$month_name];
+            $year = (int) $matches[3];
+            $hour = (int) ($matches[4] ?? 0);
+            $minute = (int) ($matches[5] ?? 0);
+            return checkdate($month, $day, $year) && $hour <= 23 && $minute <= 59
+                ? sprintf('%04d-%02d-%02d %02d:%02d:00', $year, $month, $day, $hour, $minute)
+                : '';
+        }
+    }
+
+    if (preg_match('/\b(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2}),\s*(\d{4})(?:\s+(\d{1,2}):(\d{2}))?\b/i', $raw, $matches)) {
+        $date = DateTimeImmutable::createFromFormat('!F j Y H:i', sprintf('%s %d %d %02d:%02d', $matches[1], (int) $matches[2], (int) $matches[3], (int) ($matches[4] ?? 0), (int) ($matches[5] ?? 0)), wp_timezone());
+        return $date instanceof DateTimeImmutable ? $date->format('Y-m-d H:i:s') : '';
+    }
+
+    return '';
+}
+
+add_action('init', function (): void {
+    add_rewrite_rule('^afisha/?$', 'index.php?dgut_afisha_archive=1', 'top');
+
+    if (function_exists('pll_languages_list')) {
+        $default_language = function_exists('pll_default_language') ? (string) pll_default_language('slug') : '';
+        foreach ((array) pll_languages_list(['fields' => 'slug']) as $language) {
+            $language = sanitize_key((string) $language);
+            if ($language !== '' && $language !== $default_language) {
+                add_rewrite_rule('^' . preg_quote($language, '/') . '/afisha/?$', 'index.php?dgut_afisha_archive=1&lang=' . $language, 'top');
+            }
         }
     }
 });
+
+add_filter('query_vars', function (array $query_vars): array {
+    $query_vars[] = 'dgut_afisha_archive';
+    return $query_vars;
+});
+
+add_filter('template_include', function (string $template): string {
+    if (!dgut_is_afisha_archive()) {
+        return $template;
+    }
+
+    $afisha_template = locate_template('archive-afisha.php');
+    return $afisha_template !== '' ? $afisha_template : $template;
+}, 99);
+
+add_filter('pre_get_document_title', function (string $title): string {
+    return dgut_is_afisha_archive() ? __('Афіша', 'dgutheater') . ' - ' . get_bloginfo('name') : $title;
+});
+
+add_filter('wpseo_title', function (string $title): string {
+    return dgut_is_afisha_archive() ? __('Афіша', 'dgutheater') . ' | ' . get_bloginfo('name') : $title;
+});
+
+add_filter('wpseo_canonical', function ($canonical) {
+    return dgut_is_afisha_archive() ? dgut_afisha_archive_url() : $canonical;
+});
+
+add_filter('body_class', function (array $classes): array {
+    if (dgut_is_afisha_archive()) {
+        $classes[] = 'post-type-archive-performance';
+        $classes[] = 'dgut-afisha-virtual-archive';
+    }
+    return $classes;
+});
+
+add_action('template_redirect', function (): void {
+    if (dgut_is_afisha_archive()) {
+        global $wp_query;
+        $wp_query->is_404 = false;
+        status_header(200);
+        return;
+    }
+
+    $path = trim((string) wp_parse_url(wp_unslash($_SERVER['REQUEST_URI'] ?? ''), PHP_URL_PATH), '/');
+    $redirects = [
+        'afisha/sidur' => 'sidur',
+        'afisha/vilni-stosunki' => 'vilni-stosunky',
+        'afisha/povernennya-hlopchika-abo-ostannya-kazka-pro-gologo-korolya' => 'povernennya-khlopchyka',
+    ];
+    if (!isset($redirects[$path])) {
+        return;
+    }
+
+    $performance = get_page_by_path($redirects[$path], OBJECT, 'performance');
+    if ($performance instanceof WP_Post) {
+        wp_safe_redirect(get_permalink($performance), 301);
+        exit;
+    }
+});
+
+add_action('init', function (): void {
+    $migration_version = '1';
+    if (get_option('dgut_performance_datetime_migration') === $migration_version) {
+        return;
+    }
+
+    $performance_ids = get_posts([
+        'post_type' => 'performance',
+        'post_status' => 'any',
+        'posts_per_page' => -1,
+        'fields' => 'ids',
+        'suppress_filters' => true,
+    ]);
+    foreach ($performance_ids as $performance_id) {
+        $raw = trim((string) get_post_meta((int) $performance_id, 'dgut_performance_date', true));
+        if ($raw !== '' && get_post_meta((int) $performance_id, 'dgut_performance_date_legacy', true) === '') {
+            update_post_meta((int) $performance_id, 'dgut_performance_date_legacy', $raw);
+        }
+    }
+
+    global $wpdb;
+    $legacy_event_ids = $wpdb->get_col("SELECT ID FROM {$wpdb->posts} WHERE post_type = 'dgut_event'");
+    foreach ($legacy_event_ids as $event_id) {
+        $performance_id = absint(get_post_meta((int) $event_id, 'dgut_event_performance', true));
+        $event_date = dgut_normalize_legacy_performance_datetime((string) get_post_meta((int) $event_id, 'dgut_event_start', true));
+        if ($performance_id <= 0 || $event_date === '') {
+            continue;
+        }
+
+        $translation_ids = [$performance_id];
+        if (function_exists('pll_get_post_translations')) {
+            $translation_ids = array_merge($translation_ids, array_values((array) pll_get_post_translations($performance_id)));
+        }
+        foreach (array_unique(array_map('intval', $translation_ids)) as $translation_id) {
+            if ($translation_id > 0) {
+                update_post_meta($translation_id, 'dgut_performance_date', $event_date);
+            }
+        }
+    }
+
+    foreach ($performance_ids as $performance_id) {
+        $performance_id = (int) $performance_id;
+        $raw = trim((string) get_post_meta($performance_id, 'dgut_performance_date', true));
+        $normalized = dgut_normalize_legacy_performance_datetime($raw);
+        if ($normalized !== '') {
+            update_post_meta($performance_id, 'dgut_performance_date', $normalized);
+        } else {
+            delete_post_meta($performance_id, 'dgut_performance_date');
+        }
+    }
+
+    update_option('dgut_performance_datetime_migration', $migration_version, false);
+}, 50);
+
+add_action('init', function (): void {
+    if (!function_exists('get_field') || !function_exists('update_field')) {
+        return;
+    }
+
+    $front_page_id = (int) get_option('page_on_front');
+    if ($front_page_id <= 0 || get_post_meta($front_page_id, '_dgut_home_hero_afisha_links_migrated_v2', true)) {
+        return;
+    }
+
+    $rows = get_field('home_hero_slides', $front_page_id);
+    if (!is_array($rows)) {
+        return;
+    }
+
+    $link_map = [
+        'afisha/sidur' => 'sidur',
+        'afisha/vilni-stosunki' => 'vilni-stosunky',
+        'afisha/povernennya-hlopchika-abo-ostannya-kazka-pro-gologo-korolya' => 'povernennya-khlopchyka',
+    ];
+    foreach ($rows as &$row) {
+        if (!is_array($row) || !is_array($row['link'] ?? null)) {
+            continue;
+        }
+        $path = trim((string) wp_parse_url((string) ($row['link']['url'] ?? ''), PHP_URL_PATH), '/');
+        if (!isset($link_map[$path])) {
+            continue;
+        }
+        $performance = get_page_by_path($link_map[$path], OBJECT, 'performance');
+        if ($performance instanceof WP_Post) {
+            $row['link']['url'] = get_permalink($performance);
+        }
+    }
+    unset($row);
+
+    update_field('field_dgut_home_hero_slides', $rows, $front_page_id);
+    update_post_meta($front_page_id, '_dgut_home_hero_afisha_links_migrated_v2', '1');
+}, 60);
+
+add_action('init', function (): void {
+    $rewrite_version = '3';
+    if (get_option('dgut_afisha_rewrite_version') === $rewrite_version) {
+        return;
+    }
+
+    flush_rewrite_rules(false);
+    update_option('dgut_afisha_rewrite_version', $rewrite_version, false);
+}, 99);

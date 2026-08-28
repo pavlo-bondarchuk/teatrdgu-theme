@@ -91,69 +91,6 @@ add_action('init', function (): void {
 }, 30);
 
 add_action('init', function (): void {
-    if (!function_exists('get_field') || !function_exists('update_field')) {
-        return;
-    }
-
-    $front_page_id = (int) get_option('page_on_front');
-    if ($front_page_id <= 0 || get_post_meta($front_page_id, '_dgut_home_hero_afisha_slides_migrated_v1', true)) {
-        return;
-    }
-
-    $rows = get_field('home_hero_slides', $front_page_id);
-    if (!is_array($rows)) {
-        $rows = [];
-    }
-
-    $existing_urls = array_filter(array_map(static function ($row): string {
-        return is_array($row) && is_array($row['link'] ?? null)
-            ? untrailingslashit((string) ($row['link']['url'] ?? ''))
-            : '';
-    }, $rows));
-
-    $event_slugs = [
-        'sidur',
-        'vilni-stosunki',
-        'povernennya-hlopchika-abo-ostannya-kazka-pro-gologo-korolya',
-    ];
-
-    foreach ($event_slugs as $event_slug) {
-        $event_post = get_page_by_path($event_slug, OBJECT, 'dgut_event');
-        if (!$event_post instanceof WP_Post || $event_post->post_status !== 'publish') {
-            continue;
-        }
-
-        $event = dgut_afisha_event_data($event_post);
-        $event_url = untrailingslashit((string) ($event['permalink'] ?? ''));
-        if ($event_url === '' || in_array($event_url, $existing_urls, true)) {
-            continue;
-        }
-
-        $performance_id = (int) ($event['performance_id'] ?? 0);
-        $rows[] = [
-            'image' => (int) ($event['image_id'] ?? 0),
-            'focus' => 'center top',
-            'eyebrow' => (string) ($event['type'] ?? ''),
-            'title' => (string) ($event['title'] ?? ''),
-            'credits' => $performance_id > 0 ? dgut_performance_credit_line($performance_id) : '',
-            'date' => trim((string) ($event['date'] ?? '') . ' ' . (string) ($event['time'] ?? '')),
-            'link' => [
-                'title' => __('Детальніше', 'dgutheater'),
-                'url' => (string) ($event['permalink'] ?? ''),
-                'target' => '',
-            ],
-        ];
-        $existing_urls[] = $event_url;
-    }
-
-    update_field('field_dgut_home_hero_slides', $rows, $front_page_id);
-    $saved_rows = get_field('home_hero_slides', $front_page_id);
-    if (is_array($saved_rows) && count($saved_rows) === count($rows)) {
-        update_post_meta($front_page_id, '_dgut_home_hero_afisha_slides_migrated_v1', '1');
-    }
-}, 40);
-
-add_action('init', function (): void {
     if (!function_exists('get_field') || !function_exists('pll_register_string')) {
         return;
     }

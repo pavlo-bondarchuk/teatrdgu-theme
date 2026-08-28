@@ -817,7 +817,7 @@ function dgut_get_performance_card_data(WP_Post|int $post): array
     return [
         'title' => $title,
         'genre' => $genre,
-        'date' => function_exists('get_field') ? (string) get_field('dgut_performance_date', $post_id) : '',
+        'date' => function_exists('dgut_performance_date_label') ? dgut_performance_date_label($post_id) : '',
         'duration' => function_exists('get_field') ? (string) get_field('dgut_performance_duration', $post_id) : '',
         'age_rating' => function_exists('get_field') ? trim((string) get_field('dgut_performance_age', $post_id)) : '',
         'credits' => dgut_performance_credit_line($post_id),
@@ -940,7 +940,7 @@ function dgut_repertoire_card_data($post): array
         'permalink' => get_permalink($post_id),
         'genre' => $genre_names ? $genre_names[0] : '',
         'genre_ids' => $genre_ids,
-        'date' => isset($fields['dgut_performance_date']) ? (string) $fields['dgut_performance_date'] : '',
+        'date' => function_exists('dgut_performance_date_label') ? dgut_performance_date_label($post_id) : '',
         'age_rating' => isset($fields['dgut_performance_age']) ? trim((string) $fields['dgut_performance_age']) : '',
         'excerpt' => get_the_excerpt($post_id),
         'image' => get_the_post_thumbnail_url($post_id, 'dgut-repertoire-archive-card') ?: '',

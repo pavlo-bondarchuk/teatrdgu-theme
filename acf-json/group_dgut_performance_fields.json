@@ -25,8 +25,8 @@
             "label": "Дата показу",
             "name": "dgut_performance_date",
             "aria-label": "",
-            "type": "text",
-            "instructions": "Наприклад: Прем'єра 24.02.2026",
+            "type": "date_time_picker",
+            "instructions": "Вкажіть точну дату та час показу. Вистава з датою автоматично з’явиться в архіві афіші.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -34,11 +34,10 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "Прем'єра 24.02.2026",
-            "prepend": "",
-            "append": ""
+            "display_format": "d.m.Y H:i",
+            "return_format": "Y-m-d H:i:s",
+            "first_day": 1,
+            "default_value": ""
         },
         {
             "key": "field_dgut_performance_duration",
@@ -711,5 +710,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1784392258
+    "modified": 1787947200
 }

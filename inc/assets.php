@@ -45,7 +45,7 @@ add_action('wp_enqueue_scripts', function (): void {
     if (is_singular('performance')) {
         wp_enqueue_style('dgut-event', DGUTHEME_URI . '/assets/css/event.css', ['dgut-common'], DGUTHEME_VERSION);
     }
-    if (is_post_type_archive('dgut_event') || is_singular('dgut_event') || is_tax('dgut_event_type')) {
+    if (function_exists('dgut_is_afisha_archive') && dgut_is_afisha_archive()) {
         wp_enqueue_style('dgut-afisha', DGUTHEME_URI . '/assets/css/afisha.css', ['dgut-common'], DGUTHEME_VERSION);
     }
     if (is_singular('post')) {
