@@ -2,6 +2,7 @@
 
 ## 2026-08-28
 
+- Anchored every Afisha card date block to the bottom of the flexible card content so dates and footers stay level when titles wrap to different line counts.
 - Expanded Afisha card dates into a labelled calendar block with the full localized date and time; added a direct ticket-service CTA and a chevron to the repertoire detail link.
 - Added a dedicated Afisha poster image to repertoire entries; Afisha cards use it in its natural aspect ratio and fall back to the performance featured image when it is empty.
 - Rebuilt the Afisha archive from published `performance` posts that have a valid show date; removed the separate Afisha post type, fields and detail template.
