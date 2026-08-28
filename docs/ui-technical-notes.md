@@ -14,5 +14,6 @@
 - Each hero row owns its image, crop focus, eyebrow, title, credits, date and CTA link. Preserve this manual boundary when extending the banner.
 - Afisha is a virtual archive sourced from published `performance` posts with a valid `dgut_performance_date`; do not restore a separate event post type or event detail template.
 - Afisha archive artwork belongs to `dgut_performance_afisha_poster`; preserve its natural aspect ratio and use the performance featured image only as a fallback.
+- Afisha cards show a full localized datetime in a labelled calendar block; use the first configured ticket-service URL for the direct ticket CTA and keep the repertoire detail CTA separate with a right chevron.
 - Order month tabs newest first, but keep performance cards chronological inside the selected month.
 - Event-promotion slides may coexist with performance slides and keep manual Afisha artwork, but their CTA must link to the matching repertoire detail page.

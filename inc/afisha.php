@@ -71,6 +71,27 @@ function dgut_performance_date_label(int $post_id): string
     return trim((string) get_post_meta($post_id, 'dgut_performance_date_legacy', true));
 }
 
+function dgut_afisha_ticket_url(int $post_id): string
+{
+    if (!function_exists('get_field')) {
+        return '';
+    }
+
+    $services = get_field('dgut_performance_ticket_services', $post_id);
+    if (!is_array($services)) {
+        return '';
+    }
+
+    foreach ($services as $service) {
+        $url = is_array($service) ? trim((string) ($service['url'] ?? '')) : '';
+        if ($url !== '') {
+            return esc_url_raw($url);
+        }
+    }
+
+    return '';
+}
+
 function dgut_afisha_performance_data(WP_Post|int $performance): array
 {
     $performance = is_int($performance) ? get_post($performance) : $performance;
@@ -99,6 +120,8 @@ function dgut_afisha_performance_data(WP_Post|int $performance): array
         'weekday' => dgut_afisha_weekday_label($date),
         'date' => dgut_afisha_date_label($date),
         'time' => $date->format('H:i') !== '00:00' ? $date->format('H:i') : '',
+        'datetime' => $date->format(DATE_ATOM),
+        'ticket_url' => dgut_afisha_ticket_url($performance->ID),
         'type' => !is_wp_error($terms) && !empty($terms) ? (string) $terms[0] : __('Вистава', 'dgutheater'),
     ];
 }

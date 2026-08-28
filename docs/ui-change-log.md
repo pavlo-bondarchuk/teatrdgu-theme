@@ -2,6 +2,7 @@
 
 ## 2026-08-28
 
+- Expanded Afisha card dates into a labelled calendar block with the full localized date and time; added a direct ticket-service CTA and a chevron to the repertoire detail link.
 - Added a dedicated Afisha poster image to repertoire entries; Afisha cards use it in its natural aspect ratio and fall back to the performance featured image when it is empty.
 - Rebuilt the Afisha archive from published `performance` posts that have a valid show date; removed the separate Afisha post type, fields and detail template.
 - Kept the 3/2/1 card grid and month filtering, with month tabs now ordered newest first while performances inside each month remain chronological.

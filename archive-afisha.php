@@ -47,11 +47,26 @@ $events = array_values(array_filter(array_map('dgut_afisha_performance_data', $p
                             <div class="dgut-afisha-card__body">
                                 <p class="eyebrow"><?php echo esc_html($event['type']); ?></p>
                                 <h2><a href="<?php echo esc_url($event['permalink']); ?>"><?php echo esc_html($event['title']); ?></a></h2>
-                                <?php if ($event['time']) : ?>
-                                    <p class="dgut-afisha-card__time"><?php echo dgut_ui_icon('clock'); ?><?php echo esc_html($event['time']); ?></p>
-                                <?php endif; ?>
+                                <div class="dgut-afisha-card__time">
+                                    <?php echo dgut_ui_icon('calendar'); ?>
+                                    <div>
+                                        <span><?php esc_html_e('Дата', 'dgutheater'); ?></span>
+                                        <time datetime="<?php echo esc_attr($event['datetime']); ?>">
+                                            <?php echo esc_html(trim($event['date'] . ' ' . $event['time'])); ?>
+                                        </time>
+                                    </div>
+                                </div>
                                 <div class="dgut-afisha-card__footer">
-                                    <a href="<?php echo esc_url($event['permalink']); ?>"><?php esc_html_e('Детальніше', 'dgutheater'); ?></a>
+                                    <?php if ($event['ticket_url']) : ?>
+                                        <a class="dgut-afisha-card__ticket" href="<?php echo esc_url($event['ticket_url']); ?>" target="_blank" rel="noopener noreferrer">
+                                            <?php echo dgut_ui_icon('ticket'); ?>
+                                            <span><?php esc_html_e('Купити квиток', 'dgutheater'); ?></span>
+                                        </a>
+                                    <?php endif; ?>
+                                    <a class="dgut-afisha-card__details" href="<?php echo esc_url($event['permalink']); ?>">
+                                        <span><?php esc_html_e('Детальніше', 'dgutheater'); ?></span>
+                                        <?php echo dgut_ui_icon('chevron-right'); ?>
+                                    </a>
                                 </div>
                             </div>
                         </article>
