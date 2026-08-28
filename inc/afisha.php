@@ -84,13 +84,15 @@ function dgut_afisha_performance_data(WP_Post|int $performance): array
     }
 
     $terms = wp_get_post_terms($performance->ID, 'performance_genre', ['fields' => 'names']);
+    $poster_id = absint(get_post_meta($performance->ID, 'dgut_performance_afisha_poster', true));
 
     return [
         'id' => $performance->ID,
         'title' => get_the_title($performance),
         'permalink' => get_permalink($performance),
         'excerpt' => trim((string) get_the_excerpt($performance)),
-        'image_id' => (int) get_post_thumbnail_id($performance),
+        'image_id' => $poster_id > 0 ? $poster_id : (int) get_post_thumbnail_id($performance),
+        'image_size' => $poster_id > 0 ? 'dgut-afisha-poster' : 'dgut-afisha-card',
         'start' => $date,
         'month' => $date->format('Y-m'),
         'day' => wp_date('d', $date->getTimestamp(), wp_timezone()),

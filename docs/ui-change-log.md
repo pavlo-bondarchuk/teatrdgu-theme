@@ -2,6 +2,7 @@
 
 ## 2026-08-28
 
+- Added a dedicated Afisha poster image to repertoire entries; Afisha cards use it in its natural aspect ratio and fall back to the performance featured image when it is empty.
 - Rebuilt the Afisha archive from published `performance` posts that have a valid show date; removed the separate Afisha post type, fields and detail template.
 - Kept the 3/2/1 card grid and month filtering, with month tabs now ordered newest first while performances inside each month remain chronological.
 - Converted the performance show-date field to a date-and-time picker and added a one-time, loss-safe migration for existing values.

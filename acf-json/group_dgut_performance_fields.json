@@ -40,6 +40,31 @@
             "default_value": ""
         },
         {
+            "key": "field_dgut_performance_afisha_poster",
+            "label": "Афіша",
+            "name": "dgut_performance_afisha_poster",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Завантажте окремий вертикальний постер для картки в архіві афіші. Якщо поле порожнє, буде використано головне зображення вистави.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "jpg,jpeg,png,webp",
+            "preview_size": "medium"
+        },
+        {
             "key": "field_dgut_performance_duration",
             "label": "Тривалість",
             "name": "dgut_performance_duration",
@@ -710,5 +735,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1787947200
+    "modified": 1787950800
 }

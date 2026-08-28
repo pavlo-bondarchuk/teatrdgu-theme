@@ -40,7 +40,7 @@ $events = array_values(array_filter(array_map('dgut_afisha_performance_data', $p
                         <article class="dgut-afisha-card">
                             <a class="dgut-afisha-card__media" href="<?php echo esc_url($event['permalink']); ?>">
                                 <?php if ($event['image_id']) : ?>
-                                    <?php echo dgut_responsive_image((int) $event['image_id'], 'dgut-afisha-card', (string) $event['title'], '(min-width: 1024px) 380px, (min-width: 640px) 45vw, 100vw'); ?>
+                                    <?php echo dgut_responsive_image((int) $event['image_id'], (string) $event['image_size'], (string) $event['title'], '(min-width: 1024px) 380px, (min-width: 640px) 45vw, 100vw'); ?>
                                 <?php endif; ?>
                                 <span class="dgut-afisha-card__date"><strong><?php echo esc_html($event['day']); ?></strong><span><?php echo esc_html($event['weekday']); ?></span></span>
                             </a>
