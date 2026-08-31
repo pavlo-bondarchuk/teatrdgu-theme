@@ -21,7 +21,7 @@ if (!dgut_front_bool($fields, 'home_hero_show', true) || empty($hero_slides)) {
                     <?php echo dgut_hero_picture($thumbnail_id, (string) $slide['title'], (string) ($slide['focus'] ?? 'center center'), [
                         'loading' => $index === 0 ? 'eager' : 'lazy',
                         'fetchpriority' => $index === 0 ? 'high' : 'auto',
-                    ]); ?>
+                    ], (int) ($slide['mobile_thumbnail_id'] ?? 0)); ?>
                 <?php elseif ($hero_image !== '') : ?>
                     <?php echo dgut_img($hero_image, $slide['title'], 'dgut-hero__image', [
                         'loading' => $index === 0 ? 'eager' : 'lazy',

@@ -2,6 +2,7 @@
 
 ## 2026-08-31
 
+- Added an optional mobile image to each manual homepage hero slide; mobile uses that image when supplied and retains the existing focused desktop crop as a fallback.
 - Corrected the Afisha language switcher so its Ukrainian route remains `/afisha/` and each translated route is generated dynamically from the Polylang language slug, while retaining a selected month.
 
 ## 2026-08-28

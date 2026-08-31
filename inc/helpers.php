@@ -113,18 +113,28 @@ function dgut_responsive_image(int $attachment_id, string $size, string $alt = '
     return wp_get_attachment_image($attachment_id, $size, false, $attrs);
 }
 
-function dgut_hero_picture(int $attachment_id, string $alt = '', string $focus = 'center center', array $attrs = []): string
+function dgut_hero_picture(int $attachment_id, string $alt = '', string $focus = 'center center', array $attrs = [], int $mobile_attachment_id = 0): string
 {
     if ($attachment_id <= 0) {
         return '';
     }
 
-    $mobile_image = image_get_intermediate_size($attachment_id, 'dgut-hero-slide-mobile');
+    $mobile_source_id = $mobile_attachment_id > 0 ? $mobile_attachment_id : $attachment_id;
+    $mobile_image = image_get_intermediate_size($mobile_source_id, 'dgut-hero-slide-mobile');
     if (!$mobile_image) {
-        $mobile_image = image_get_intermediate_size($attachment_id, 'medium_large');
+        $mobile_image = image_get_intermediate_size($mobile_source_id, 'medium_large');
     }
     if (!$mobile_image) {
-        $mobile_image = image_get_intermediate_size($attachment_id, 'medium');
+        $mobile_image = image_get_intermediate_size($mobile_source_id, 'medium');
+    }
+    if (!$mobile_image && $mobile_attachment_id > 0) {
+        $mobile_src = wp_get_attachment_image_src($mobile_source_id, 'full');
+        if ($mobile_src) {
+            $mobile_image = [
+                'url' => $mobile_src[0],
+                'width' => $mobile_src[1],
+            ];
+        }
     }
     $desktop_image = image_get_intermediate_size($attachment_id, 'dgut-hero-slide');
     if (!$desktop_image) {
@@ -281,6 +291,14 @@ function dgut_front_hero_slides(mixed $rows): array
             $thumbnail_id = (int) ($image['ID'] ?? ($image['id'] ?? 0));
         }
 
+        $mobile_image = $row['mobile_image'] ?? 0;
+        $mobile_thumbnail_id = 0;
+        if (is_numeric($mobile_image)) {
+            $mobile_thumbnail_id = (int) $mobile_image;
+        } elseif (is_array($mobile_image)) {
+            $mobile_thumbnail_id = (int) ($mobile_image['ID'] ?? ($mobile_image['id'] ?? 0));
+        }
+
         $link = is_array($row['link'] ?? null) ? $row['link'] : [];
         $slides[] = [
             'title' => $title,
@@ -290,6 +308,7 @@ function dgut_front_hero_slides(mixed $rows): array
             'image' => dgut_get_image_from_field($image),
             'hero_image' => dgut_get_image_from_field($image),
             'thumbnail_id' => $thumbnail_id,
+            'mobile_thumbnail_id' => $mobile_thumbnail_id,
             'focus' => (string) ($row['focus'] ?? 'center top') ?: 'center top',
             'permalink' => trim((string) ($link['url'] ?? '')),
             'link_title' => trim((string) ($link['title'] ?? '')),

@@ -64,12 +64,38 @@
             "sub_fields": [
                 {
                     "key": "field_dgut_home_hero_slide_image",
-                    "label": "Зображення",
+                    "label": "Зображення для десктопа",
                     "name": "image",
                     "aria-label": "",
                     "type": "image",
                     "instructions": "Рекомендований формат — широкий банер 1881 × 720 px.",
                     "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "id",
+                    "library": "all",
+                    "preview_size": "medium",
+                    "min_width": 0,
+                    "min_height": 0,
+                    "min_size": 0,
+                    "max_width": 0,
+                    "max_height": 0,
+                    "max_size": 0,
+                    "mime_types": "",
+                    "parent_repeater": "field_dgut_home_hero_slides"
+                },
+                {
+                    "key": "field_dgut_home_hero_slide_mobile_image",
+                    "label": "Зображення для мобільних",
+                    "name": "mobile_image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "Необов’язкове. Рекомендований формат — 780 × 585 px. Якщо не завантажене, використовується кроп десктопного зображення.",
+                    "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "50",
@@ -728,5 +754,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1787842201
+    "modified": 1788170206
 }
