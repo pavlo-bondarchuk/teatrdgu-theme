@@ -1,5 +1,9 @@
 # UI Change Log
 
+## 2026-08-31
+
+- Corrected the Afisha language switcher so its Ukrainian route remains `/afisha/` and each translated route is generated dynamically from the Polylang language slug, while retaining a selected month.
+
 ## 2026-08-28
 
 - Anchored every Afisha card date block to the bottom of the flexible card content so dates and footers stay level when titles wrap to different line counts.

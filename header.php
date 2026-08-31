@@ -120,6 +120,10 @@
                             <?php foreach ($languages as $language) : ?>
                                 <?php
                                 $language_url = (string) ($language['url'] ?? '');
+                                $language_slug = (string) ($language['slug'] ?? '');
+                                if (function_exists('dgut_is_afisha_archive') && dgut_is_afisha_archive() && function_exists('dgut_afisha_language_switch_url')) {
+                                    $language_url = dgut_afisha_language_switch_url($language_slug);
+                                }
                                 if ($language_url === '') {
                                     continue;
                                 }

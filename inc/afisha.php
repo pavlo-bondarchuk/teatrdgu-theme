@@ -213,17 +213,32 @@ function dgut_afisha_posts_for_month(string $month): array
     ], dgut_afisha_language_query_args()));
 }
 
-function dgut_afisha_archive_url(): string
+function dgut_afisha_archive_url_for_language(string $language): string
 {
-    if (function_exists('pll_current_language')) {
-        $language = (string) pll_current_language('slug');
-        $default_language = function_exists('pll_default_language') ? (string) pll_default_language('slug') : '';
-        if ($language !== '' && $default_language !== '' && $language !== $default_language) {
-            return home_url('/' . $language . '/afisha/');
-        }
+    $language = sanitize_key($language);
+    $default_language = function_exists('pll_default_language') ? sanitize_key((string) pll_default_language('slug')) : '';
+
+    if ($language !== '' && $default_language !== '' && $language !== $default_language) {
+        return home_url('/' . $language . '/afisha/');
     }
 
     return home_url('/afisha/');
+}
+
+function dgut_afisha_archive_url(): string
+{
+    $language = function_exists('pll_current_language') ? (string) pll_current_language('slug') : '';
+    return dgut_afisha_archive_url_for_language($language);
+}
+
+function dgut_afisha_language_switch_url(string $language): string
+{
+    $url = dgut_afisha_archive_url_for_language($language);
+    $month = isset($_GET['month']) ? sanitize_text_field(wp_unslash($_GET['month'])) : '';
+
+    return preg_match('/^\d{4}-\d{2}$/', $month)
+        ? add_query_arg('month', $month, $url)
+        : $url;
 }
 
 function dgut_is_afisha_archive(): bool
