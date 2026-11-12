@@ -42,7 +42,7 @@
         },
         {
             "key": "field_dgut_donation_copy_uk",
-            "label": "Текст сторінки · Українська",
+            "label": "Текст сторінки",
             "name": "copy_uk",
             "aria-label": "",
             "type": "textarea",
@@ -55,26 +55,6 @@
                 "id": ""
             },
             "default_value": "Історія Театру ДГУ триває. Ми збираємо архівні записи в Цифровому музеї та працюємо над новими виставами. Ваша підтримка допомагає зберігати історію театру й дає йому можливість створювати нові роботи.\n\nВнески на підтримку театру збирає наш партнер — Міжнародний благодійний фонд «Культурна столиця». Дякуємо всім, хто підтримує театр в Україні й за кордоном.",
-            "rows": 6,
-            "new_lines": "",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_dgut_donation_copy_en",
-            "label": "Текст сторінки · English",
-            "name": "copy_en",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "The story of Teatr DGU continues. We preserve archival recordings in the Digital Museum and create new productions. Your support helps us preserve the theatre’s history and develop new work.\n\nDonations to support the theatre are collected by our partner, the Cultural Capital International Charitable Foundation. Thank you to everyone who supports the theatre in Ukraine and abroad.",
             "rows": 6,
             "new_lines": "",
             "maxlength": "",
@@ -386,6 +366,6 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1794498510,
+    "modified": 1794498914,
     "local_file": "\/home4\/teatrdgu\/public_html\/wp-content\/themes\/teatrdgu-theme\/acf-json\/group_dgut_museum_donations.json"
 }
