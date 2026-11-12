@@ -1,0 +1,391 @@
+{
+    "key": "group_dgut_museum_donations",
+    "title": "Донати цифрового музею",
+    "fields": [
+        {
+            "key": "field_dgut_donation_content_tab",
+            "label": "Сторінка",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_dgut_donation_enabled",
+            "label": "Показувати розділ у цифровому музеї",
+            "name": "enabled",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 0,
+            "ui": 1,
+            "message": "",
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_dgut_donation_copy_uk",
+            "label": "Текст сторінки · Українська",
+            "name": "copy_uk",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Історія Театру ДГУ триває. Ми збираємо архівні записи в Цифровому музеї та працюємо над новими виставами. Ваша підтримка допомагає зберігати історію театру й дає йому можливість створювати нові роботи.\n\nВнески на підтримку театру збирає наш партнер — Міжнародний благодійний фонд «Культурна столиця». Дякуємо всім, хто підтримує театр в Україні й за кордоном.",
+            "rows": 6,
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_dgut_donation_copy_en",
+            "label": "Текст сторінки · English",
+            "name": "copy_en",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "The story of Teatr DGU continues. We preserve archival recordings in the Digital Museum and create new productions. Your support helps us preserve the theatre’s history and develop new work.\n\nDonations to support the theatre are collected by our partner, the Cultural Capital International Charitable Foundation. Thank you to everyone who supports the theatre in Ukraine and abroad.",
+            "rows": 6,
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_dgut_donation_payments_tab",
+            "label": "Оплата",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_dgut_donation_one_time",
+            "label": "Посилання для разового внеску",
+            "name": "one_time",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https:\/\/"
+        },
+        {
+            "key": "field_dgut_donation_front_row_amount",
+            "label": "Заслужений меценат першого ряду · сума з валютою",
+            "name": "front_row_amount",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "35",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "$10",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_dgut_donation_front_row_url",
+            "label": "Заслужений меценат першого ряду · платіжне посилання",
+            "name": "front_row_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "65",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https:\/\/"
+        },
+        {
+            "key": "field_dgut_donation_artist_amount",
+            "label": "Народний артист донату · сума з валютою",
+            "name": "artist_amount",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "35",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "$20",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_dgut_donation_artist_url",
+            "label": "Народний артист донату · платіжне посилання",
+            "name": "artist_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "65",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https:\/\/"
+        },
+        {
+            "key": "field_dgut_donation_emperor_amount",
+            "label": "Імператор Всесвіту ДГУ · сума з валютою",
+            "name": "emperor_amount",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "35",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "$50",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_dgut_donation_emperor_url",
+            "label": "Імператор Всесвіту ДГУ · платіжне посилання",
+            "name": "emperor_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "65",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https:\/\/"
+        },
+        {
+            "key": "field_dgut_donation_legal_tab",
+            "label": "Правова інформація",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_dgut_donation_document_offer",
+            "label": "Договір публічної оферти про надання благодійної пожертви",
+            "name": "document_offer",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "Виберіть PDF, погоджений для публікації, або завантажте його в медіатеку.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "mime_types": "pdf",
+            "min_size": 0,
+            "max_size": 0
+        },
+        {
+            "key": "field_dgut_donation_document_privacy",
+            "label": "Політика конфіденційності",
+            "name": "document_privacy",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "mime_types": "pdf",
+            "min_size": 0,
+            "max_size": 0
+        },
+        {
+            "key": "field_dgut_donation_document_details",
+            "label": "Офіційні реквізити та контакти МБФ «Культурна столиця»",
+            "name": "document_details",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "mime_types": "pdf",
+            "min_size": 0,
+            "max_size": 0
+        },
+        {
+            "key": "field_dgut_donation_document_charter",
+            "label": "Статут МБФ «Культурна столиця»",
+            "name": "document_charter",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "mime_types": "pdf",
+            "min_size": 0,
+            "max_size": 0
+        },
+        {
+            "key": "field_dgut_donation_document_nonprofit",
+            "label": "Витяг із Реєстру неприбуткових установ та організацій",
+            "name": "document_nonprofit",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "mime_types": "pdf",
+            "min_size": 0,
+            "max_size": 0
+        },
+        {
+            "key": "field_dgut_donation_document_registry",
+            "label": "Виписка з Єдиного державного реєстру (ЄДР)",
+            "name": "document_registry",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "mime_types": "pdf",
+            "min_size": 0,
+            "max_size": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "teatrdgu-museum-donations"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1794498510,
+    "local_file": "\/home4\/teatrdgu\/public_html\/wp-content\/themes\/teatrdgu-theme\/acf-json\/group_dgut_museum_donations.json"
+}
