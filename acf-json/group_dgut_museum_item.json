@@ -1,0 +1,68 @@
+{
+    "key": "group_dgut_museum_item",
+    "title": "Дані для цифрового музею",
+    "fields": [
+        {
+            "key": "field_dgut_museum_year",
+            "label": "Рік",
+            "name": "museum_year",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Для публікації потрібен рік. WordPress автоматично знайде або створить відповідний термін.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": 1000,
+            "max": 9999,
+            "step": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_dgut_museum_youtube_url",
+            "label": "Посилання на відео YouTube",
+            "name": "museum_youtube_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Посилання необов’язкове. Без відео матеріал відображатиметься в каталозі як картка.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https:\/\/www.youtube.com\/watch?v=…"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "museum_item"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1794492048,
+    "local_file": "\/home4\/teatrdgu\/public_html\/wp-content\/themes\/teatrdgu-theme\/acf-json\/group_dgut_museum_item.json"
+}
